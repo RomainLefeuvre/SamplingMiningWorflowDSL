@@ -4,6 +4,7 @@ from newDSL.element.Element import Element
 
 class Set(Element):
     def __init__(self):
+        super().__init__()
         self.elements = set()
 
     def add_element(self, element: Element) -> 'Set':
