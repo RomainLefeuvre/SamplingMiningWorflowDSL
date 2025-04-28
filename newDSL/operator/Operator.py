@@ -5,8 +5,8 @@ from newDSL.element.Set import Set
 
 class Operator:
     def __init__(self):
-        self._input = None
-        self._output = None
+        self._input: Set|None = None
+        self._output: Set|None = None
         self._output_writer = None
         self._next_operator: Optional['operator'] = None
         self._previous_operator: Optional['operator'] = None
@@ -49,6 +49,8 @@ class Operator:
 
     def output(self, writer):
         self._output_writer = writer
+        if self._next_operator:
+            self._next_operator.output(writer)
         return self
 
     def input_set(self, input_set):

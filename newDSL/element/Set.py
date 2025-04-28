@@ -5,14 +5,14 @@ from newDSL.element.Element import Element
 class Set(Element):
     def __init__(self):
         super().__init__()
-        self.elements = set()
+        self.elements = []
 
     def add_element(self, element: Element) -> 'Set':
-        self.elements.add(element)
+        self.elements.append(element)
         return self
 
     def union(self, other: 'Set') -> 'Set':
-        self.elements.update(other.elements)
+        self.elements.append(other.elements)
         return self
 
     def set_elements(self, elements: set) -> None:
