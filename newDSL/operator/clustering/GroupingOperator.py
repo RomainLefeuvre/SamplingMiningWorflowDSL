@@ -13,11 +13,10 @@ class GroupingOperator(Operator):
 
     def execute(self) -> Operator:
         self._output = Set()
-
         for selection_operator in self.operators:
             selection_operator.input_set(self._input)
             selection_operator.execute_workflow()
-            self._output.add_element(selection_operator.get_output())
+            self._output.union(selection_operator.get_output())
 
         super().execute()
         return self
