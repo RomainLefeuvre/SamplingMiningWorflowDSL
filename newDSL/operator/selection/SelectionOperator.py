@@ -1,6 +1,4 @@
-from abc import ABC
-
 from newDSL.operator.Operator import Operator
 
-class SelectionOperator(ABC, Operator):
+class SelectionOperator(Operator):
     pass

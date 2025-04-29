@@ -7,6 +7,16 @@ class Set(Element):
         super().__init__()
         self.elements = []
 
+    def __hash__(self):
+        return hash(frozenset(self.elements)) + super().__hash__()
+
+    def __eq__(self, other):
+        if not super().__eq__(other):
+            return False
+        if not isinstance(other, Set):
+            return False
+        return self.elements == other.elements
+
     def add_element(self, element: Element) -> 'Set':
         self.elements.append(element)
         return self
@@ -39,16 +49,16 @@ class Set(Element):
     def __str__(self) -> str:
         return self.to_string(0)
 
-    def to_string(self, level: int) -> str:
+    def to_string(self, level: int = 0) -> str:
         truncate_after = 10
         indent = "    " * level
 
         result = f"{indent}(size={len(self.elements)})["
-        it: Iterator[Element] = iter(self.elements)
+        elements_list = list(self.elements)
         element_to_print = min(truncate_after, len(self.elements))
 
         for i in range(element_to_print):
-            next_element = next(it)
+            next_element = elements_list[i]
             if isinstance(next_element, Set):
                 result += f"\n{next_element.to_string(level + 4)}"
             else:

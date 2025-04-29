@@ -13,7 +13,9 @@ class Repository(Element):
     def __hash__(self) -> int:
         return hash(self.get_id())
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other):
+        if not super().__eq__(other):
+            return False
         if not isinstance(other, Repository):
             return False
         return self.get_id() == other.get_id()
@@ -21,6 +23,6 @@ class Repository(Element):
     def __str__(self) -> str:
         return self.to_string(0)
 
-    def to_string(self, level: int) -> str:
+    def to_string(self, level: int = 0) -> str:
         indent = "    " * level
         return f"{indent}{self.get_metadata_value(self.id)}"

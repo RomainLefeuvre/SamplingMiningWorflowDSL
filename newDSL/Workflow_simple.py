@@ -9,9 +9,6 @@ random_selection_operator = OperatorFactory.random_selection_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-from newDSL.element.loader.LoaderFactory import LoaderFactory
-from newDSL.element.writer.WritterFactory import WritterFactory
-
 def main():
     import os
     input_path = os.path.join(os.path.dirname(__file__), "input.json")

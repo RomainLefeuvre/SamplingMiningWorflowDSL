@@ -12,7 +12,7 @@ class Element(ABC):
     def __hash__(self) -> int:
         return hash(frozenset(self.metadata.items()))
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other) -> bool:
         if not isinstance(other, Element):
             return False
         return self.metadata == other.metadata
@@ -22,11 +22,11 @@ class Element(ABC):
             raise RuntimeError(f"Missing metadata {metadata.name}")
         return self.metadata[metadata]
 
-    def add_metadata_values(self, metadata_values: List[MetadataValue]) -> None:
+    def add_metadata_values(self, metadata_values: List[MetadataValue]):
         for metadata_value in metadata_values:
             self.metadata[metadata_value.get_metadata()] = metadata_value
 
-    def add_metadata_value(self, metadata_value: MetadataValue) -> None:
+    def add_metadata_value(self, metadata_value: MetadataValue):
         self.metadata[metadata_value.get_metadata()] = metadata_value
 
     def get_all_metadata_values(self) -> Dict[Metadata, MetadataValue]:

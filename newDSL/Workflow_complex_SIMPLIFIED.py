@@ -27,8 +27,8 @@ def main():
             filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
             filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
         )
-        # .chain(random_selection_operator(2))
-        # .get_workflow_root_operator()
+        .chain(random_selection_operator(2))
+        .get_workflow_root_operator()
         .input(json_loader(input_path, id, commit_nb, url, lang))
         .output(json_writer("cluster.json"))
         .execute()

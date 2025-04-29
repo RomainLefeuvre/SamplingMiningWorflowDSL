@@ -15,3 +15,6 @@ class MetadataValue(Generic[T]):
 
     def __str__(self) -> str:
         return str(self.value)
+
+    def  to_string(self) -> str:
+        return self.value.to_string()
