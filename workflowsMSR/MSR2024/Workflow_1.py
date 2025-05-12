@@ -1,6 +1,7 @@
 # Enhancing Performance Bug Prediction Using Performance Code Metrics
 # DOI : 10.1145/3643991.3644920
-from newDSL.Workflow_complex import json_loader, json_writer
+from newDSL.element.loader.LoaderFactory import LoaderFactory
+from newDSL.element.writer.WritterFactory import WritterFactory
 from newDSL.metadata.Metadata import Metadata
 from newDSL.operator.OperatorFactory import OperatorFactory
 
@@ -14,6 +15,8 @@ from newDSL.operator.OperatorFactory import OperatorFactory
 # exclude when have limited performance bug fixing commits
 # exclude when no performance bug fixing commits in their last six months periods
 
+json_loader = LoaderFactory.json_loader
+json_writer = WritterFactory.json_writer
 filter_operator = OperatorFactory.filter_operator
 
 def main():
