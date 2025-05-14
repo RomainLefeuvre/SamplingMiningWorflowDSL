@@ -23,6 +23,8 @@ json_writer = WritterFactory.json_writer
 
 filter_operator = OperatorFactory.filter_operator
 manual_sampling_operator = OperatorFactory.manual_sampling_operator
+systematic_selection_operator = OperatorFactory.systematic_selection_operator
+
 
 def main():
     import os
@@ -33,19 +35,21 @@ def main():
     nbStars = Metadata.of_string("nbStars")
     issues = Metadata.of_string("issues")
 
+    cardinality = 42 # Ambiguous, should be the number of projects to sample ?
+
     # "Projects from this search that are client-side JavaScript
     # frameworks or tools, such as React, Vue, and Bootstrap were ex-
     # cluded as these projects are built to run on web browsers, rather
     # than Node.js."
     #   => filter to keep only NodeJS projects OR exclude others like they do ?
 
-    # Sort by stars, using python built-in sort function ?
-
     # Do we retrieve the issues and then filter them ? Or only project sampling ?
     op = (
         filter_operator(language.bool_constraint(lambda x: x == "JS"))
+        # Ambiguous, missing qualitative constraint to say we keep only NodeJS projects
         .chain(filter_operator(framework.bool_constraint(lambda x: x == "NodeJS")))
         .chain(manual_sampling_operator("Repo 1", "...", "Repo 23"))
+        .chain(systematic_selection_operator(cardinality, nbStars, 1))
         .input(json_loader(input_path, language, framework, nbStars, issues))
         .output(json_writer("out.json"))
         .execute_workflow()
