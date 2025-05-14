@@ -8,6 +8,7 @@ filter_operator = OperatorFactory.filter_operator
 random_selection_operator = OperatorFactory.random_selection_operator
 grouping_operator = OperatorFactory.grouping_operator
 manual_sampling_operator = OperatorFactory.manual_sampling_operator
+interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
@@ -20,19 +21,19 @@ def main():
     id = Metadata.of_string("id")
     commit_nb = Metadata.of_double("commitNb")
 
-    # Cluster Operator
-    test = (
-        grouping_operator(
-            filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
-            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
-            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-        )
-        .chain(random_selection_operator(2))
-        .get_workflow_root_operator()
-        .input(json_loader(input_path, id, commit_nb, url, lang))
-        .output(json_writer("cluster.json"))
-        .execute()
-    )
+    # # Cluster Operator
+    # cluster_operator = (
+    #     grouping_operator(
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+    #     )
+    #     .chain(random_selection_operator(2))
+    #     .get_workflow_root_operator()
+    #     .input(json_loader(input_path, id, commit_nb, url, lang))
+    #     .output(json_writer("cluster.json"))
+    #     .execute()
+    # )
     #
     # # Stratified Random Operator
     # stratified_operator = (
@@ -49,33 +50,33 @@ def main():
     #     .output(json_writer("stratified_random.json"))
     #     .execute()
     # )
-    #
-    # # Quota Operator
-    # quota_operator = (
-    #     grouping_operator(
-    #         filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
-    #         .chain(manual_sampling_operator("1", "10", "54", "76", "38")),
-    #         filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
-    #         .chain(manual_sampling_operator("6", "8", "14")),
-    #         filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-    #         .chain(manual_sampling_operator("53", "54", "2", "5"))
-    #     )
-    #     .get_workflow_root_operator()
-    #     .input(json_loader(input_path, id, commit_nb, url, lang))
-    #     .output(json_writer("quota.json"))
-    #     .execute()
-    # )
+
+    # Quota Operator
+    quota_operator = (
+        grouping_operator(
+            filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
+            .chain(interactive_manual_sampling_operator()),
+            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
+            .chain(interactive_manual_sampling_operator()),
+            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+            .chain(interactive_manual_sampling_operator())
+        )
+        .get_workflow_root_operator()
+        .input(json_loader(input_path, id, commit_nb, url, lang))
+        .output(json_writer("quota.json"))
+        .execute()
+    )
+
+    # print("--------------------------------------")
+    # print("Cluster Operator")
+    # print(cluster_operator)
+    # print("--------------------------------------")
 
     print("--------------------------------------")
-    print("Cluster Operator")
-    print(test)
+    print("Quota Operator")
+    print(quota_operator)
     print("--------------------------------------")
-    #
-    # print("--------------------------------------")
-    # print("Quota Operator")
-    # print(quota_operator)
-    # print("--------------------------------------")
-    #
+
     # print("--------------------------------------")
     # print("Stratified Operator")
     # print(stratified_operator)

@@ -11,6 +11,8 @@ from newDSL.operator.selection.sampling.automatic.RandomSelectionPartitionOperat
 from newDSL.operator.selection.sampling.automatic.SystematicRandomSelectionOperator import \
     SystematicRandomSelectionOperator
 from newDSL.operator.selection.sampling.automatic.SystematicSelectionOperator import SystematicSelectionOperator
+from newDSL.operator.selection.sampling.manual.InteractiveManualSamplingOperator import \
+    InteractiveManualSamplingOperator
 from newDSL.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
 
 T = TypeVar('T')
@@ -35,6 +37,10 @@ class OperatorFactory:
     @staticmethod
     def manual_sampling_operator(*ids: T) -> ManualSamplingOperator[T]:
         return ManualSamplingOperator(*ids)
+
+    @staticmethod
+    def interactive_manual_sampling_operator() -> InteractiveManualSamplingOperator[T]:
+        return InteractiveManualSamplingOperator()
 
     @staticmethod
     def systematic_selection_operator(cardinality: int, order_constraint: Comparator, pas: int) -> SystematicSelectionOperator:
