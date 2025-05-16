@@ -20,13 +20,9 @@ json_writer = WritterFactory.json_writer
 filter_operator = OperatorFactory.filter_operator
 
 def main():
-    import os
-    input_path = os.path.join(os.path.dirname(__file__), "input.json")
-
-    url = Metadata.of_string("url")
 
     language = Metadata.of_string("language")
-    commit_nb = Metadata.of_double("commitNb")
+    commit_nb = Metadata.of_integer("commitNb")
     is_archived = Metadata.of_boolean("isArchived")
     is_forked = Metadata.of_boolean("isForked")
     no_bug_report = Metadata.of_boolean("noBugReport")
@@ -50,7 +46,7 @@ def main():
         .chain(filter_operator(is_managed_bugtracking.bool_constraint(lambda x: not x)))
         .chain(filter_operator(lifespan.bool_constraint(lambda x: x > 1)))
         .chain(filter_operator(has_limited_performance_bug_fixing_commit.bool_constraint(lambda x: not x)))
-        .input(json_loader(input_path, url, language, commit_nb, is_archived, is_forked, has_limited_performance_bug_fixing_commit))
+        .input(json_loader("GHTorrent.json", language, commit_nb, is_archived, is_forked, has_limited_performance_bug_fixing_commit))
         .output(json_writer("out.json"))
         .execute_workflow()
     )
