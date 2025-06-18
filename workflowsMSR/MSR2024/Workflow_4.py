@@ -52,6 +52,7 @@ def main():
     # "excluded those designed
     # for educational courses, labs, or workshops"
     # -> purposive sampling ?
+    # one metadata to say it's not a garbage/useless educational repos
 
     op = (
         filter_operator(use_terraform.bool_constraint(lambda x: x))
