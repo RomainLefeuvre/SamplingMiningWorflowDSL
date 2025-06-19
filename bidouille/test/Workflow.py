@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from bidouille.test.FilterOperator import FilterOperator
 from bidouille.test.Operator import Operator
@@ -6,21 +6,34 @@ from bidouille.test.SampleOperator import SampleOperator
 
 
 class Workflow:
-    def __init__(self, operators: List[Operator] = None):
-        self._operators = operators or []
+    def __init__(self):
+        self._root: Optional[Operator] = None
 
-    def filterOperator(self):
-        return Workflow(self._operators + [FilterOperator()])
+    def filter_operator(self):
+        filterOperator = FilterOperator()
+        self.add_operator(filterOperator)
+        return self
 
-    def sampleOperator(self, cardinality: int):
+    def sample_operator(self, cardinality: int) -> "Workflow":
         sampleOperator = SampleOperator(cardinality=cardinality)
+        self.add_operator(sampleOperator)
 
-        return Workflow(self._operators + [sampleOperator])
+        return self
+
+    def add_operator(self, operator: Operator):
+        if self._root is None:
+            self._root = operator
+        else:
+            current = self._root
+            while current._next_operator is not None:
+                current = current._next_operator
+            current._next_operator = operator
+            operator._previous_operator = current
 
     def display(self):
-        for op in self._operators:
-            print(op)
+        current = self._root
+        while current is not None:
+            print(current)
+            current = current._next_operator
 
-    def __str__(self):
-        return str([str(op) for op in self._operators])
 
