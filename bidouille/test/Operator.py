@@ -12,9 +12,15 @@ class Operator:
         self._input = input_element
         return self
 
+    def get_input(self) -> Optional[Element]:
+        return self._input
+
     def set_op_output(self, output_element: Element) -> "Operator":
         self._output = output_element
         return self
+
+    def get_output(self) -> Optional[Element]:
+        return self._output
 
     def __str__(self):
         return self.__class__.__name__
