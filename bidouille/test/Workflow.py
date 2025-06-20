@@ -3,6 +3,7 @@ from typing import List, Optional
 from bidouille.test.Element import Element
 from bidouille.test.FilterOperator import FilterOperator
 from bidouille.test.Operator import Operator
+from bidouille.test.RandomSelectionOperator import RandomSelectionOperator
 from bidouille.test.SampleOperator import SampleOperator
 from bidouille.test.Set import Set
 
@@ -12,6 +13,11 @@ class Workflow:
         self._input: Optional[Set] = None
         self._output: Optional[Set] = None
         self._root: Optional[Operator] = None
+
+    def random_selection_operator(self, cardinality: int, seed: int = 0) -> "Workflow":
+        randomSelectionOperator = RandomSelectionOperator(cardinality=cardinality, seed=seed)
+        self.add_operator(randomSelectionOperator)
+        return self
 
     def filter_operator(self):
         filterOperator = FilterOperator()
