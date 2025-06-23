@@ -5,28 +5,26 @@ from newDSL2.operator.Operator import Operator
 
 
 class GroupingOperator(Operator):
-    def __init__(self, *operators: Operator):
+    def __init__(self, *workflows: "Workflow"):
         super().__init__()
-        self.operators: List[Operator] = list(operators)
-        for operator in self.operators:
-            operator.input_set(self._input)
+        from newDSL2.Workflow import Workflow
+        self.workflows: List[Workflow] = list(workflows)
 
     def execute(self) -> Operator:
         self._output = Set()
-        for selection_operator in self.operators:
-            selection_operator.input_set(self._input)
-            selection_operator.execute_workflow()
-            self._output.add_element(selection_operator.get_output())
-
-        super().execute()
+        for w in self.workflows:
+            # The input of the workflow is the input of the grouping operator
+            w.set_workflow_input(self._input)
+            w.execute_workflow()
+            self._output.add_element(w.get_workflow_output())
         return self
 
-    def get_operators(self) -> List[Operator]:
-        return self.operators
+    def get_workflows(self) -> List["Workflow"]:
+        return self.workflows
 
     def extra_to_string(self, level: int) -> str:
         indent = "    " * (level + 1)
-        res = f"\n{indent}Internal Operators:"
-        for selection_operator in self.operators:
-            res += f"\n{selection_operator.to_string(level + 1)}"
+        res = f"\n{indent}Internal Workflows:"
+        for w in self.workflows:
+            res += f"\n{w.to_string(level + 1)}"
         return res

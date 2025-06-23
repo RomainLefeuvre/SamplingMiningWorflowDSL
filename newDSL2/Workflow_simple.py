@@ -24,8 +24,10 @@ def main():
         .input(json_loader(input_path, id_, commit_nb, url, language))
         .output(json_writer("out.json"))
         .execute_workflow()
-        .display()
+        # .display()
     )
+
+    print (op)
 
 if __name__ == "__main__":
     main()

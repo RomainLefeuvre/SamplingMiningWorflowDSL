@@ -21,27 +21,27 @@ def main():
     commit_nb = Metadata.of_double("commitNb")
 
     # Cluster Operator
-    cluster_operator = (
-        grouping_operator(
-            filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
-            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
-            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-        )
-        .chain(random_selection_operator(2))
-        .get_workflow_root_operator()
-        .input(json_loader(input_path, id, commit_nb, url, lang))
-        .output(json_writer("cluster.json"))
-        .execute()
-    )
+    # cluster_operator = (
+    #     grouping_operator(
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+    #     )
+    #     .chain(random_selection_operator(2))
+    #     .get_workflow_root_operator()
+    #     .input(json_loader(input_path, id, commit_nb, url, lang))
+    #     .output(json_writer("cluster.json"))
+    #     .execute()
+    # )
 
     # Stratified Random Operator
     stratified_operator = (
         grouping_operator(
-            filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
+            filter_operator(commit_nb.bool_constraint(lambda x: x < 2000))
             .chain(random_selection_operator(10)),
-            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
+            filter_operator(commit_nb.bool_constraint(lambda x: 2000 <= x < 5000))
             .chain(random_selection_operator(10)),
-            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+            filter_operator(commit_nb.bool_constraint(lambda x: x >= 5000))
             .chain(random_selection_operator(10))
         )
         .get_workflow_root_operator()
@@ -51,31 +51,31 @@ def main():
     )
 
     # Quota Operator
-    quota_operator = (
-        grouping_operator(
-            filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
-            .chain(manual_sampling_operator("1", "10", "54", "76", "38")),
-            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
-            .chain(manual_sampling_operator("6", "8", "14")),
-            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-            .chain(manual_sampling_operator("53", "54", "2", "5"))
-        )
-        .get_workflow_root_operator()
-        .input(json_loader(input_path, id, commit_nb, url, lang))
-        .output(json_writer("quota.json"))
-        .execute()
-    )
+    # quota_operator = (
+    #     grouping_operator(
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
+    #         .chain(manual_sampling_operator("1", "10", "54", "76", "38")),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
+    #         .chain(manual_sampling_operator("6", "8", "14")),
+    #         filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+    #         .chain(manual_sampling_operator("53", "54", "2", "5"))
+    #     )
+    #     .get_workflow_root_operator()
+    #     .input(json_loader(input_path, id, commit_nb, url, lang))
+    #     .output(json_writer("quota.json"))
+    #     .execute()
+    # )
 
-    print("--------------------------------------")
-    print("Cluster Operator")
-    print(cluster_operator)
-    print("--------------------------------------")
-
-    print("--------------------------------------")
-    print("Quota Operator")
-    print(quota_operator)
-    print("--------------------------------------")
-
+    # print("--------------------------------------")
+    # print("Cluster Operator")
+    # print(cluster_operator)
+    # print("--------------------------------------")
+    #
+    # print("--------------------------------------")
+    # print("Quota Operator")
+    # print(quota_operator)
+    # print("--------------------------------------")
+    #
     print("--------------------------------------")
     print("Stratified Operator")
     print(stratified_operator)
