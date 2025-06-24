@@ -1,6 +1,6 @@
 import random
 from typing import List, Iterator
-from newDSL.element.Element import Element
+from newDSL2.element.Element import Element
 
 class Set(Element):
     def __init__(self):

@@ -1,4 +1,4 @@
-from typing import List, Optional, cast
+from typing import List, Optional, cast, TypeVar
 from newDSL2.constraint.Constraint import Constraint
 from newDSL2.element.Element import Element
 from newDSL2.element.Loader import Loader
@@ -9,6 +9,8 @@ from newDSL2.operator.clustering.GroupingOperator import GroupingOperator
 from newDSL2.operator.selection.filter.FilterOperator import FilterOperator
 from newDSL2.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
 from newDSL2.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+
+T = TypeVar('T')
 
 class Workflow:
     def __init__(self):
@@ -44,14 +46,13 @@ class Workflow:
         self.add_operator(cast(Operator, filterOperator))
         return self
 
+    def manual_sampling_operator(self, *ids: T) -> "Workflow":
+        if not ids:
+            raise ValueError("At least one element must be provided for manual sampling.")
 
-    # def manual_sampling_operator(self, *elements: str) -> "Workflow":
-    #     if not elements:
-    #         raise ValueError("At least one element must be provided for manual sampling.")
-    #
-    #     manual_sampling_operator = ManualSamplingOperator(*elements)
-    #     self.add_operator(cast(Operator, manual_sampling_operator))
-    #     return self
+        manual_sampling_operator = ManualSamplingOperator(*ids)
+        self.add_operator(cast(Operator, manual_sampling_operator))
+        return self
 
 
     def add_operator(self, operator: Operator):

@@ -1,4 +1,4 @@
-from newDSL.element.writer.JsonWriter import JsonWriter
+from newDSL2.element.writer.JsonWriter import JsonWriter
 
 
 class WritterFactory:

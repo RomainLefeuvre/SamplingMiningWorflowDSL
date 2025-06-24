@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from newDSL.element.Repository import Repository
-from newDSL.element.Set import Set
+from newDSL2.element.Repository import Repository
+from newDSL2.element.Set import Set
 
 
 class JsonWriter:

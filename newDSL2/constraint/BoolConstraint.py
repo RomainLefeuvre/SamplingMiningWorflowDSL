@@ -1,7 +1,7 @@
 from typing import Callable, TypeVar, Optional
-from newDSL.constraint.Constraint import Constraint
-from newDSL.metadata.Metadata import Metadata
-from newDSL.element.Element import Element
+from newDSL2.constraint.Constraint import Constraint
+from newDSL2.metadata.Metadata import Metadata
+from newDSL2.element.Element import Element
 
 T = TypeVar('T')
 

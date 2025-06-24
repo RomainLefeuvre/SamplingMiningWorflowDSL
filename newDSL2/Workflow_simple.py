@@ -21,6 +21,7 @@ def main():
         Workflow()
         .filter_operator(language.bool_constraint(lambda x: x == "JavaScript"))
         .random_selection_operator(10)
+        .manual_sampling_operator("8","62", "90")
         .input(json_loader(input_path, id_, commit_nb, url, language))
         .output(json_writer("out.json"))
         .execute_workflow()

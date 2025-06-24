@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 
-from newDSL.element.Set import Set
+from newDSL2.element.Set import Set
 
 
 class Writter(ABC):

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Optional
-from newDSL.metadata import Metadata
-from newDSL.element import Set
+from newDSL2.metadata import Metadata
+from newDSL2.element import Set
 
 class Loader(ABC):
     def __init__(self, *metadatas: Optional[Metadata]):

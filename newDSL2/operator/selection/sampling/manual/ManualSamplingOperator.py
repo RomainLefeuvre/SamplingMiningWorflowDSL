@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, List
+from typing import Generic, TypeVar
 
 from newDSL2.element.Repository import Repository
 from newDSL2.element.Set import Set

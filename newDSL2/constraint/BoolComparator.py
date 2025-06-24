@@ -1,8 +1,8 @@
 from typing import Callable, Generic, TypeVar
 
-from newDSL.constraint.Comparator import Comparator
-from newDSL.element.Element import Element
-from newDSL.metadata.Metadata import Metadata
+from newDSL2.constraint.Comparator import Comparator
+from newDSL2.element.Element import Element
+from newDSL2.metadata.Metadata import Metadata
 
 T = TypeVar('T')
 

@@ -1,12 +1,12 @@
 import json
 from pathlib import Path
 from typing import List, Dict, Any
-from newDSL.element.Loader import Loader
-from newDSL.element.Set import Set
-from newDSL.metadata.Metadata import Metadata
-from newDSL.metadata.MetadataValue import MetadataValue
+from newDSL2.element.Loader import Loader
+from newDSL2.element.Set import Set
+from newDSL2.metadata.Metadata import Metadata
+from newDSL2.metadata.MetadataValue import MetadataValue
 
-from newDSL.element.Repository import Repository
+from newDSL2.element.Repository import Repository
 
 class JsonLoader(Loader):
     def __init__(self, set_path: Path, *metadatas: Metadata):

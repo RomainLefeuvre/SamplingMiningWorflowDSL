@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List, TypeVar
-from newDSL.metadata.Metadata import Metadata
-from newDSL.metadata.MetadataValue import MetadataValue
+from newDSL2.metadata.Metadata import Metadata
+from newDSL2.metadata.MetadataValue import MetadataValue
 
 T = TypeVar('T')
 

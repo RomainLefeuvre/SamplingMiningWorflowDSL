@@ -1,6 +1,6 @@
-from newDSL.element.Element import Element
-from newDSL.metadata.Metadata import Metadata
-from newDSL.metadata.MetadataValue import MetadataValue
+from newDSL2.element.Element import Element
+from newDSL2.metadata.Metadata import Metadata
+from newDSL2.metadata.MetadataValue import MetadataValue
 
 class Repository(Element):
     def __init__(self, id_metadata: Metadata[str]):

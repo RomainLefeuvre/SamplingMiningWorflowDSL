@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from newDSL.element.loader.JsonLoader import JsonLoader
-from newDSL.metadata.Metadata import Metadata
+from newDSL2.element.loader.JsonLoader import JsonLoader
+from newDSL2.metadata.Metadata import Metadata
 
 
 class LoaderFactory:

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-from newDSL.element.Element import Element
-from newDSL.metadata.Metadata import Metadata
+from newDSL2.element.Element import Element
+from newDSL2.metadata.Metadata import Metadata
 
 T = TypeVar('T')
 
