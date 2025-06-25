@@ -21,5 +21,5 @@ class ManualSamplingOperator(SamplingOperator, Generic[T]):
                     self._output.add_element(element)
             else:
                 raise RuntimeError("Manual sampling not implemented for sets")
-
+        super().execute()
         return self

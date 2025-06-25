@@ -25,6 +25,8 @@ class Operator(ABC):
             self._next_operator.execute()
         elif self._output_writter:
             self._output_writter.write_set(self._output)
+        else:
+            print("No next operator or output writer")
         return self
 
     def get_workflow_root_operator(self) -> "Operator":

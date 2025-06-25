@@ -16,8 +16,9 @@ class Workflow:
     def __init__(self):
         self._input: Optional[Set] = None
         self._output: Optional[Set] = None
-        self._output_writter: Optional[Writter] = None
+        self._output_writer: Optional[Writter] = None
         self._root: Optional[Operator] = None
+        self._last_operator: Optional[Operator] = None
 
     def grouping_operator(self, *workflows: "Workflow") -> "Workflow":
         if not workflows:
@@ -59,17 +60,15 @@ class Workflow:
         # If the workflow is empty, set the root operator
         if self._root is None:
             self._root = operator
+            self._last_operator = operator
 
         # If the workflow already has operators, append the new operator to the end
         else:
-            current = self._root
-            while current._next_operator is not None:
-                current = current._next_operator
-
-            operator.input_set(current.get_output())
-            current.output_set(operator.get_output())
-            current._next_operator = operator
-            operator._previous_operator = current
+            self._last_operator._next_operator = operator
+            operator._previous_operator = self._last_operator
+            operator.input_set(self._last_operator.get_output())
+            self._last_operator.output_set(operator.get_output())
+            self._last_operator = operator
 
     def input(self, loader: Loader) -> "Workflow":
         self._input = loader.load_set()
@@ -88,7 +87,10 @@ class Workflow:
         return self
 
     def output(self, writter: Writter) -> "Workflow":
-        self._output_writter = writter
+        self._output_writer = writter
+        last_operator = self.get_last_operator()
+        if last_operator:
+            last_operator.output(writter)
         return self
 
     def get_workflow_input(self) -> Optional[Element]:
@@ -108,10 +110,19 @@ class Workflow:
     def get_root(self) -> Optional[Operator]:
         return self._root
 
+    def get_last_operator(self) -> Optional[Operator]:
+        if self._root is None:
+            return None
+        current = self._root
+        while current._next_operator is not None:
+            current = current._next_operator
+        return current
+
     def execute_workflow(self) -> "Workflow":
         root = self._root
         root.input_set(self._input)
         root.execute()
+
         return self
 
     def __str__(self) -> str:
