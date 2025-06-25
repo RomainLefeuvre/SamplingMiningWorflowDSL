@@ -77,8 +77,14 @@ class Set(Element):
 
         for i in range(element_to_print):
             next_element = elements_list[i]
+
             if isinstance(next_element, Set):
+                # Recursively call to_string for nested Sets
                 result += f"\n{next_element.to_string(level + 4)}"
+            elif isinstance(next_element, list):
+                # Handle nested lists with size prefix
+                nested_list_str = ", ".join(str(e) for e in next_element)
+                result += f"\n{indent *2}     (size={len(next_element)})[{nested_list_str}]"
             else:
                 result += str(next_element)
 

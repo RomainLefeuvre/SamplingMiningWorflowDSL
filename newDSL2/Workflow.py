@@ -140,16 +140,6 @@ class Workflow:
         res += "\n" + indent + "]]]\n"
         return res
 
-    # def display(self):
-    #     print(self._root)
-    #     print(f"Workflow input : {self._input}")
-    #     current = self._root
-    #     print("---\nOperators : ")
-    #     while current is not None:
-    #         print(current)
-    #         current = current._next_operator
-    #
-    #     print(f"---\nWorkflow output : {self._output}")
 
 
 

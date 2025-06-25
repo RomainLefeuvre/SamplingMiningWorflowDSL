@@ -91,9 +91,9 @@ class Operator(ABC):
             f"{indent}{class_name}\n"
             f"{double_indent}{self.extra_to_string(level)}\n"
             f"{double_indent}input:\n"
-            f"{double_indent}{self._input.to_string(level) if self._input else 'None'}\n"
+            f"{double_indent}{self._input.to_string(level + 2) if self._input else 'None'}\n"
             f"{double_indent}output:\n"
-            f"{double_indent}{self._output.to_string(level) if self._output else 'None'}\n"
+            f"{double_indent}{self._output.to_string(level + 2) if self._output else 'None'}\n"
             f"{double_indent}nextOperator:\n"
             f"{formatted_next_operator}"
         )
