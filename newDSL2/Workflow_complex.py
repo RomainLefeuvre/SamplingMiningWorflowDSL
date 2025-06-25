@@ -20,11 +20,11 @@ def main():
         Workflow()
         .grouping_operator(
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
-            # Workflow()
-            # .filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
-            # Workflow()
-            # .filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+            .filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
+            Workflow()
+            .filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
+            Workflow()
+            .filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
         )
         .random_selection_operator(2)
         .input(json_loader(input_path, id, commit_nb, url, lang))

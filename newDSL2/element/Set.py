@@ -25,6 +25,24 @@ class Set(Element):
         self.elements.append(other.elements)
         return self
 
+    def flatten_set(self) -> 'Set':
+        flattened = Set()
+        for element in self.elements:
+            if isinstance(element, Set):
+                # Recursively flatten nested Sets
+                flattened.elements.extend(element.flatten_set().elements)
+            elif isinstance(element, list):
+                # Flatten lists by adding their elements
+                for sub_element in element:
+                    if isinstance(sub_element, Set):
+                        flattened.elements.extend(sub_element.flatten_set().elements)
+                    else:
+                        flattened.add_element(sub_element)
+            else:
+                # Add non-Set, non-list elements directly
+                flattened.add_element(element)
+        return flattened
+
     def set_elements(self, elements: set) -> None:
         self.elements = elements
 

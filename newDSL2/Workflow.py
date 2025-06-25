@@ -102,7 +102,7 @@ class Workflow:
         #     self._root.set_op_output(output_element)
         return self
 
-    def get_workflow_output(self) -> Optional[Element]:
+    def get_workflow_output(self) -> Optional[Set]:
         # if self._root is not None:
         #     return self._root.get_output()
         return self._output
@@ -122,7 +122,7 @@ class Workflow:
         root = self._root
         root.input_set(self._input)
         root.execute()
-
+        self._output = self._last_operator.get_output()
         return self
 
     def __str__(self) -> str:

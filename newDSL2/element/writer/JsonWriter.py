@@ -10,7 +10,8 @@ class JsonWriter:
         self.set_path = Path(set_path)
 
     def write_set(self, set_obj):
-        json_output = json.dumps(set_obj, cls=CustomEncoder, indent=4)
+        flattened_set = set_obj.flatten_set()
+        json_output = json.dumps(flattened_set, cls=CustomEncoder, indent=4)
         try:
             with self.set_path.open('w', encoding='utf-8') as f:
                 f.write(json_output)

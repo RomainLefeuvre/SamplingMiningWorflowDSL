@@ -15,8 +15,14 @@ class GroupingOperator(Operator):
         for w in self.workflows:
             # The input of the workflow is the input of the grouping operator
             w.set_workflow_input(self._input)
+
+            # Propagate the output_writer to the subworkflow
+            if self._output_writter:
+                w.output(self._output_writter)
+
             w.execute_workflow()
-            self._output.add_element(w.get_workflow_output())
+            self._output.union(w.get_workflow_output())
+        super().execute()
         return self
 
     def get_workflows(self) -> List["Workflow"]:
