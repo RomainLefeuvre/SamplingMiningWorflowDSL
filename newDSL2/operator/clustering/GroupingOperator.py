@@ -21,7 +21,7 @@ class GroupingOperator(Operator):
                 w.output(self._output_writter)
 
             w.execute_workflow()
-            self._output.union(w.get_workflow_output())
+            self._output.add_element(w.get_workflow_output())
         super().execute()
         return self
 

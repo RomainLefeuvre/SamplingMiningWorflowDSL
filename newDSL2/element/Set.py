@@ -31,13 +31,6 @@ class Set(Element):
             if isinstance(element, Set):
                 # Recursively flatten nested Sets
                 flattened.elements.extend(element.flatten_set().elements)
-            elif isinstance(element, list):
-                # Flatten lists by adding their elements
-                for sub_element in element:
-                    if isinstance(sub_element, Set):
-                        flattened.elements.extend(sub_element.flatten_set().elements)
-                    else:
-                        flattened.add_element(sub_element)
             else:
                 # Add non-Set, non-list elements directly
                 flattened.add_element(element)
@@ -81,10 +74,6 @@ class Set(Element):
             if isinstance(next_element, Set):
                 # Recursively call to_string for nested Sets
                 result += f"\n{next_element.to_string(level + 4)}"
-            elif isinstance(next_element, list):
-                # Handle nested lists with size prefix
-                nested_list_str = ", ".join(str(e) for e in next_element)
-                result += f"\n{indent *2}     (size={len(next_element)})[{nested_list_str}]"
             else:
                 result += str(next_element)
 
