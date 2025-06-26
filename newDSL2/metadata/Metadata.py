@@ -1,4 +1,5 @@
 from typing import Type, TypeVar, Callable, Generic
+
 T = TypeVar('T')
 
 class Metadata(Generic[T]):
@@ -13,6 +14,22 @@ class Metadata(Generic[T]):
         if not isinstance(other, Metadata):
             return False
         return self.name == other.name and self.type == other.type
+
+    def is_equal(self, value: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        return BoolConstraint(lambda x: x == value, self)
+
+    def is_more_than(self, value: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        if not isinstance(value, (int, float)):
+            raise TypeError("`is_more_than` can only be used with numeric types.")
+        return BoolConstraint(lambda x: x > value, self)
+
+    def is_less_than(self, value: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        if not isinstance(value, (int, float)):
+            raise TypeError("`is_less_than` can only be used with numeric types.")
+        return BoolConstraint(lambda x: x < value, self)
 
     def is_of_type(self, obj):
         return isinstance(obj, self.type)
