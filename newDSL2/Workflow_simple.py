@@ -20,7 +20,8 @@ def main():
     op = (
         Workflow()
         # .filter_operator(language.is_equal("JavaScript"))
-        .filter_operator(commit_nb.is_more_than(5000))
+        .filter_operator(commit_nb.is_less_than(2000))
+        # .filter_operator(commit_nb.bool_constraint(lambda x: x < 2000))
         .random_selection_operator(10)
         # .manual_sampling_operator("8","62", "90")
         .input(json_loader(input_path, id_, commit_nb, url, language))
