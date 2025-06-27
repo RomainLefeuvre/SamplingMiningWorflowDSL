@@ -20,11 +20,11 @@ def main():
         Workflow()
         .grouping_operator(
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: x < 100)),
+            .filter_operator(commit_nb.is_less_than(100)),
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)),
+            .filter_operator(commit_nb.is_between(100, 1000)),
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
+            .filter_operator(commit_nb.is_more_or_equal_than(1000))
         )
         .random_selection_operator(2)
         .input(json_loader(input_path, id, commit_nb, url, lang))
@@ -37,13 +37,13 @@ def main():
         Workflow()
         .grouping_operator(
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: x < 2000))
+            .filter_operator(commit_nb.is_less_than(2000))
             .random_selection_operator(10),
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: 2000 <= x < 5000))
+            .filter_operator(commit_nb.is_between(2000, 5000))
             .random_selection_operator(10),
             Workflow()
-            .filter_operator(commit_nb.bool_constraint(lambda x: x >= 5000))
+            .filter_operator(commit_nb.is_less_or_equal_than(5000))
             .random_selection_operator(10)
         )
         .input(json_loader(input_path, id, commit_nb, url, lang))
@@ -52,40 +52,40 @@ def main():
     )
 
     # # Quota Operator
-    # quota_operator = (
-    #     Workflow()
-    #     .grouping_operator(
-    #         Workflow()
-    #         .filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
-    #         .manual_sampling_operator("1", "33", "54", "76", "38"),
+    quota_operator = (
+        Workflow()
+        .grouping_operator(
+            Workflow()
+            .filter_operator(commit_nb.is_less_than(100))
+            .manual_sampling_operator("1", "33", "54", "76", "38"),
+
+            Workflow()
+            .filter_operator(commit_nb.is_between(100, 1000))
+            .manual_sampling_operator("6", "15", "14"),
+
+            Workflow()
+            .filter_operator(commit_nb.is_more_or_equal_than(1000))
+            .manual_sampling_operator("53", "54", "2", "5")
+        )
+        .input(json_loader(input_path, id, commit_nb, url, lang))
+        .output(json_writer("quota.json"))
+        .execute_workflow()
+    )
     #
-    #         Workflow()
-    #         .filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
-    #         .manual_sampling_operator("6", "15", "14"),
-    #
-    #         Workflow()
-    #         .filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-    #         .manual_sampling_operator("53", "54", "2", "5")
-    #     )
-    #     .input(json_loader(input_path, id, commit_nb, url, lang))
-    #     .output(json_writer("quota.json"))
-    #     .execute_workflow()
-    # )
-    # #
-    # print("--------------------------------------")
-    # print("Cluster Operator")
-    # print(cluster_operator)
-    # print("--------------------------------------")
-    #
-    # print("--------------------------------------")
-    # print("Stratified Operator")
-    # print(stratified_operator)
-    # print("--------------------------------------")
-    #
-    # print("--------------------------------------")
-    # print("Quota Operator")
-    # print(quota_operator)
-    # print("--------------------------------------")
+    print("--------------------------------------")
+    print("Cluster Operator")
+    print(cluster_operator)
+    print("--------------------------------------")
+
+    print("--------------------------------------")
+    print("Stratified Operator")
+    print(stratified_operator)
+    print("--------------------------------------")
+
+    print("--------------------------------------")
+    print("Quota Operator")
+    print(quota_operator)
+    print("--------------------------------------")
 
 if __name__ == "__main__":
     main()

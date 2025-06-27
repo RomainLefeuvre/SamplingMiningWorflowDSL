@@ -25,11 +25,29 @@ class Metadata(Generic[T]):
             raise TypeError("`is_more_than` can only be used with numeric types.")
         return BoolConstraint(lambda x: x > value, self)
 
+    def is_more_or_equal_than(self, value: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        if not isinstance(value, (int, float)):
+            raise TypeError("`is_more_or_equal_than` can only be used with numeric types.")
+        return BoolConstraint(lambda x: x >= value, self)
+
     def is_less_than(self, value: T) -> 'BoolConstraint':
         from newDSL2.constraint.BoolConstraint import BoolConstraint
         if not isinstance(value, (int, float)):
             raise TypeError("`is_less_than` can only be used with numeric types.")
         return BoolConstraint(lambda x: x < value, self)
+
+    def is_less_or_equal_than(self, value: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        if not isinstance(value, (int, float)):
+            raise TypeError("`is_less_or_equal_than` can only be used with numeric types.")
+        return BoolConstraint(lambda x: x <= value, self)
+
+    def is_between(self, lower: T, upper: T) -> 'BoolConstraint':
+        from newDSL2.constraint.BoolConstraint import BoolConstraint
+        if not isinstance(lower, (int, float)) or not isinstance(upper, (int, float)):
+            raise TypeError("`is_between` can only be used with numeric types.")
+        return BoolConstraint(lambda x: lower <= x <= upper, self)
 
     def is_of_type(self, obj):
         return isinstance(obj, self.type)
