@@ -1,7 +1,7 @@
 from newDSL2.metadata.Metadata import Metadata
 from newDSL2.operator.OperatorFactory import OperatorFactory
 from newDSL2.element.loader.LoaderFactory import LoaderFactory
-from newDSL2.element.writer.WritterFactory import WritterFactory
+from newDSL2.element.writer.WriterFactory import WritterFactory
 from newDSL2.Workflow import Workflow
 
 json_loader = LoaderFactory.json_loader

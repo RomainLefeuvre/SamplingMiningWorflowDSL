@@ -3,7 +3,7 @@ from newDSL2.constraint.Constraint import Constraint
 from newDSL2.element.Element import Element
 from newDSL2.element.Loader import Loader
 from newDSL2.element.Set import Set
-from newDSL2.element.Writter import Writter
+from newDSL2.element.Writer import Writter
 from newDSL2.operator.Operator import Operator
 from newDSL2.operator.clustering.GroupingOperator import GroupingOperator
 from newDSL2.operator.selection.filter.FilterOperator import FilterOperator
