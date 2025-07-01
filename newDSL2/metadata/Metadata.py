@@ -15,40 +15,6 @@ class Metadata(Generic[T]):
             return False
         return self.name == other.name and self.type == other.type
 
-    def is_equal(self, value: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        return BoolConstraint(lambda x: x == value, self)
-
-    def is_more_than(self, value: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        if not isinstance(value, (int, float)):
-            raise TypeError("`is_more_than` can only be used with numeric types.")
-        return BoolConstraint(lambda x: x > value, self)
-
-    def is_more_or_equal_than(self, value: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        if not isinstance(value, (int, float)):
-            raise TypeError("`is_more_or_equal_than` can only be used with numeric types.")
-        return BoolConstraint(lambda x: x >= value, self)
-
-    def is_less_than(self, value: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        if not isinstance(value, (int, float)):
-            raise TypeError("`is_less_than` can only be used with numeric types.")
-        return BoolConstraint(lambda x: x < value, self)
-
-    def is_less_or_equal_than(self, value: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        if not isinstance(value, (int, float)):
-            raise TypeError("`is_less_or_equal_than` can only be used with numeric types.")
-        return BoolConstraint(lambda x: x <= value, self)
-
-    def is_between(self, lower: T, upper: T) -> 'BoolConstraint':
-        from newDSL2.constraint.BoolConstraint import BoolConstraint
-        if not isinstance(lower, (int, float)) or not isinstance(upper, (int, float)):
-            raise TypeError("`is_between` can only be used with numeric types.")
-        return BoolConstraint(lambda x: lower <= x <= upper, self)
-
     def is_of_type(self, obj):
         return isinstance(obj, self.type)
 
@@ -56,7 +22,7 @@ class Metadata(Generic[T]):
         from newDSL.constraint.BoolConstraint import BoolConstraint
         return BoolConstraint(constraint, self)
 
-    def bool_comparator(self, comparator: Callable[[T, T, T], T]):
+    def bool_comparator(self, comparator: Callable[[T, T], T]):
         from newDSL.constraint.BoolComparator import BoolComparator
         return BoolComparator(self, comparator)
 
@@ -81,10 +47,6 @@ class Metadata(Generic[T]):
         return MetadataNumber(name)
 
     @staticmethod
-    def of_boolean(name: str):
-        return Metadata(name, bool)
-
-    @staticmethod
     def of_double(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
         return MetadataNumber(name)
@@ -105,10 +67,15 @@ class Metadata(Generic[T]):
         return MetadataString(name)
 
     @staticmethod
-    def of_byte(name: str):
-        return Metadata(name, bytes)
-
-    @staticmethod
     def of_short(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
         return MetadataNumber(name)
+
+    @staticmethod
+    def of_boolean(name: str):
+        from newDSL2.metadata.MetadataBoolean import MetadataBoolean
+        return MetadataBoolean(name)
+
+    @staticmethod
+    def of_byte(name: str):
+        return Metadata(name, bytes)

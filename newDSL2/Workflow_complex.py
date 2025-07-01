@@ -24,7 +24,7 @@ def main():
             Workflow()
             .filter_operator(commit_nb.is_between(100, 1000)),
             Workflow()
-            .filter_operator(commit_nb.is_more_or_equal_than(1000))
+            .filter_operator(commit_nb.is_greater_or_equal_than(1000))
         )
         .random_selection_operator(2)
         .input(json_loader(input_path, id, commit_nb, url, lang))
@@ -64,7 +64,7 @@ def main():
             .manual_sampling_operator("6", "15", "14"),
 
             Workflow()
-            .filter_operator(commit_nb.is_more_or_equal_than(1000))
+            .filter_operator(commit_nb.is_greater_or_equal_than(1000))
             .manual_sampling_operator("53", "54", "2", "5")
         )
         .input(json_loader(input_path, id, commit_nb, url, lang))

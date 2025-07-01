@@ -8,8 +8,18 @@ class MetadataNumber(Metadata[float]):
     def is_greater_than(self, value: float) -> BoolConstraint:
         return BoolConstraint(lambda x: x > value, self)
 
+    def is_greater_or_equal_than(self, value: float) -> BoolConstraint:
+        return BoolConstraint(lambda x: x >= value, self)
+
     def is_less_than(self, value: float) -> BoolConstraint:
         return BoolConstraint(lambda x: x < value, self)
 
+    def is_less_or_equal_than(self, value: float) -> BoolConstraint:
+        return BoolConstraint(lambda x: x <= value, self)
+
     def is_between(self, lower: float, upper: float) -> BoolConstraint:
         return BoolConstraint(lambda x: lower <= x <= upper, self)
+
+    def is_equal(self, value: float) -> 'BoolConstraint':
+        return BoolConstraint(lambda x: x == value, self)
+

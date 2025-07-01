@@ -5,13 +5,13 @@ from typing import Optional, Union
 
 from newDSL2.element.Loader import Loader
 from newDSL2.element.Set import Set
-from newDSL2.element.Writer import Writter
+from newDSL2.element.Writer import Writer
 
 class Operator(ABC):
     def __init__(self):
         self._input: Optional[Set] = None
         self._output: Optional[Set] = None
-        self._output_writter: Optional[Writter] = None
+        self._output_writter: Optional[Writer] = None
         self._next_operator: Optional["Operator"] = None
         self._previous_operator: Optional["Operator"] = None
 
@@ -50,7 +50,7 @@ class Operator(ABC):
                 result.union(element)
         return result
 
-    def output(self, writter: Writter) -> "Operator":
+    def output(self, writter: Writer) -> "Operator":
         self._output_writter = writter
         return self
 
