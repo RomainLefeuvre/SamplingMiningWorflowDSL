@@ -30,10 +30,10 @@ class BoolConstraint(Constraint[T]):
 
         return constraint_result
 
-    def or_constraint(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def or_(self, other: 'BoolConstraint') -> 'BoolConstraint':
         self.or_constraint = other
         return other
 
-    def and_constraint(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def and_(self, other: 'BoolConstraint') -> 'BoolConstraint':
         self.and_constraint = other
         return other

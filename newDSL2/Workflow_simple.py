@@ -18,11 +18,12 @@ def main():
     # Workflow Declaration and Execution
     op = (
         Workflow()
-        # .filter_operator(language.is_equal("JavaScript"))
-        .filter_operator(commit_nb.is_less_than(2000))
+        .filter_operator(commit_nb.is_less_than(1000)
+                         .or_(commit_nb.is_greater_than(2000))
+        )
+
         # .filter_operator(commit_nb.bool_constraint(lambda x: x < 2000))
         .random_selection_operator(10)
-        # .manual_sampling_operator("8","62", "90")
         .input(json_loader(input_path, id_, commit_nb, url, language))
         .output(json_writer("out.json"))
         .execute_workflow()
@@ -32,3 +33,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# .filter_operator(language.is_equal("JavaScript"))
+# .manual_sampling_operator("8","62", "90")
