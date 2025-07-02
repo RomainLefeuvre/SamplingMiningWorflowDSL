@@ -44,22 +44,22 @@ class Metadata(Generic[T]):
     @staticmethod
     def of_integer(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
-        return MetadataNumber(name)
+        return MetadataNumber(name, int)
 
     @staticmethod
     def of_double(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
-        return MetadataNumber(name)
+        return MetadataNumber(name, float)
 
     @staticmethod
     def of_float(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
-        return MetadataNumber(name)
+        return MetadataNumber(name, float)
 
     @staticmethod
     def of_long(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
-        return MetadataNumber(name)
+        return MetadataNumber(name, int)
 
     @staticmethod
     def of_character(name: str):
@@ -69,7 +69,7 @@ class Metadata(Generic[T]):
     @staticmethod
     def of_short(name: str):
         from newDSL2.metadata.MetadataNumber import MetadataNumber
-        return MetadataNumber(name)
+        return MetadataNumber(name, int)
 
     @staticmethod
     def of_boolean(name: str):

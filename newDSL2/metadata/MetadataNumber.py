@@ -1,25 +1,29 @@
+from typing import TypeVar, Type
+
 from newDSL2.metadata.Metadata import Metadata
 from newDSL2.constraint.BoolConstraint import BoolConstraint
 
-class MetadataNumber(Metadata[float]):
-    def __init__(self, name: str):
-        super().__init__(name, float)
+T = TypeVar('T')
 
-    def is_greater_than(self, value: float) -> BoolConstraint:
+class MetadataNumber(Metadata[T]):
+    def __init__(self, name: str, type_: Type[T]):
+        super().__init__(name, type_)
+
+    def is_greater_than(self, value: T) -> BoolConstraint:
         return BoolConstraint(lambda x: x > value, self)
 
-    def is_greater_or_equal_than(self, value: float) -> BoolConstraint:
+    def is_greater_or_equal_than(self, value: T) -> BoolConstraint:
         return BoolConstraint(lambda x: x >= value, self)
 
-    def is_less_than(self, value: float) -> BoolConstraint:
+    def is_less_than(self, value: T) -> BoolConstraint:
         return BoolConstraint(lambda x: x < value, self)
 
-    def is_less_or_equal_than(self, value: float) -> BoolConstraint:
+    def is_less_or_equal_than(self, value: T) -> BoolConstraint:
         return BoolConstraint(lambda x: x <= value, self)
 
-    def is_between(self, lower: float, upper: float) -> BoolConstraint:
+    def is_between(self, lower: T, upper: T) -> BoolConstraint:
         return BoolConstraint(lambda x: lower <= x <= upper, self)
 
-    def is_equal(self, value: float) -> 'BoolConstraint':
+    def is_equal(self, value: T) -> 'BoolConstraint':
         return BoolConstraint(lambda x: x == value, self)
 
