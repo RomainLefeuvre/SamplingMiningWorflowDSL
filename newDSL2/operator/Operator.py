@@ -47,7 +47,11 @@ class Operator(ABC):
         result = Set()
         for element in self._output.get_elements():
             if isinstance(element, Set):
-                result.union(element)
+                # Recursively flatten nested Sets
+                result.elements.extend(element.flatten_set().get_elements())
+            else:
+                # Add non-Set elements directly
+                result.add_element(element)
         return result
 
     def output(self, writter: Writer) -> "Operator":
