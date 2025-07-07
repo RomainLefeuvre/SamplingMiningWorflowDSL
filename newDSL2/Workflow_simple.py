@@ -16,23 +16,29 @@ def main():
     id_ = Metadata.of_string("id")
     commit_nb = Metadata.of_double("commitNb")
 
-    # Workflow Declaration and Execution
+    # w = (
+    #     Workflow()
+    #     .input(json_loader(input_path, id_, language))
+    #     .filter_operator(language.is_equal("JavaScript"))
+    #     .random_selection_operator(10)
+    #     .output(json_writer("out.json"))
+    #     .execute_workflow()
+    # )
+
     w = (
         Workflow()
-        # .filter_operator(commit_nb.is_less_than(1000)
-        #                  .or_(commit_nb.is_greater_than(2000))
-        # )
-
-        .filter_operator(commit_nb.bool_constraint(lambda x: x < 2000))
-        .random_selection_operator(10)
         .input(json_loader(input_path, id_, commit_nb, url, language))
+        .grouping_operator(
+            Workflow()
+            .filter_operator(commit_nb.bool_constraint(lambda x: x > 1000))
+            .random_selection_operator(10)
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )
 
     print (w)
-    workflow_analysis = HistWorkflowAnalysis(commit_nb)
-    workflow_analysis.analyze(w)
+    w.analyze_workflow(language)
 
 if __name__ == "__main__":
     main()

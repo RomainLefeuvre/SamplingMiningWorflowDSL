@@ -1,9 +1,11 @@
 from typing import List, Optional, cast, TypeVar
+
 from newDSL2.constraint.Constraint import Constraint
 from newDSL2.element.Element import Element
 from newDSL2.element.Loader import Loader
 from newDSL2.element.Set import Set
 from newDSL2.element.Writer import Writer
+from newDSL2.metadata.Metadata import Metadata
 from newDSL2.operator.Operator import Operator
 from newDSL2.operator.clustering.GroupingOperator import GroupingOperator
 from newDSL2.operator.selection.filter.FilterOperator import FilterOperator
@@ -119,6 +121,12 @@ class Workflow:
         self._output = self._last_operator.get_output()
         return self
 
+    def analyze_workflow(self, metadata: Metadata[T]) -> "Workflow":
+        from newDSL2.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
+        # Perform analysis on a given metadata
+        workflow_analysis = HistWorkflowAnalysis(metadata)
+        workflow_analysis.analyze(self)
+        return self
 
     # --- Methods for workflow printing ---
 
