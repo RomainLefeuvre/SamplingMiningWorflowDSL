@@ -1,5 +1,6 @@
 from typing import List, Optional, cast, TypeVar
 
+from newDSL2.CompleteWorkflow import CompleteWorkflow
 from newDSL2.constraint.Constraint import Constraint
 from newDSL2.element.Element import Element
 from newDSL2.element.Loader import Loader
@@ -67,6 +68,9 @@ class Workflow:
 
     # --- Methods used for the Workflow execution ---
 
+    def is_complete(self) -> bool:
+        return self._root is not None and self._input is not None and self._output_writer is not None
+
     def add_operator(self, operator: Operator):
         # If the workflow is empty, set the root operator
         if self._root is None:
@@ -80,6 +84,9 @@ class Workflow:
             operator.input_set(self._last_operator.get_output())
             self._last_operator.output_set(operator.get_output())
             self._last_operator = operator
+
+        if self.is_complete():
+            return CompleteWorkflow(self)
 
     def set_workflow_input(self, input_set: Set | None) -> "Workflow":
         self._input = input_set

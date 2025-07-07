@@ -34,11 +34,11 @@ def main():
             .random_selection_operator(10)
         )
         .output(json_writer("out.json"))
-        .execute_workflow()
     )
 
-    print (w)
+    w.execute_workflow()
     w.analyze_workflow(language)
+    print (w)
 
 if __name__ == "__main__":
     main()
