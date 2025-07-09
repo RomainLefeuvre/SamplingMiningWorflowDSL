@@ -23,37 +23,7 @@ class Workflow:
         self._root: Optional[Operator] = None
         self._last_operator: Optional[Operator] = None
 
-
-    # --- Methods used for the DSL (used by the user) ---
-
-    def grouping_operator(self, *workflows: "Workflow") -> "Workflow":
-        if not workflows:
-            raise ValueError("At least one workflow must be provided.")
-
-        # Create a GroupingOperator with the provided sub workflows
-        grouping_operator = GroupingOperator(*workflows)
-
-        # Add the grouping operator to the current workflow
-        self.add_operator(cast(Operator, grouping_operator))
-        return self
-
-    def random_selection_operator(self, cardinality: int, seed: int = 0) -> "Workflow":
-        random_selection_operator = RandomSelectionOperator(cardinality=cardinality, seed=seed)
-        self.add_operator(cast(Operator, random_selection_operator))
-        return self
-
-    def filter_operator(self, constraint: Constraint):
-        filter_operator = FilterOperator(constraint)
-        self.add_operator(cast(Operator, filter_operator))
-        return self
-
-    def manual_sampling_operator(self, *ids: T) -> "Workflow":
-        if not ids:
-            raise ValueError("At least one element must be provided for manual sampling.")
-
-        manual_sampling_operator = ManualSamplingOperator(*ids)
-        self.add_operator(cast(Operator, manual_sampling_operator))
-        return self
+    # --- Methods used for the Workflow creation ---
 
     def input(self, loader: Loader) -> "Workflow":
         self._input = loader.load_set()
@@ -66,7 +36,6 @@ class Workflow:
             last_operator.output(writer)
         return self
 
-    # --- Methods used for the Workflow execution ---
 
     def is_complete(self) -> bool:
         return self._root is not None and self._input is not None and self._output_writer is not None
@@ -109,6 +78,9 @@ class Workflow:
 
     def get_workflow_output(self) -> Optional[Set]:
         return self._output
+
+
+    # --- Methods used for the Workflow execution ---
 
     def get_root(self) -> Optional[Operator]:
         return self._root
