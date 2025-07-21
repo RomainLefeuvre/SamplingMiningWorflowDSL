@@ -7,7 +7,7 @@ from sampling_workflow.element.Element import Element
 T = TypeVar('T')
 
 class BoolConstraint(Constraint[T]):
-    def __init__(self, workflow,constraint: Callable[Tuple[T, ...], bool] , *targeted_metadatas: Tuple[Metadata[T],...]):
+    def __init__(self, workflow, constraint: Callable[[Tuple[T, ...]], bool], *targeted_metadatas: Tuple[Metadata[T],...]):
         super().__init__(workflow,*targeted_metadatas)
         self.constraint = constraint
         self.or_constraint: Optional[Constraint] = None
@@ -22,7 +22,6 @@ class BoolConstraint(Constraint[T]):
         # if not isinstance(value_objs, self.targeted_metadatas.type):
         #     raise RuntimeError(f"Unexpected metadata type: {type(value_objs)}")
 
-        
         constraint_result = self.constraint(*value_objs)
 
         if self.or_constraint is not None:

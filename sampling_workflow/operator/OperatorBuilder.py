@@ -1,12 +1,12 @@
 from typing import cast, TypeVar
 
-from newDSL2.Workflow import Workflow
-from newDSL2.constraint.Constraint import Constraint
-from newDSL2.operator.Operator import Operator
-from newDSL2.operator.clustering.GroupingOperator import GroupingOperator
-from newDSL2.operator.selection.filter.FilterOperator import FilterOperator
-from newDSL2.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
-from newDSL2.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+from sampling_workflow.Workflow import Workflow
+from sampling_workflow.constraint.Constraint import Constraint
+from sampling_workflow.operator.Operator import Operator
+from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
 
 T = TypeVar('T')
 
@@ -28,12 +28,12 @@ class OperatorBuilder:
         return self
 
     def random_selection_operator(self, cardinality: int, seed: int = 0) -> "OperatorBuilder":
-        random_selection_operator = RandomSelectionOperator(cardinality=cardinality, seed=seed)
+        random_selection_operator = RandomSelectionOperator(self.workflow, cardinality=cardinality, seed=seed)
         self.workflow.add_operator(cast(Operator, random_selection_operator))
         return self
 
     def filter_operator(self, constraint: Constraint) -> "OperatorBuilder":
-        filter_operator = FilterOperator(constraint)
+        filter_operator = FilterOperator(self.workflow, constraint)
         self.workflow.add_operator(cast(Operator, filter_operator))
         return self
 

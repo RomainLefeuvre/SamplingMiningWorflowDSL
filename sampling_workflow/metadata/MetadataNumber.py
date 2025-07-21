@@ -10,7 +10,7 @@ class MetadataNumber(Metadata[T]):
         super().__init__(name, type_)
 
     def is_greater_than(self, value: T) -> BoolConstraint:
-        return BoolConstraint(None,lambda x: x > value, targeted_metadatas=tuple(self))
+        return BoolConstraint(None,lambda x: x > value, self)
 
     def is_greater_or_equal_than(self, value: T) -> BoolConstraint:
         return BoolConstraint(None,lambda x: x >= value, self)

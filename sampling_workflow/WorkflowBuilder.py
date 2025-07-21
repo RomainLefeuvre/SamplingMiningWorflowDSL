@@ -1,6 +1,6 @@
-from newDSL2.Workflow import Workflow
-from newDSL2.operator.Operator import Operator
-from newDSL2.operator.OperatorBuilder import OperatorBuilder
+from sampling_workflow.Workflow import Workflow
+from sampling_workflow.operator.Operator import Operator
+from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
 
 
 class WorkflowBuilder:

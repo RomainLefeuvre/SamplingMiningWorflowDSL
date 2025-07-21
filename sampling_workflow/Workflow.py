@@ -1,6 +1,6 @@
 from typing import List, Optional, cast, TypeVar
 from sampling_workflow import CompleteWorkflow
-from sampling_workflow.analysis import HistWorkflowAnalysis
+from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.element.Element import Element
 from sampling_workflow.element.Loader import Loader

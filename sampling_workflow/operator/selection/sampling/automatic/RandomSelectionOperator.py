@@ -3,7 +3,7 @@ from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOp
 import random
 
 class RandomSelectionOperator(AutomaticSamplingOperator):
-    def __init__(self,workflow, cardinality: int, seed: int = -1):
+    def __init__(self, workflow, cardinality: int, seed: int = -1):
         super().__init__(workflow,cardinality)
         # If seed is -1, a random seed will be generated
         if seed == -1:

@@ -1,6 +1,5 @@
 from typing import TypeVar
 
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.analysis.HistAnalysis import HistAnalysis
 from sampling_workflow.analysis.WorkflowAnalysis import WorkflowAnalysis
 from sampling_workflow.metadata.Metadata import Metadata
@@ -14,7 +13,8 @@ class HistWorkflowAnalysis(WorkflowAnalysis):
         self.metadata = metadata
         self.top_x = top_x
 
-    def analyze(self, workflow: Workflow):
+    def analyze(self, workflow):
+        from sampling_workflow.Workflow import Workflow
         op = workflow.get_root()
         analysis = HistAnalysis(self.metadata,self.top_x)
         analysis.analyze(op.get_input(), f"Input of operator class {op.__class__.__name__}")

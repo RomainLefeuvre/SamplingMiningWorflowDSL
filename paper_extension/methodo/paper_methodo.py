@@ -14,7 +14,7 @@ json_writer = WritterFactory.json_writer
 def main():
     import os
     
-    input_path =  Path("paper_extension/methodo/IEEE_DATA")
+    input_path =  Path("IEEE_DATA")
     authors = Metadata.of_string("Authors")
     title = Metadata.of_string("Document Title")
     year = Metadata.of_integer("Publication Year")
@@ -32,7 +32,7 @@ def main():
         .filter_operator(BoolConstraint(None,lambda start_page,end_page : (end_page-start_page+1) > 6, start_page,end_page))
          .random_selection_operator(63,42)
         .input(CsvLoader(input_path, id_, title,year,start_page,end_page,iee_keyword_list,author_keyword_list,authors))
-        .output(json_writer("paper_extension/methodo/IEEE_DATA/out.json"))
+        .output(json_writer("IEEE_DATA/out.json"))
         .execute_workflow()
     )
     print(w)
