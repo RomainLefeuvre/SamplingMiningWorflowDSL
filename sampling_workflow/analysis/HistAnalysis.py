@@ -37,10 +37,31 @@ class HistAnalysis:
 
         self.show_histogram(metadata_values, op_info)
 
-    def show_histogram(self, data: list, op_info: str):
+    def show_histogram(self, data: list, op_info: str,sort=False, bins=10, unique_threshold=20):
         df = pd.DataFrame(data, columns=['value'])
-        value_counts = df['value'].value_counts().sort_values(ascending=False)
-        value_counts.plot(kind='bar')
+        series = df['value']
+
+        # Determine if the data is categorical or continuous
+        is_numeric = pd.api.types.is_numeric_dtype(series)
+        unique_values = series.nunique()
+
+        if is_numeric and unique_values > unique_threshold:
+            # Continuous data: use histogram or binning
+            df['binned'] = pd.cut(series, bins=bins)
+            value_counts = df['binned'].value_counts().sort_index()
+            value_counts.plot(kind='bar')
+            plt.xlabel('Bins')
+        else:
+            # Categorical or discrete numeric
+            if sort:
+                value_counts = series.value_counts().sort_index(  ascending=False)
+            else:
+                value_counts = series.value_counts()
+            value_counts.plot(kind='bar')
+            plt.xlabel('Category')
+
         plt.title(op_info)
-        #plt.xticks(rotation=45)
+        plt.ylabel('Frequency')
+        plt.tight_layout()
         plt.show()
+
