@@ -1,0 +1,32 @@
+from typing import List
+
+from sampling_workflow.element.Set import Set
+from sampling_workflow.operator.Operator import Operator
+
+
+class GroupingOperator(Operator):
+    def __init__(self,root_workflow ,*workflows: "Workflow"):
+        super().__init__(root_workflow)
+        from sampling_workflow.Workflow import Workflow
+        self.workflows: List[Workflow] = list(workflows)
+
+    def execute(self) -> Operator:
+        self._output = Set()
+        for w in self.workflows:
+            # The input of the workflow is the input of the grouping operator
+            w.set_workflow_input(self._input)
+
+            w.execute_workflow()
+            self._output.add_element(w.get_workflow_output())
+        super().execute()
+        return self
+
+    def get_workflows(self) -> List["Workflow"]:
+        return self.workflows
+
+    def extra_to_string(self, level: int) -> str:
+        indent = "    " * (level + 1)
+        res = f"\n{indent}Internal Workflows:"
+        for w in self.workflows:
+            res += f"\n{w.to_string(level + 1)}"
+        return res

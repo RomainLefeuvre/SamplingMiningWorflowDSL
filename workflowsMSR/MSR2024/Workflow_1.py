@@ -1,9 +1,9 @@
 # Enhancing Performance Bug Prediction Using Performance Code Metrics
 # DOI : 10.1145/3643991.3644920
-from newDSL.element.loader.LoaderFactory import LoaderFactory
-from newDSL.element.writer.WritterFactory import WritterFactory
-from newDSL.metadata.Metadata import Metadata
-from newDSL.operator.OperatorFactory import OperatorFactory
+from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
+from sampling_workflow.element.writer.WritterFactory import WritterFactory
+from sampling_workflow.metadata.Metadata import Metadata
+from sampling_workflow.operator.OperatorFactory import OperatorFactory
 
 # clone projects on Github, given a list from GHTorrent
 # filter to keep Java projects
