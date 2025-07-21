@@ -1,0 +1,158 @@
+from typing import List, Optional, cast, TypeVar
+from sampling_workflow import CompleteWorkflow
+from sampling_workflow.analysis import HistWorkflowAnalysis
+from sampling_workflow.constraint.Constraint import Constraint
+from sampling_workflow.element.Element import Element
+from sampling_workflow.element.Loader import Loader
+from sampling_workflow.element.Set import Set
+from sampling_workflow.element.Writer import Writer
+from sampling_workflow.metadata.Metadata import Metadata
+from sampling_workflow.operator.Operator import Operator
+from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+
+T = TypeVar('T')
+
+class Workflow:
+    def __init__(self):
+        self._input: Optional[Set] = None
+        self._output: Optional[Set] = None
+        self._output_writer: Optional[Writer] = None
+        self._root: Optional[Operator] = None
+        self._last_operator: Optional[Operator] = None
+        self._metadata: List[Metadata] = []
+
+    def get_all_Metadata(self) -> List[Metadata]:
+        return self._metadata
+    # --- Methods used for the DSL (used by the user) ---
+
+    def grouping_operator(self, *workflows: "Workflow") -> "Workflow":
+        if not workflows:
+            raise ValueError("At least one workflow must be provided.")
+
+        # Create a GroupingOperator with the provided sub workflows
+        grouping_operator = GroupingOperator(self,*workflows)
+
+        # Add the grouping operator to the current workflow
+        self.add_operator(cast(Operator, grouping_operator))
+        return self
+
+    def random_selection_operator(self, cardinality: int, seed: int = -1) -> "Workflow":
+        random_selection_operator = RandomSelectionOperator(self,cardinality=cardinality, seed=seed)
+        self.add_operator(cast(Operator, random_selection_operator))
+        return self
+
+    def filter_operator(self, constraint: Constraint):
+        filter_operator = FilterOperator(self,constraint)
+        self.add_operator(cast(Operator, filter_operator))
+        return self
+
+    def manual_sampling_operator(self, *ids: T) -> "Workflow":
+        if not ids:
+            raise ValueError("At least one element must be provided for manual sampling.")
+
+        manual_sampling_operator = ManualSamplingOperator(self,*ids)
+        self.add_operator(cast(Operator, manual_sampling_operator))
+        return self
+
+    def input(self, loader: Loader) -> "Workflow":
+        self._metadata = loader.metadatas.values()
+        self._input = loader.load_set()
+        return self
+
+    def output(self, writer: Writer) -> "Workflow":
+        self._output_writer = writer
+        last_operator = self.get_last_operator()
+        if last_operator:
+            last_operator.output(writer)
+        return self
+
+
+    def is_complete(self) -> bool:
+        return self._root is not None and self._input is not None and self._output_writer is not None
+
+    def add_operator(self, operator: Operator):
+        # If the workflow is empty, set the root operator
+        if self._root is None:
+            self._root = operator
+            self._last_operator = operator
+
+        # If the workflow already has operators, append the new operator to the end
+        else:
+            self._last_operator._next_operator = operator
+            operator._previous_operator = self._last_operator
+            operator.input_set(self._last_operator.get_output())
+            self._last_operator.output_set(operator.get_output())
+            self._last_operator = operator
+
+        if self.is_complete():
+            return CompleteWorkflow(self)
+
+    def set_workflow_input(self, input_set: Set | None) -> "Workflow":
+        self._input = input_set
+        if self._root is not None:
+            self._root.input_set(input_set)
+        return self
+
+    def set_root_input(self, input_set: Set | None) -> "Workflow":
+        if self._root is None:
+            raise ValueError("Cannot set root input when no root operator is defined.")
+        self._root.input_set(input_set)
+        return self
+
+    def get_workflow_input(self) -> Optional[Element]:
+        return self._input
+
+    def set_workflow_output(self, output_element: Element) -> "Workflow":
+        self._output = output_element
+        return self
+
+    def get_workflow_output(self) -> Optional[Set]:
+        return self._output
+
+    def get_root(self) -> Optional[Operator]:
+        return self._root
+
+    def get_last_operator(self) -> Optional[Operator]:
+        if self._root is None:
+            return None
+        current = self._root
+        while current._next_operator is not None:
+            current = current._next_operator
+        return current
+
+    def execute_workflow(self) -> "Workflow":
+        root = self._root
+        root.input_set(self._input)
+        root.execute()
+        self._output = self._last_operator.get_output()
+        return self
+
+    def analyze_workflow(self, metadata: Metadata[T]) -> "Workflow":
+        # Perform analysis on a given metadata
+        workflow_analysis = HistWorkflowAnalysis(metadata)
+        workflow_analysis.analyze(self)
+        return self
+
+    # --- Methods for workflow printing ---
+
+    def __str__(self) -> str:
+        return self.to_string(0)
+
+    def to_string(self, level: int):
+        indent = "    " * level
+        res = f"{indent}Workflow: [[[\n"
+        # res = ""
+        if self._root is not None:
+            res += self._root.to_string(level)
+        else:
+            res += f"{indent}No operators defined in this workflow.\n"
+
+        res += "\n" + indent + "]]]\n"
+        return res
+
+
+
+
