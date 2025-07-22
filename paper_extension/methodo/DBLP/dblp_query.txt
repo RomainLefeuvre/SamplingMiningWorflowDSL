@@ -2,16 +2,20 @@ PREFIX dblp: <https://dblp.org/rdf/schema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-SELECT  ?title ?year  ?numPages ?doi WHERE {
+
+SELECT ?title ?year ?numPages ?DOI WHERE {
   VALUES ?stream { <https://dblp.org/streams/conf/msr> } .
   ?publ dblp:publishedInStream ?stream .
   ?publ dblp:title ?title .
   ?publ dblp:doi ?doi . 
-	?publ dblp:yearOfPublication ?year . 
-    ?publ dblp:pagination ?pages .
-    BIND(STRBEFORE(?pages, "-") AS ?startStr)
-    BIND(STRAFTER(?pages, "-") AS ?endStr)
-    BIND(xsd:integer(?startStr) AS ?startInt)
-    BIND(xsd:integer(?endStr) AS ?endInt)
-    BIND(?endInt - ?startInt + 1 AS ?numPages)
+  ?publ dblp:yearOfPublication ?year . 
+  ?publ dblp:pagination ?pages .
+  
+  BIND(STRBEFORE(?pages, "-") AS ?startStr)
+  BIND(STRAFTER(?pages, "-") AS ?endStr)
+  BIND(xsd:integer(?startStr) AS ?startInt)
+  BIND(xsd:integer(?endStr) AS ?endInt)
+  BIND(?endInt - ?startInt + 1 AS ?numPages)
+  
+  BIND(STRAFTER(STR(?doi), "https://doi.org/") AS ?DOI)
 }

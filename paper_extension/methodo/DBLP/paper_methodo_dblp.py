@@ -17,23 +17,28 @@ def main():
     title = Metadata.of_string("title")
     year = Metadata.of_integer("year")
     pages = Metadata.of_integer("numPages")
-    title = Metadata.of_string("Document Title")
-    doi = Metadata.of_string("doi")
+    title = Metadata.of_string("title")
+    doi = Metadata.of_string("DOI")
+
+    IEEE_path =  Path("paper_extension/methodo/IEEE_DATA")
+    iee_keyword_list = Metadata.of("IEEE Terms", list)
+    author_keyword_list = Metadata.of("Author Keywords", list)
 
     # Workflow Declaration and Execution
     w = (
         Workflow()
+        .input(CsvLoader(input_path, doi, title,year,pages))
         .filter_operator(pages.is_greater_than(6))
         .filter_operator(year.is_greater_or_equal_than(2021))
         .filter_operator(year.is_less_or_equal_than(2025))
-        .random_selection_operator(cardinality=63,seed=42)
-        .input(CsvLoader(input_path, doi, title,year,pages))
-        .output(json_writer("paper_extension/methodo/IEEE_DATA/out.json"))
+        .add_metadata(CsvLoader(IEEE_path, doi,iee_keyword_list,author_keyword_list))
+        .random_selection_operator(cardinality=65,seed=42)
+        .output(json_writer("paper_extension/methodo/DBLP/out.json"))
         .execute_workflow()
     )
     print(w)
 
-    HistWorkflowAnalysis(year,100).analyze(w)
+    #HistWorkflowAnalysis(year,100).analyze(w)
 
 if __name__ == "__main__":
     main()

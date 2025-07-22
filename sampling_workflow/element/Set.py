@@ -24,6 +24,20 @@ class Set(Element):
     def union(self, other: 'Set') -> 'Set':
         self.elements.append(other.elements)
         return self
+    
+    def size(self) -> int:
+        return len(self.elements)
+    
+    def get_element(self, id:str)-> Element:
+        for element in self.elements:
+            if element.get_id() == id:
+                return element
+        raise ValueError(f"Element with id {id} not found in the set")
+    
+    def get_id(self):
+        id = ""
+        for element in self.elements:
+            id = id +"_"+ element.get_id()
 
     def flatten_set(self) -> 'Set':
         flattened = Set()

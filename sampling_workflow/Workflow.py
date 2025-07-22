@@ -26,7 +26,10 @@ class Workflow:
 
     def get_all_Metadata(self) -> List[Metadata]:
         return self._metadata
-    # --- Methods used for the DSL (used by the user) ---
+    
+    def add_metadata_type(self, metadata: Metadata) -> "Workflow":
+        self._metadata.append(metadata)
+        return self
 
     def grouping_operator(self, *workflows: "Workflow") -> "Workflow":
         if not workflows:
@@ -58,8 +61,16 @@ class Workflow:
         return self
 
     def input(self, loader: Loader) -> "Workflow":
-        self._metadata = loader.metadatas.values()
+        self._metadata = list(loader.metadatas.values())
         self._input = loader.load_set()
+        return self
+    
+    def add_metadata(self, loader: Loader) -> "Workflow":
+       
+        #Add metadata value to last declared operator 
+        current_operator :Operator = self.get_last_operator()
+        if current_operator:
+            current_operator.add_metadata_loader(loader)
         return self
 
     def output(self, writer: Writer) -> "Workflow":

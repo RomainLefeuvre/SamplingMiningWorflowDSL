@@ -1466,5 +1466,54 @@
             "Software Security"
         ],
         "Authors": "M. Fu; C. Tantithamthavorn"
+    },
+    {
+        "DOI": "10.1145/3643991.3644932",
+        "Document Title": "APIstic: A Large Collection of OpenAPI Metrics",
+        "Publication Year": 2024,
+        "Start Page": 265,
+        "End Page": 277,
+        "IEEE Terms": [
+            "Measurement",
+            "Analytical models",
+            "Web services",
+            "Documentation",
+            "Market research",
+            "Particle measurements",
+            "Software"
+        ],
+        "Author Keywords": [
+            "Web APIs",
+            "Dataset",
+            "OpenAPI",
+            "API Metrics"
+        ],
+        "Authors": "S. Serbout; C. Pautasso"
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00071",
+        "Document Title": "Understanding Test Deletion in Java Applications",
+        "Publication Year": 2025,
+        "Start Page": 408,
+        "End Page": 420,
+        "IEEE Terms": [
+            "Java",
+            "Codes",
+            "Costs",
+            "Production",
+            "Software",
+            "Maintenance",
+            "Data mining",
+            "Testing",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "Test deletion",
+            "test suite evolution",
+            "test suite reduction",
+            "test suite maintenance",
+            "regression testing"
+        ],
+        "Authors": "S. Bhatta; F. Kendemah; A. K. Jha"
     }
 ]
