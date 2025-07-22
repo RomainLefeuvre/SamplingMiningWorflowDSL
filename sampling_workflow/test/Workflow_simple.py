@@ -18,19 +18,19 @@ def main():
     id_ = Metadata.of_string("id")
     commit_nb = Metadata.of_integer("commitNb")
 
-    # w = (WorkflowBuilder()
-    #     .input(json_loader(input_path, id_, commit_nb))
-    #     .filter_operator("commitNb > 2000")
-    #      .random_selection_operator(10)
-    #     .output(json_writer("out.json"))
-    #  )
-
     w = (WorkflowBuilder()
         .input(json_loader(input_path, id_, commit_nb))
-        .filter_operator(commit_nb.is_greater_than(2000))
+        .filter_operator("commitNb > 2000")
          .random_selection_operator(10)
         .output(json_writer("out.json"))
      )
+
+    # w = (WorkflowBuilder()
+    #     .input(json_loader(input_path, id_, commit_nb))
+    #     .filter_operator(commit_nb.is_greater_than(2000))
+    #      .random_selection_operator(10)
+    #     .output(json_writer("out.json"))
+    #  )
 
 
 
