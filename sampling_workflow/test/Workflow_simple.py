@@ -1,5 +1,6 @@
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
+from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WriterFactory import WritterFactory
@@ -15,7 +16,14 @@ def main():
     url = Metadata.of_string("url")
     language = Metadata.of_string("language")
     id_ = Metadata.of_string("id")
-    commit_nb = Metadata.of_double("commitNb")
+    commit_nb = Metadata.of_integer("commitNb")
+
+    # w = (WorkflowBuilder()
+    #     .input(json_loader(input_path, id_, commit_nb))
+    #     .filter_operator("commitNb > 2000")
+    #      .random_selection_operator(10)
+    #     .output(json_writer("out.json"))
+    #  )
 
     w = (WorkflowBuilder()
         .input(json_loader(input_path, id_, commit_nb))
@@ -23,6 +31,8 @@ def main():
          .random_selection_operator(10)
         .output(json_writer("out.json"))
      )
+
+
 
     # w = (
     #     Workflow()
