@@ -30,12 +30,15 @@ class Element(ABC):
         self.metadata[metadata_value.get_metadata()] = metadata_value
 
     def get_all_metadata_values(self) -> Dict[Metadata, MetadataValue]:
-        return self.metadata
+        return self.metadata.copy()
+    
     
     def get_raw_metadata_values(self) -> Dict[str,T]:
         self
 
-
+    def get_id(self) -> str:
+        raise NotImplementedError("Subclasses must implement get_id method")
+    
     @abstractmethod
     def to_string(self, level: int) -> str:
         pass
