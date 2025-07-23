@@ -28,9 +28,8 @@ def main():
     w = (
         Workflow()
         .input(CsvLoader(input_path, doi, title,year,pages))
+        .filter_operator(year.is_between(2021, 2025))
         .filter_operator(pages.is_greater_than(6))
-        .filter_operator(year.is_greater_or_equal_than(2021))
-        .filter_operator(year.is_less_or_equal_than(2025))
         .add_metadata(CsvLoader(IEEE_path, doi,iee_keyword_list,author_keyword_list))
         .random_selection_operator(cardinality=65,seed=42)
         .output(json_writer("paper_extension/methodo/DBLP/out.json"))
