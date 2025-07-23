@@ -23,13 +23,9 @@ class BoolConstraintString(Constraint[T]):
 
     def is_satisfied(self, element: Element) -> bool:
         all_metadata = self.workflow.get_all_Metadata()
-        regx = re.compile(r'[ ,;:!?.()]')
 
-        # Split the string_constraint into tokens
-        tokens = set(regx.split(self.string_constraint))
-
-        # Retrieve matching Metadata objects
-        matching_metadata = [metadata for metadata in all_metadata if metadata.name in tokens]
+        # Retrieve matching Metadata objects by checking if their names exist in the string_constraint
+        matching_metadata = [metadata for metadata in all_metadata if metadata.name in self.string_constraint]
 
         metadata_values = {}
         for metadata in matching_metadata:

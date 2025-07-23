@@ -2,6 +2,7 @@ from typing import cast, TypeVar
 
 from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
+from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
@@ -32,13 +33,18 @@ class OperatorBuilder:
         self.workflow.add_operator(cast(Operator, random_selection_operator))
         return self
 
-    def filter_operator(self, string_constraint: str) -> "OperatorBuilder":
-        constraint = BoolConstraintString(self.workflow, string_constraint)  # Create a BoolConstraintString with the string constraint
+    def filter_operator(self, constraint: str | Constraint) -> "OperatorBuilder":
+        if isinstance(constraint, str):
+            # Handle the case where the constraint is a string
+            constraint_obj = BoolConstraintString(self.workflow, constraint)
+        elif isinstance(constraint, Constraint):
+            # Handle the case where the constraint is already a Constraint object
+            constraint_obj = constraint
+        else:
+            raise TypeError("constraint must be a string or a Constraint object")
 
-        filter_operator = FilterOperator(self.workflow, constraint)
+        filter_operator = FilterOperator(self.workflow, constraint_obj)
         self.workflow.add_operator(cast(Operator, filter_operator))
-
-        # Actually add the filter operator
         return self
 
     # def filter_operator(self, constraint: Constraint) -> "OperatorBuilder":
