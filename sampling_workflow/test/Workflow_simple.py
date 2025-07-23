@@ -1,6 +1,5 @@
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
-from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
-from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
+from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WriterFactory import WritterFactory
@@ -19,29 +18,11 @@ def main():
     commit_nb = Metadata.of_integer("commitNb")
 
     w = (WorkflowBuilder()
-        .input(json_loader(input_path, id_, commit_nb))
+        .input(json_loader(input_path, id_, commit_nb, language))
         .filter_operator("commitNb > 2000")
-         .random_selection_operator(10)
+        .random_selection_operator(40)
         .output(json_writer("out.json"))
-     )
-
-    # w = (WorkflowBuilder()
-    #     .input(json_loader(input_path, id_, commit_nb))
-    #     .filter_operator(commit_nb.is_greater_than(2000))
-    #      .random_selection_operator(10)
-    #     .output(json_writer("out.json"))
-    #  )
-
-
-
-    # w = (
-    #     Workflow()
-    #     .input(json_loader(input_path, id_, commit_nb))
-    #     .filter_operator(commit_nb.is_greater_than(2000))
-    #     .random_selection_operator(10)
-    #     .output(json_writer("out.json"))
-    #     .execute_workflow()
-    # )
+    )
 
     # w = (
     #     Workflow()
@@ -55,7 +36,10 @@ def main():
     # )
 
     w.execute_workflow()
-    w.analyze_workflow(commit_nb)
+    # w.analyze_workflow(commit_nb)
+
+    WorkflowVisualizer(w).generate_graph()
+
     print (w)
 
 if __name__ == "__main__":
