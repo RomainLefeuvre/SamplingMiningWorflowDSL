@@ -1,5 +1,6 @@
 from typing import List, Optional, cast, TypeVar
 from sampling_workflow import CompleteWorkflow
+from sampling_workflow.analysis.DistributionWorkflowAnalysis import DistributionWorkflowAnalysis
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.element.Element import Element
@@ -143,8 +144,12 @@ class Workflow:
 
     def analyze_workflow(self, metadata: Metadata[T]) -> "Workflow":
         # Perform analysis on a given metadata
-        workflow_analysis = HistWorkflowAnalysis(metadata)
-        workflow_analysis.analyze(self)
+        # workflow_analysis = HistWorkflowAnalysis(metadata)
+        workflow_distrib_analysis = DistributionWorkflowAnalysis(metadata=metadata)
+        workflow_distrib_analysis.analyze(self)
+
+        workflow_hist_analysis = HistWorkflowAnalysis(metadata=metadata)
+        workflow_hist_analysis.analyze(self)
         return self
 
     # --- Methods for workflow printing ---
