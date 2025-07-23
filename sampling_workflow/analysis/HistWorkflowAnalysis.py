@@ -16,7 +16,6 @@ class HistWorkflowAnalysis(WorkflowAnalysis):
         self.top_x = top_x
 
     def analyze(self, workflow, workflow_name: str = "main workflow", op_number: int = 1):
-        from sampling_workflow.Workflow import Workflow
         op = workflow.get_root()
         analysis = HistAnalysis(self.file_path, self.metadata,self.top_x,self.sort)
         analysis.analyze(op.get_input(), f"{self.metadata.name}_{workflow_name}_op{op_number}_input.png", f"Input of operator class {op.__class__.__name__}")

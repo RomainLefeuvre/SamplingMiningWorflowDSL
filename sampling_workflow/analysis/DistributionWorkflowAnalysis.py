@@ -17,6 +17,8 @@ class DistributionWorkflowAnalysis:
         analyzer = kolmogorov_smirnov(self.metadata)
         entries = list(self.map.items())
 
+        print("Kolmogorov-Smirnov Test:")
+
         for i in range(len(entries) - 1):
             for j in range(i + 1, len(entries)):
                 name = f"{entries[i][0]} /// {entries[j][0]}"
