@@ -32,7 +32,7 @@ def main():
     w = (WorkflowBuilder()
          .input(json_loader(input_path, id_, commit_nb, url, language))
          .grouping_operator(
-            filter_operator(commit_nb.is_greater_than(2000)),
+            filter_operator(commit_nb.is_greater_than(2000)).filter_operator(commit_nb.is_less_than(5000)),
             filter_operator(language.is_equal("JavaScript"))
          )
         .random_selection_operator(1)

@@ -1,6 +1,9 @@
 import os
 from graphviz import Digraph
 
+from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+
+
 class WorkflowVisualizer:
     def __init__(self, workflow):
         self.workflow = workflow
@@ -14,7 +17,7 @@ class WorkflowVisualizer:
         dot.attr(rankdir="LR")  # Left-to-right layout
 
         # Traverse the workflow and add nodes/edges
-        self._add_nodes_and_edges(dot, self.workflow, "Root")
+        self._add_nodes_and_edges(dot, self.workflow)
 
         # Save the graph to an SVG file
         dot.render(svg_path, format="svg", cleanup=True)
@@ -23,24 +26,43 @@ class WorkflowVisualizer:
         # Create the HTML page in the same directory
         self.create_html_page(svg_path)
 
-    def _add_nodes_and_edges(self, dot, workflow, parent_name=None):
+    def _add_nodes_and_edges(self, dot, workflow, level:int=0, workflow_number:int=0, op_number:int=0, parent_name=None):
         op = workflow.get_root()
-        parent_name = None  # No "Root" node
 
+        if(not parent_name):
+            dot.node("InputSet", label=f"INPUT SET\nSize: {workflow.get_workflow_input().size()}", shape="box")
+            parent_name = "InputSet"
+
+        dot.node("OutputSet", label=f"OUTPUT SET\nSize: {workflow.get_workflow_output().size()}", shape="box")
+        last_nodes = ["InputSet"]
+
+        to_attach = []
         while op is not None:
             output_set = op.get_output()
 
             # Add the current operator as a node
-            node_name = f"{op.__class__.__name__}"
-            dot.node(node_name, label=f"{op.__class__.__name__}\nSize: {output_set.size()}", shape="box")
+            node_name = f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}"
+            dot.node(node_name, label=f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}\nSize: {output_set.size()}", shape="box")
 
             # Add an edge from the previous node to the current node
             if parent_name:
                 dot.edge(parent_name, node_name)
 
+            if isinstance(op, GroupingOperator):
+                # If it's a GroupingOperator, recursively add its sub-workflows
+                workflow_number = 0
+                for sub_workflow in op.get_workflows():
+                    self._add_nodes_and_edges(dot, sub_workflow, level+1, workflow_number, op_number, node_name)
+                    workflow_number += 1
+
+            op_number += 1
             # Move to the next operator
             parent_name = node_name
             op = op.get_next_operator()
+
+            for end in last_nodes:
+                dot.edge(end, "OutputSet")
+
 
     def create_html_page(self, svg_file: str, output_html: str = "workflow.html"):
         # Full path for the HTML file
