@@ -16,13 +16,15 @@ class OperatorBuilder:
     def __init__(self, workflow: "Workflow"):
         self.workflow = workflow
 
-
-    def grouping_operator(self, *workflows: "Workflow") -> "OperatorBuilder":
+    def grouping_operator(self, *workflows: "OperatorBuilder") -> "OperatorBuilder":
+        subWorkflows = []
+        for w in workflows:
+            subWorkflows.append(w.workflow)
         if not workflows:
             raise ValueError("At least one workflow must be provided.")
 
         # Create a GroupingOperator with the provided sub workflows
-        grouping_operator = GroupingOperator(*workflows)
+        grouping_operator = GroupingOperator(self.workflow, subWorkflows)
 
         # Add the grouping operator to the current workflow
         self.workflow.add_operator(cast(Operator, grouping_operator))
@@ -46,11 +48,6 @@ class OperatorBuilder:
         filter_operator = FilterOperator(self.workflow, constraint_obj)
         self.workflow.add_operator(cast(Operator, filter_operator))
         return self
-
-    # def filter_operator(self, constraint: Constraint) -> "OperatorBuilder":
-    #     filter_operator = FilterOperator(self.workflow, constraint)
-    #     self.workflow.add_operator(cast(Operator, filter_operator))
-    #     return self
 
     def manual_sampling_operator(self, *ids: T) -> "OperatorBuilder":
         if not ids:

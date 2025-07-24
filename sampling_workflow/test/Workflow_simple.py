@@ -4,9 +4,14 @@ from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WriterFactory import WritterFactory
 from sampling_workflow.Workflow import Workflow
+from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
+from sampling_workflow.operator.OperatorFactory import OperatorFactory
+from sampling_workflow.operator.clustering.SubWorkflowOperatorBuilder import SubWorkflowOperatorBuilder
+from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
+filter_operator = SubWorkflowOperatorBuilder.filter_operator
 
 def main():
     import os
@@ -17,12 +22,24 @@ def main():
     id_ = Metadata.of_string("id")
     commit_nb = Metadata.of_integer("commitNb")
 
+    # w = (WorkflowBuilder()
+    #     .input(json_loader(input_path, id_, commit_nb, language))
+    #     .filter_operator("commitNb > 2000")
+    #     .random_selection_operator(40)
+    #     .output(json_writer("out.json"))
+    # )
+
     w = (WorkflowBuilder()
-        .input(json_loader(input_path, id_, commit_nb, language))
-        .filter_operator("commitNb > 2000")
-        .random_selection_operator(40)
+         .input(json_loader(input_path, id_, commit_nb, url, language))
+         .grouping_operator(
+            filter_operator(commit_nb.is_greater_than(2000)),
+            filter_operator(language.is_equal("JavaScript"))
+         )
+        .random_selection_operator(1)
         .output(json_writer("out.json"))
     )
+
+
 
     # w = (
     #     Workflow()
