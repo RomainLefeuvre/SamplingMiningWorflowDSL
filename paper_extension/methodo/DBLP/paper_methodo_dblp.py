@@ -5,6 +5,7 @@ from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 from sampling_workflow.analysis.CoverageTest import CoverageTest
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
+from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import *
 from sampling_workflow.element.writer.WriterFactory import *
@@ -33,14 +34,16 @@ def main():
                                 .add_metadata(CsvLoader(IEEE_path, doi,iee_keyword_list,author_keyword_list))\
                                 .random_selection_operator(cardinality=65,seed=4242)\
                                 .output(JsonWriter("paper_extension/methodo/DBLP/out.json"))\
-                                .execute_workflow()\
-                                .print()
-    
+
+    # Workflow Execution
+    workflow.execute_workflow()
     # Workflow Analysis
-    HistWorkflowAnalysis(year,100,category=True,sort=False).analyze(w)
+    HistWorkflowAnalysis(year,100,category=True,sort=False).analyze(workflow)
     HistWorkflowAnalysis(iee_keyword_list,top_x=50,category=True,sort=True).analyze(workflow)
     CoverageTest(iee_keyword_list,workflow.get_operator_by_position(1).get_output(),workflow.get_workflow_output()).compute_coverage(50)
 
+    WorkflowVisualizer(workflow).generate_graph()
+    print(workflow)
 
 if __name__ == "__main__":
     main()
