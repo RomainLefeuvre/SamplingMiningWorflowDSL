@@ -37,7 +37,10 @@ def main():
     )
     print(w)
 
-    #HistWorkflowAnalysis(year,100).analyze(w)
+    #HistWorkflowAnalysis(year,100,category=True,sort=False).analyze(w)
+    HistWorkflowAnalysis(iee_keyword_list,top_x=10,category=True,sort=True).analyze(w)
+
+
 
 if __name__ == "__main__":
     main()
