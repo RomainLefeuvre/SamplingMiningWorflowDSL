@@ -1,5 +1,5 @@
 import os
-from typing import cast
+from typing import cast, List
 
 from graphviz import Digraph
 
@@ -7,82 +7,88 @@ from sampling_workflow.constraint.BoolConstraintString import BoolConstraintStri
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 
-
 class WorkflowVisualizer:
     def __init__(self, workflow):
         self.workflow = workflow
-        self.output_dir = os.path.dirname(__file__)  # Path to the exec_visualizer directory
-        self.last_nodes = []
+        self.output_dir = os.path.dirname(__file__)
 
     def generate_graph(self, output_file: str = "workflow_graph"):
-        # Full path for the SVG file
-        svg_path = os.path.join(self.output_dir, f"{output_file}")
-
+        svg_path = os.path.join(self.output_dir, output_file)
         dot = Digraph(format="svg")
-        dot.attr(rankdir="LR")  # Left-to-right layout
+        dot.attr(rankdir="LR")
 
-        # Traverse the workflow and add nodes/edges
-        self._add_nodes_and_edges(dot, self.workflow)
+        # Add input node
+        dot.node("InputSet", label=f"INPUT SET\nSize : {self.workflow.get_workflow_input().size()}", shape="box")
 
-        # Save the graph to an SVG file
+        # Traverse and draw the workflow
+        last_nodes = self._add_nodes_and_edges(dot, self.workflow, parent_names=["InputSet"])
+
+        # Add output node
+        dot.node("OutputSet", label=f"SAMPLE\nSize : {self.workflow.get_workflow_output().size()}", shape="box")
+
+        # Link last operator(s) to output
+        for node in last_nodes:
+            dot.edge(node, "OutputSet")
+
+        # Render
         dot.render(svg_path, format="svg", cleanup=True)
         print(f"Workflow graph saved to {svg_path}")
 
-        # Create the HTML page in the same directory
+        # HTML wrapper
         self.create_html_page(svg_path)
 
-    def _add_nodes_and_edges(self, dot, workflow, level:int=0, workflow_number:int=0, op_number:int=0, parent_name=None):
+    def _add_nodes_and_edges(self, dot, workflow, level: int = 0, workflow_number: int = 0, op_number: int = 0,
+                             parent_names=None) -> List[str]:
+        if parent_names is None:
+            parent_names = []
+
         op = workflow.get_root()
+        last_nodes = []
 
-        if(not parent_name):
-            dot.node("InputSet", label=f"INPUT SET\nSize: {workflow.get_workflow_input().size()}", shape="box")
-            parent_name = "InputSet"
-
-
-        dot.node("OutputSet", label=f"OUTPUT SET\nSize: {workflow.get_workflow_output().size()}", shape="box")
-
-        to_attach = []
         while op is not None:
             output_set = op.get_output()
-
-            # Add the current operator as a node
             node_name = f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}"
-            label = f"{op.__class__.__name__}\nSize: {output_set.size()}"
 
+            # Label formatting
             if isinstance(op, FilterOperator) and isinstance(op.get_constraint(), BoolConstraintString):
                 constraint = cast(BoolConstraintString, op.get_constraint()).get_string_constraint()
-                label = f"{constraint}\nSize: {output_set.size()}"
+                label = f"Filter Operator\n{constraint}\nSize : {output_set.size()}"
+            elif isinstance(op, GroupingOperator):
+                label = "Grouping\nOperator"
+            else:
+                label = f"{op.__class__.__name__.replace('Operator', '')}\nOperator\nSize : {output_set.size()}"
 
             dot.node(node_name, label=label, shape="box")
 
-            for node in self.last_nodes:
-                dot.edge(node, node_name)
+            # Link all incoming parent nodes
+            for parent in parent_names:
+                dot.edge(parent, node_name)
 
-            # Add an edge from the previous node to the current node
-            if parent_name:
-                dot.edge(parent_name, node_name)
-
+            # Handle grouping
             if isinstance(op, GroupingOperator):
-                # If it's a GroupingOperator, recursively add its sub-workflows
-                workflow_number = 0
-                for sub_workflow in op.get_workflows():
-                    self._add_nodes_and_edges(dot, sub_workflow, level+1, workflow_number, op_number, node_name)
-                    workflow_number += 1
+                sub_last_nodes = []
+                for i, sub_workflow in enumerate(op.get_workflows()):
+                    sub_nodes = self._add_nodes_and_edges(
+                        dot, sub_workflow,
+                        level=level + 1,
+                        workflow_number=i,
+                        op_number=0,
+                        parent_names=[node_name]
+                    )
+                    sub_last_nodes.extend(sub_nodes)
 
-            op_number += 1
-            # Move to the next operator
-            parent_name = node_name
+                parent_names = sub_last_nodes  # They become the parents of the next operator
+                last_nodes = sub_last_nodes
+            else:
+                parent_names = [node_name]
+                last_nodes = [node_name]
+
             op = op.get_next_operator()
+            op_number += 1
 
-        last_op_name = f"{workflow.get_last_operator().__class__.__name__}_{level}_{workflow_number}_{op_number-1}"
-        self.last_nodes.append(last_op_name)
-
-        for end in self.last_nodes:
-            dot.edge(end, "OutputSet")
-
+        return last_nodes
 
     def create_html_page(self, svg_file: str, output_html: str = "workflow.html"):
-        # Full path for the HTML file
         html_path = os.path.join(self.output_dir, output_html)
 
         html_content = f"""
