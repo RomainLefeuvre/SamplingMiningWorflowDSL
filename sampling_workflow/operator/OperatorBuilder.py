@@ -3,6 +3,7 @@ from typing import cast, TypeVar
 from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.constraint.Constraint import Constraint
+from sampling_workflow.element.Loader import Loader
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
@@ -28,6 +29,10 @@ class OperatorBuilder:
 
         # Add the grouping operator to the current workflow
         self.workflow.add_operator(cast(Operator, grouping_operator))
+        return self
+    
+    def add_metadata(self, loader: Loader) :
+        self.workflow.add_metadata(loader)
         return self
 
     def random_selection_operator(self, cardinality: int, seed: int = 0) -> "OperatorBuilder":

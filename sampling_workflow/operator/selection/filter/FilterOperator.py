@@ -6,7 +6,7 @@ class FilterOperator(Operator):
     def __init__(self, workflow,constraint: Constraint):
         super().__init__(workflow)
         self._constraint = constraint
-        constraint.set = workflow
+        constraint.set_workflow(workflow)
 
 
     def execute(self):
