@@ -18,16 +18,22 @@ class OperatorBuilder:
         self.workflow = workflow
 
     def grouping_operator(self, *workflows: "OperatorBuilder") -> "OperatorBuilder":
-        subWorkflows = []
-        for w in workflows:
-            subWorkflows.append(w.workflow)
         if not workflows:
             raise ValueError("At least one workflow must be provided.")
 
-        # Create a GroupingOperator with the provided sub workflows
-        grouping_operator = GroupingOperator(self.workflow, subWorkflows)
+        # Retrieve all metadata from the main workflow
+        all_metadata = self.workflow.get_all_Metadata()
 
-        # Add the grouping operator to the current workflow
+        # Ensure all subworkflows have the same metadata
+        for w in workflows:
+            for metadata in all_metadata:
+                w.workflow.add_metadata_type(metadata)
+
+        # Extract subworkflow objects
+        subWorkflows = [w.workflow for w in workflows]
+
+        # Create and add the GroupingOperator
+        grouping_operator = GroupingOperator(self.workflow, subWorkflows)
         self.workflow.add_operator(cast(Operator, grouping_operator))
         return self
     
