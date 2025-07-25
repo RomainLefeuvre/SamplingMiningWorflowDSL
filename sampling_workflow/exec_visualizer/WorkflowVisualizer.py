@@ -1,13 +1,18 @@
 import os
+from typing import cast
+
 from graphviz import Digraph
 
+from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 
 
 class WorkflowVisualizer:
     def __init__(self, workflow):
         self.workflow = workflow
         self.output_dir = os.path.dirname(__file__)  # Path to the exec_visualizer directory
+        self.last_nodes = []
 
     def generate_graph(self, output_file: str = "workflow_graph"):
         # Full path for the SVG file
@@ -33,8 +38,8 @@ class WorkflowVisualizer:
             dot.node("InputSet", label=f"INPUT SET\nSize: {workflow.get_workflow_input().size()}", shape="box")
             parent_name = "InputSet"
 
+
         dot.node("OutputSet", label=f"OUTPUT SET\nSize: {workflow.get_workflow_output().size()}", shape="box")
-        last_nodes = ["InputSet"]
 
         to_attach = []
         while op is not None:
@@ -42,7 +47,16 @@ class WorkflowVisualizer:
 
             # Add the current operator as a node
             node_name = f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}"
-            dot.node(node_name, label=f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}\nSize: {output_set.size()}", shape="box")
+            label = f"{op.__class__.__name__}\nSize: {output_set.size()}"
+
+            if isinstance(op, FilterOperator) and isinstance(op.get_constraint(), BoolConstraintString):
+                constraint = cast(BoolConstraintString, op.get_constraint()).get_string_constraint()
+                label = f"{constraint}\nSize: {output_set.size()}"
+
+            dot.node(node_name, label=label, shape="box")
+
+            for node in self.last_nodes:
+                dot.edge(node, node_name)
 
             # Add an edge from the previous node to the current node
             if parent_name:
@@ -60,8 +74,11 @@ class WorkflowVisualizer:
             parent_name = node_name
             op = op.get_next_operator()
 
-            for end in last_nodes:
-                dot.edge(end, "OutputSet")
+        last_op_name = f"{workflow.get_last_operator().__class__.__name__}_{level}_{workflow_number}_{op_number-1}"
+        self.last_nodes.append(last_op_name)
+
+        for end in self.last_nodes:
+            dot.edge(end, "OutputSet")
 
 
     def create_html_page(self, svg_file: str, output_html: str = "workflow.html"):

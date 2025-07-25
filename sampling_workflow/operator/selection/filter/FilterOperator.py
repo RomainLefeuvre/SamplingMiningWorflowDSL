@@ -16,3 +16,7 @@ class FilterOperator(Operator):
                 self._output.add_element(element)
         super().execute()
         return self
+
+
+    def get_constraint(self) -> Constraint:
+        return self._constraint

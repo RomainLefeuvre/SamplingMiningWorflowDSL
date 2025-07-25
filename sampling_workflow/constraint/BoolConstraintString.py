@@ -48,3 +48,6 @@ class BoolConstraintString(Constraint[T]):
     def and_(self, other: 'BoolConstraint') -> 'BoolConstraint':
         self.and_constraint = other
         return other
+
+    def get_string_constraint(self) -> str:
+        return self.string_constraint

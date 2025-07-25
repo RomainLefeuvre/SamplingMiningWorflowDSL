@@ -21,23 +21,24 @@ def main():
     language = Metadata.of_string("language")
     id_ = Metadata.of_string("id")
     commit_nb = Metadata.of_integer("commitNb")
-
-    # w = (WorkflowBuilder()
-    #     .input(json_loader(input_path, id_, commit_nb, language))
-    #     .filter_operator("commitNb > 2000")
-    #     .random_selection_operator(40)
-    #     .output(json_writer("out.json"))
-    # )
+    year = Metadata.of_integer("year")
 
     w = (WorkflowBuilder()
-         .input(json_loader(input_path, id_, commit_nb, url, language))
-         .grouping_operator(
-            filter_operator(commit_nb.is_greater_than(2000)).filter_operator(commit_nb.is_less_than(5000)),
-            filter_operator(language.is_equal("JavaScript"))
-         )
-        .random_selection_operator(1)
+        .input(json_loader(input_path, id_, commit_nb, language))
+        .filter_operator("commitNb > 2000 and commitNb < 7000")
+        .random_selection_operator(40)
         .output(json_writer("out.json"))
     )
+
+    # w = (WorkflowBuilder()
+    #      .input(json_loader(input_path, id_, commit_nb, url, language))
+    #      .grouping_operator(
+    #         filter_operator(commit_nb.is_greater_than(2000)).filter_operator(commit_nb.is_less_than(5000)),
+    #         filter_operator(language.is_equal("JavaScript"))
+    #      )
+    #     .random_selection_operator(1)
+    #     .output(json_writer("out.json"))
+    # )
 
 
 
