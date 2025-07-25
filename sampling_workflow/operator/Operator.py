@@ -16,7 +16,7 @@ class Operator(ABC):
         self._output_writter: Optional[Writer] = None
         self._next_operator: Optional["Operator"] = None
         self._previous_operator: Optional["Operator"] = None
-        #Loader to add metadata during the execution
+        #Loader to add metadata on output during the execution
         self._loader: Optional[Loader] = None
 
     def add_metadata_loader(self, loader) -> "Operator":
@@ -32,7 +32,7 @@ class Operator(ABC):
         #Load new metadata set
         new_metadata_set : Set = self._loader.load_set() 
         #Add metadata value to current input set
-        for element in self._input.get_elements():
+        for element in self._output.get_elements():
             if not isinstance(element, Set):
                 id= element.get_id()
                 try:

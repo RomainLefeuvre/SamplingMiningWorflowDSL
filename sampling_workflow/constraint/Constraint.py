@@ -13,7 +13,7 @@ class Constraint(Generic[T]):
     def is_satisfied(self, element):
         pass
 
-def set_workflow(self, workflow: 'Workflow') :
-        self.workflow = workflow
-        return self
+    def set_workflow(self, workflow: 'Workflow') :
+            self.workflow = workflow
+            return self
 

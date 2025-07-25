@@ -135,6 +135,18 @@ class Workflow:
         while current._next_operator is not None:
             current = current._next_operator
         return current
+    
+    def get_operator_by_position(self, position: int) -> Optional[Operator]:
+        if position < 0:
+            return None
+        current = self._root
+        index = 0
+        while current is not None:
+            if index == position:
+                return current
+            current = current._next_operator
+            index += 1
+        return None
 
     def execute_workflow(self) -> "Workflow":
         root = self._root
@@ -143,6 +155,9 @@ class Workflow:
         self._output = self._last_operator.get_output()
         return self
 
+    def print(self) -> "Workflow":
+        print(self)
+        return self
     def analyze_workflow(self, metadata: Metadata[T]) -> "Workflow":
         # Perform analysis on a given metadata
         # workflow_analysis = HistWorkflowAnalysis(metadata)
