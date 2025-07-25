@@ -40,7 +40,8 @@ def main():
     # Workflow Analysis
     HistWorkflowAnalysis(year,100,category=True,sort=False).analyze(workflow)
     HistWorkflowAnalysis(iee_keyword_list,top_x=50,category=True,sort=True).analyze(workflow)
-    CoverageTest(iee_keyword_list,workflow.get_operator_by_position(1).get_output(),workflow.get_workflow_output()).compute_coverage(50)
+    CoverageTest(iee_keyword_list,workflow.get_operator_by_position(1).get_output(),
+                                  workflow.get_workflow_output()).compute_coverage(50)
 
     WorkflowVisualizer(workflow).generate_graph()
     print(workflow)
