@@ -18,13 +18,15 @@ class WorkflowVisualizer:
         dot.attr(rankdir="LR")
 
         # Add input node
-        dot.node("InputSet", label=f"INPUT SET\nSize : {self.workflow.get_workflow_input().size()}", shape="box")
+        dot.node("InputSet", label=f"INPUT SET\nSize : {self.workflow.get_workflow_input().flatten_set().size()}", shape="box")
 
         # Traverse and draw the workflow
         last_nodes = self._add_nodes_and_edges(dot, self.workflow, parent_names=["InputSet"])
 
         # Add output node
-        dot.node("OutputSet", label=f"SAMPLE\nSize : {self.workflow.get_workflow_output().size()}", shape="box")
+        output_set = self.workflow.get_workflow_output().flatten_set()
+        output_size = output_set.size()
+        dot.node("OutputSet", label=f"SAMPLE\nSize : {output_size}", shape="box")
 
         # Link last operator(s) to output
         for node in last_nodes:
@@ -52,11 +54,11 @@ class WorkflowVisualizer:
             # Label formatting
             if isinstance(op, FilterOperator) and isinstance(op.get_constraint(), BoolConstraintString):
                 constraint = cast(BoolConstraintString, op.get_constraint()).get_string_constraint()
-                label = f"Filter Operator\n{constraint}\nSize : {output_set.size()}"
+                label = f"Filter Operator\n{constraint}\nSize : {output_set.flatten_set().size()}"
             elif isinstance(op, GroupingOperator):
                 label = "Grouping\nOperator"
             else:
-                label = f"{op.__class__.__name__.replace('Operator', '')}\nOperator\nSize : {output_set.size()}"
+                label = f"{op.__class__.__name__.replace('Operator', '')}\nOperator\nSize : {output_set.flatten_set().size()}"
 
             dot.node(node_name, label=label, shape="box")
 
