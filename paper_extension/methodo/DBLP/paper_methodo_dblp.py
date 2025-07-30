@@ -4,6 +4,7 @@ from paper_extension.element.loader.CsvLoader import CsvLoader
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 from sampling_workflow.analysis.CoverageTest import CoverageTest
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
+from sampling_workflow.analysis.ChiSquareAnalysis import ChiSquareAnalysis
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
 from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
 from sampling_workflow.metadata.Metadata import Metadata
@@ -43,6 +44,10 @@ def main():
     CoverageTest(iee_keyword_list,workflow.get_operator_by_position(1).get_output(),
                                   workflow.get_workflow_output()).compute_coverage(50)
 
+    chi2analysis = ChiSquareAnalysis(iee_keyword_list)
+    set_1 = workflow.get_operator_by_position(2).get_input()
+    set_2 = workflow.get_operator_by_position(2).get_output()
+    chi2analysis.analyze(set_1, set_2)
     WorkflowVisualizer(workflow).generate_graph()
     print(workflow)
 
