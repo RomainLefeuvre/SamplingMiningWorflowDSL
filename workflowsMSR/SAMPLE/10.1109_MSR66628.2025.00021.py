@@ -1,41 +1,33 @@
 from pathlib import Path
-from typing import List
 from paper_extension.element.loader.CsvLoader import CsvLoader
 from paper_extension.element.writter.CsvWriter import CsvWriter
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
-from sampling_workflow.analysis.CoverageTest import CoverageTest
-from sampling_workflow.analysis.DistributionWorkflowAnalysis import DistributionWorkflowAnalysis
-from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
-from sampling_workflow.analysis.ChiSquareAnalysis import ChiSquareAnalysis
-from sampling_workflow.constraint.BoolConstraint import BoolConstraint
-from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import *
 from sampling_workflow.element.writer.WriterFactory import *
-from sampling_workflow.Workflow import Workflow
-import os
 
-#Enhancing Just-In-Time Defect Prediction Models with Developer-Centric Features.
-
-# The datasets we used in our study are based on the datasets
-# released by Tian et al. [41] [...] 18 projects they considered. 
-# [...]we excluded the commits 
-# (i) made before March 2015 
-# (ii) no longer available in the repository at the time we conducted our study. 
-# We excluded projects for which we did not have a sufficient number of commits. 
-# As a result, we considered six projects. 
+#It's About Time: An Empirical Study of Date and Time Bugs in Open-Source Python Software..
+# 1. Filter repo created after 2014 
+# 2. Filter repo that have over 100 stars
+# 55k repos
+# 3. purposive sampling : select repository using 
+# Datetime, Arrow, or Pendulum
+# result in 22,132
 
 def main():
     input_path =  Path("tian_dataset.json")
-    number_of_commit_after_march_2015 = Metadata.of_integer("number_of_commit_after_march_2015")
-    number_of_commit_still_available_on_github = Metadata.of_integer("number_of_commit_still_available_on_github")
+    creation_date = Metadata.of_integer("creation_date")
+    stars = Metadata.of_integer("stars")
+    libraries = Metadata.of("libraries", list)
     url = Metadata.of_string("url")
 
 
     # Workflow Declaration and Execution
-    workflow = WorkflowBuilder().input(CsvLoader(input_path,url,  number_of_commit_after_march_2015,number_of_commit_still_available_on_github))\
-                                .filter_operator("number_of_commit_still_available_on_github + number_of_commit_after_march_2015 > ???? ")\
-                                .output(CsvWriter("paper_extension/methodo/DBLP/study.csv"))\
+    workflow = WorkflowBuilder().input(CsvLoader(input_path,url,  creation_date,stars))\
+                                .filter_operator("creation_date >2014")\
+                                .filter_operator("stars > 100")\
+                                .filter_operator("libraries in ['Datetime', 'Arrow', 'Pendulum']")\
+                                .output(CsvWriter("out.csv"))\
 
     workflow.execute_workflow()
   
