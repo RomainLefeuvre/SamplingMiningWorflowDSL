@@ -1,375 +1,127 @@
 [
     {
-        "DOI": "10.1145/3524842.3528464",
-        "title": "Searching for High-Fidelity Builds Using Active Learning.",
-        "year": 2022,
+        "DOI": "10.1109/MSR52588.2021.00024",
+        "title": "An Empirical Study on the Usage of BERT Models for Code Completion.",
+        "year": 2021,
         "numPages": 12,
         "IEEE Terms": [
+            "Deep learning",
             "Adaptation models",
-            "Biological system modeling",
-            "Ecosystems",
-            "Fasteners",
-            "Reliability engineering",
-            "Software",
-            "Software reliability"
-        ],
-        "Author Keywords": []
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00035",
-        "title": "Enriching Source Code with Contextual Data for Code Completion Models: An Empirical Study.",
-        "year": 2023,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Training",
-            "Codes",
-            "Annotations",
-            "Source coding",
-            "Transformers",
-            "Data models",
+            "Java",
+            "Bit error rate",
+            "Semantics",
+            "Predictive models",
             "Software"
         ],
         "Author Keywords": [
             "Code Completion",
+            "BERT"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644924",
+        "title": "The Impact of Code Ownership of DevOps Artefacts on the Outcome of DevOps CI Builds.",
+        "year": 2024,
+        "numPages": 13,
+        "IEEE Terms": [
+            "DevOps",
+            "Codes",
+            "Refining",
+            "Collaboration",
+            "Organizations",
+            "Grasping",
+            "Predictive models"
+        ],
+        "Author Keywords": [
+            "DevOps",
+            "Code Ownership",
+            "Continuous Integrations",
+            "Empirical Study."
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3527959",
+        "title": "BotHunter: An Approach to Detect Software Bots in GitHub.",
+        "year": 2022,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Bot (Internet)",
+            "Feature extraction",
             "Transformers",
-            "Pre-trained Language Models",
-            "Context",
+            "Software",
+            "Encoding",
+            "Data mining",
+            "Time factors"
+        ],
+        "Author Keywords": [
+            "Software Bots",
             "Empirical Software Engineering"
         ]
     },
     {
-        "DOI": "10.1109/MSR52588.2021.00037",
-        "title": "On the Use of Dependabot Security Pull Requests.",
-        "year": 2021,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Manuals",
-            "Security",
-            "Data mining",
-            "Open source software",
-            "Software development management"
-        ],
-        "Author Keywords": [
-            "Dependabot",
-            "pull request",
-            "dependency",
-            "security vulnerability"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00069",
-        "title": "It Works (only) on My Machine: A Study on Reproducibility Smells in Ansible Scripts.",
-        "year": 2025,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Production systems",
-            "Correlation",
-            "DevOps",
-            "Programming",
-            "Reproducibility of results",
-            "Software",
-            "Data mining",
-            "Monitoring",
-            "Systematic literature review",
-            "Software engineering"
-        ],
-        "Author Keywords": [
-            "Infrastructure as Code",
-            "Ansible",
-            "Reproducibility",
-            "Reproducibility smells"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00015",
-        "title": "Comparative Study of Feature Reduction Techniques in Software Change Prediction.",
-        "year": 2021,
+        "DOI": "10.1145/3643991.3644921",
+        "title": "DRMiner: A Tool For Identifying And Analyzing Refactorings In Dockerfile.",
+        "year": 2024,
         "numPages": 11,
         "IEEE Terms": [
-            "Measurement",
-            "Java",
-            "Correlation",
-            "Object oriented modeling",
-            "Software",
-            "Data mining"
+            "Software maintenance",
+            "Reviews",
+            "Navigation",
+            "Software algorithms",
+            "Containers",
+            "Syntactics",
+            "Maintenance"
         ],
         "Author Keywords": [
-            "Software change prediction",
-            "Feature reduction",
-            "Object-Oriented metrics",
-            "Graph-based metrics",
-            "Machine Learning"
+            "Docker",
+            "Dockerfiles",
+            "AST",
+            "Refactoring",
+            "Commit",
+            "Git"
         ]
     },
     {
-        "DOI": "10.1145/3524842.3527934",
-        "title": "Methods for Stabilizing Models Across Large Samples of Projects (with case studies on Predicting Defect and Project Health).",
-        "year": 2022,
-        "numPages": 13,
+        "DOI": "10.1109/MSR59073.2023.00033",
+        "title": "On Codex Prompt Engineering for OCL Generation: An Empirical Study.",
+        "year": 2023,
+        "numPages": 10,
         "IEEE Terms": [
-            "Transfer learning",
-            "Buildings",
-            "Estimation",
-            "Software quality",
-            "Forestry",
-            "Predictive models",
-            "Stability analysis"
+            "Productivity",
+            "Codes",
+            "Unified modeling language",
+            "Semantics",
+            "Syntactics",
+            "Writing",
+            "Reliability engineering"
         ],
         "Author Keywords": [
-            "Defect Prediction",
-            "Project Health",
-            "Bellwether",
-            "Hierarchical Clustering",
-            "Random Forest",
-            "Two Phase Transfer Learning",
-            "Transfer Learning"
+            "Codex",
+            "Prompt Engineering",
+            "Object Constraint Language (OCL)",
+            "Code Generation",
+            "Large Language Models"
         ]
     },
     {
-        "DOI": "10.1109/MSR66628.2025.00117",
-        "title": "Smells-sus: Sustainability Smells in IaC.",
-        "year": 2025,
+        "DOI": "10.1145/3643991.3644909",
+        "title": "What Can Self-Admitted Technical Debt Tell Us About Security? A Mixed-Methods Study.",
+        "year": 2024,
         "numPages": 12,
         "IEEE Terms": [
             "Surveys",
-            "Cloud computing",
-            "Root cause analysis",
+            "Privacy",
+            "Software maintenance",
             "Codes",
-            "Statistical analysis",
-            "Energy efficiency",
-            "Software",
-            "Complexity theory",
-            "Resource management",
-            "Sustainable development"
-        ],
-        "Author Keywords": [
-            "Cloud Computing",
-            "Sustainability",
-            "Infrastructure as Code",
-            "Energy Efficiency"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00110",
-        "title": "TriGraph: A Probabilistic Subgraph-Based Model for Visual Code Completion in Pure Data.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Training",
-            "Visualization",
-            "Computer languages",
-            "Analytical models",
-            "Codes",
-            "Statistical analysis",
-            "Computational modeling",
-            "Predictive models",
-            "Probabilistic logic",
-            "Data models"
-        ],
-        "Author Keywords": [
-            "Visual Programming Language",
-            "Pure Data",
-            "Probabilistic Models",
-            "Graph Analysis",
-            "Code Completion"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3528435",
-        "title": "Does This Apply to Me? An Empirical Study of Technical Context in Stack Overflow.",
-        "year": 2022,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Context",
-            "Computer languages",
-            "Navigation",
-            "Databases",
-            "Instruction sets",
-            "Software",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "Stack Overflow",
-            "contextual information",
-            "navigating information"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644922",
-        "title": "Supporting High-Level to Low-Level Requirements Coverage Reviewing with Large Language Models.",
-        "year": 2024,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Vocabulary",
-            "Reviews",
-            "Refining",
-            "Natural languages",
-            "Software",
-            "Regulation",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "Coverage",
-            "Traceability",
-            "Requirements",
-            "Design Definitions",
-            "High-level Requirements",
-            "Low-level Requirements",
-            "Requirements Satisfaction Assessment",
-            "Large Language Models",
-            "GPT"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00079",
-        "title": "Control and Data Flow in Security Smell Detection for Infrastructure as Code: Is It Worth the Effort?",
-        "year": 2023,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Codes",
-            "Source coding",
-            "Detectors",
-            "Static analysis",
-            "Syntactics",
-            "Software",
-            "Security"
-        ],
-        "Author Keywords": [
-            "Infrastructure as Code",
-            "Ansible",
-            "code smells",
-            "security",
-            "program dependence graph",
-            "empirical study"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00060",
-        "title": "Mining Energy-Related Practices in Robotics Software.",
-        "year": 2021,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Industries",
-            "Service robots",
-            "Operating systems",
-            "Ecosystems",
-            "Software",
-            "Energy efficiency",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "Energy consumption",
-            "Robotics",
-            "Software engeineering",
-            "Mining software repository"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00027",
-        "title": "Software Composition Analysis and Supply Chain Security in Apache Projects: an Empirical Study.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Java",
-            "Supply chains",
             "Software",
             "Security",
-            "Data mining",
-            "Software development management"
-        ],
-        "Author Keywords": [
-            "Cohort Study",
-            "Empirical Study",
-            "Software Composition Analysis",
-            "Software Supply Chain Security",
-            "Software Vulnerabilities"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00057",
-        "title": "Revisiting Dockerfiles in Open Source Software Over Time.",
-        "year": 2021,
-        "numPages": 11,
-        "IEEE Terms": [
-            "Education",
-            "Containers",
-            "Tools",
-            "Market research",
-            "Cognition",
-            "History",
             "Data mining"
         ],
         "Author Keywords": [
-            "Git",
-            "GitHub",
-            "Docker"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00107",
-        "title": "Towards Detecting Prompt Knowledge Gaps for Improved LLM-guided Issue Resolution.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Context",
-            "Large language models",
-            "Prototypes",
-            "Oral communication",
-            "Software",
-            "Browsers",
-            "Data mining",
-            "Faces",
-            "Software development management",
-            "Message systems"
-        ],
-        "Author Keywords": [
-            "issue resolution",
-            "large language models",
-            "prompt quality"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644932",
-        "title": "APIstic: A Large Collection of OpenAPI Metrics.",
-        "year": 2024,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Measurement",
-            "Analytical models",
-            "Web services",
-            "Documentation",
-            "Market research",
-            "Particle measurements",
-            "Software"
-        ],
-        "Author Keywords": [
-            "Web APIs",
-            "Dataset",
-            "OpenAPI",
-            "API Metrics"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3528455",
-        "title": "Challenges in Migrating Imperative Deep Learning Programs to Graph Execution: An Empirical Study.",
-        "year": 2022,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Deep learning",
-            "Codes",
-            "Neural networks",
-            "Computer bugs",
-            "Writing",
-            "Reliability",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "empirical studies",
-            "deep learning",
-            "imperative programs",
-            "hybrid programming paradigms",
-            "graph-based execution",
-            "software evolution"
+            "self-admitted technical debt",
+            "software security",
+            "software engineering",
+            "technical debt identification"
         ]
     },
     {
@@ -397,26 +149,284 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR52588.2021.00032",
-        "title": "Technical Debt in the Peer-Review Documentation of R Packages: a rOpenSci Case Study.",
-        "year": 2021,
-        "numPages": 12,
+        "DOI": "10.1109/MSR59073.2023.00024",
+        "title": "What Do Users Ask in Open-Source AI Repositories? An Empirical Study of GitHub Issues.",
+        "year": 2023,
+        "numPages": 13,
         "IEEE Terms": [
-            "Computer languages",
+            "Runtime",
+            "Image processing",
             "Taxonomy",
-            "Documentation",
-            "Organizations",
-            "Programming",
-            "Data science",
+            "Speech recognition",
+            "Writing",
+            "Natural language processing",
+            "Artificial intelligence"
+        ],
+        "Author Keywords": [
+            "Open Source Software",
+            "Mining Software Repository",
+            "Best Development Practices",
+            "AI Repositories"
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3527932",
+        "title": "Code Review Practices for Refactoring Changes: An Empirical Study on OpenStack.",
+        "year": 2022,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Industries",
+            "Codes",
+            "Taxonomy",
+            "Merging",
+            "Software quality",
+            "Encoding",
+            "Open source software"
+        ],
+        "Author Keywords": [
+            "refactoring",
+            "code review",
+            "developer perception",
+            "software quality"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00086",
+        "title": "Can LLMs Replace Manual Annotation of Software Engineering Artifacts?",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Technological innovation",
+            "Codes",
+            "Annotations",
+            "Large language models",
+            "Natural languages",
+            "Static analysis",
+            "Manuals",
+            "Predictive models",
+            "Software",
+            "Software engineering"
+        ],
+        "Author Keywords": [
+            "LLMs",
+            "human subjects",
+            "evaluation"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR59073.2023.00035",
+        "title": "Enriching Source Code with Contextual Data for Code Completion Models: An Empirical Study.",
+        "year": 2023,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Training",
+            "Codes",
+            "Annotations",
+            "Source coding",
+            "Transformers",
+            "Data models",
             "Software"
         ],
         "Author Keywords": [
-            "Technical Debt",
-            "R Programming",
-            "rOpensci",
-            "Technical Debt Taxonomy",
-            "Mining Software Repositories"
+            "Code Completion",
+            "Transformers",
+            "Pre-trained Language Models",
+            "Context",
+            "Empirical Software Engineering"
         ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00019",
+        "title": "Learning Off-By-One Mistakes: An Empirical Study.",
+        "year": 2021,
+        "numPages": 10,
+        "IEEE Terms": [
+            "Deep learning",
+            "Java",
+            "Analytical models",
+            "Adaptation models",
+            "Computer bugs",
+            "Static analysis",
+            "Tools"
+        ],
+        "Author Keywords": [
+            "machine learning for software engineering",
+            "deep learning for software engineering",
+            "software testing",
+            "boundary testing"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00017",
+        "title": "Learning from Mistakes: Understanding Ad-hoc Logs through Analyzing Accidental Commits.",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Codes",
+            "Runtime",
+            "Market research",
+            "Software",
+            "Libraries",
+            "Encoding",
+            "Data mining",
+            "Monitoring",
+            "Videos",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "Empirical Software Engineering",
+            "Ad-hoc Logs",
+            "Mining Software Repository"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00027",
+        "title": "Software Composition Analysis and Supply Chain Security in Apache Projects: an Empirical Study.",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Java",
+            "Supply chains",
+            "Software",
+            "Security",
+            "Data mining",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "Cohort Study",
+            "Empirical Study",
+            "Software Composition Analysis",
+            "Software Supply Chain Security",
+            "Software Vulnerabilities"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00109",
+        "title": "Language Models in Software Development Tasks: An Experimental Analysis of Energy and Accuracy.",
+        "year": 2025,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Energy consumption",
+            "Analytical models",
+            "Accuracy",
+            "Translation",
+            "Graphics processing units",
+            "Predictive models",
+            "Energy efficiency",
+            "Encoding",
+            "Software reliability",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "LLMs",
+            "Energy Efficiency",
+            "Trade-Offs",
+            "Software Development",
+            "Coding Assistant",
+            "Model Quantization"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR59073.2023.00073",
+        "title": "A Large Scale Analysis of Semantic Versioning in NPM.",
+        "year": 2023,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Ecosystems",
+            "Semantics",
+            "Computer bugs",
+            "Manuals",
+            "Metadata",
+            "Licenses",
+            "Software"
+        ],
+        "Author Keywords": [
+            "NPM",
+            "dependency-management",
+            "JavaScript"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00042",
+        "title": "Mining the ROS ecosystem for Green Architectural Tactics in Robotics and an Empirical Evaluation.",
+        "year": 2021,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Green products",
+            "Ecosystems",
+            "Mission critical systems",
+            "Software quality",
+            "Organizations",
+            "Software systems",
+            "Energy efficiency"
+        ],
+        "Author Keywords": [
+            "Robotics software",
+            "Software Architecture",
+            "Energy efficient software"
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3528455",
+        "title": "Challenges in Migrating Imperative Deep Learning Programs to Graph Execution: An Empirical Study.",
+        "year": 2022,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Deep learning",
+            "Codes",
+            "Neural networks",
+            "Computer bugs",
+            "Writing",
+            "Reliability",
+            "Data mining"
+        ],
+        "Author Keywords": [
+            "empirical studies",
+            "deep learning",
+            "imperative programs",
+            "hybrid programming paradigms",
+            "graph-based execution",
+            "software evolution"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644899",
+        "title": "Quantifying Security Issues in Reusable JavaScript Actions in GitHub Workflows.",
+        "year": 2024,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Codes",
+            "Automation",
+            "Source coding",
+            "Ecosystems",
+            "Software",
+            "Security",
+            "Software measurement"
+        ],
+        "Author Keywords": [
+            "GitHub Actions",
+            "security vulnerabilities",
+            "security weaknesses",
+            "npm",
+            "dependency network",
+            "CodeQL"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644927",
+        "title": "Learning to Predict and Improve Build Successes in Package Ecosystems.",
+        "year": 2024,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Accuracy",
+            "Ecosystems",
+            "Training data",
+            "Full stack",
+            "Production",
+            "Predictive models",
+            "Software"
+        ],
+        "Author Keywords": []
     },
     {
         "DOI": "10.1145/3524842.3528467",
@@ -458,82 +468,172 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR59073.2023.00073",
-        "title": "A Large Scale Analysis of Semantic Versioning in NPM.",
+        "DOI": "10.1109/MSR59073.2023.00038",
+        "title": "What Happens When We Fuzz? Investigating OSS-Fuzz Bug History.",
         "year": 2023,
-        "numPages": 13,
+        "numPages": 11,
         "IEEE Terms": [
-            "Ecosystems",
-            "Semantics",
+            "Quality assurance",
+            "Codes",
+            "Source coding",
             "Computer bugs",
-            "Manuals",
-            "Metadata",
-            "Licenses",
-            "Software"
+            "Fuzzing",
+            "Software",
+            "History"
         ],
         "Author Keywords": [
-            "NPM",
-            "dependency-management",
-            "JavaScript"
+            "software security",
+            "fuzzing",
+            "vulnerability remediation",
+            "data mining"
         ]
     },
     {
-        "DOI": "10.1109/MSR66628.2025.00068",
-        "title": "50 Years of Programming Language Evolution through the Software Heritage looking glass.",
+        "DOI": "10.1109/MSR66628.2025.00021",
+        "title": "Enhancing Just-In-Time Defect Prediction Models with Developer-Centric Features.",
         "year": 2025,
+        "numPages": 11,
+        "IEEE Terms": [
+            "Computer bugs",
+            "Software quality",
+            "Machine learning",
+            "Predictive models",
+            "Data mining"
+        ],
+        "Author Keywords": [
+            "Just-in-Time Software Defect Prediction",
+            "Developer Centric",
+            "Mining software repositories"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00037",
+        "title": "On the Use of Dependabot Security Pull Requests.",
+        "year": 2021,
         "numPages": 12,
         "IEEE Terms": [
-            "Computer languages",
-            "Source coding",
-            "Pipelines",
-            "Glass",
-            "Programming",
-            "Market research",
-            "Software",
-            "Indexes",
-            "Software measurement",
+            "Manuals",
+            "Security",
+            "Data mining",
+            "Open source software",
             "Software development management"
         ],
-        "Author Keywords": []
-    },
-    {
-        "DOI": "10.1145/3524842.3528452",
-        "title": "LineVul: A Transformer-based Line-Level Vulnerability Prediction.",
-        "year": 2022,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Neural networks",
-            "System recovery",
-            "Transformers",
-            "Software systems",
-            "Security",
-            "Data mining"
-        ],
         "Author Keywords": [
-            "Vulnerability Prediction",
-            "AI for Software Engineering",
-            "Software Security"
+            "Dependabot",
+            "pull request",
+            "dependency",
+            "security vulnerability"
         ]
     },
     {
-        "DOI": "10.1145/3524842.3528432",
-        "title": "Mining Code Review Data to Understand Waiting Times Between Acceptance and Merging: An Empirical Analysis.",
+        "DOI": "10.1109/MSR52588.2021.00028",
+        "title": "On the Naturalness and Localness of Software Logs.",
+        "year": 2021,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Manuals",
+            "Tools",
+            "Maintenance engineering",
+            "Inspection",
+            "Software systems",
+            "Complexity theory",
+            "Task analysis"
+        ],
+        "Author Keywords": [
+            "software systems",
+            "logging statements",
+            "log files",
+            "entropy",
+            "natural language processing",
+            "naturalness",
+            "localness",
+            "natural language processing (NLP)",
+            "anomaly detection"
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3528440",
+        "title": "To What Extent do Deep Learning-based Code Recommenders Generate Predictions by Cloning Code from the Training Set?",
         "year": 2022,
         "numPages": 12,
         "IEEE Terms": [
+            "Training",
+            "Deep learning",
             "Codes",
-            "Delay effects",
-            "Merging",
-            "Switches",
-            "Software",
-            "Delays",
-            "Data mining"
+            "Cloning",
+            "Training data",
+            "Detectors"
         ],
         "Author Keywords": [
-            "Code review",
-            "code velocity",
-            "developer productivity",
-            "non-productive time"
+            "Deep Learning",
+            "Code Completion",
+            "Code Clones"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00118",
+        "title": "Evidence is All We Need: Do Self-Admitted Technical Debts Impact Method-Level Maintenance?",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Software maintenance",
+            "Time-frequency analysis",
+            "Codes",
+            "Costs",
+            "Source coding",
+            "Computer bugs",
+            "Software quality",
+            "Solids",
+            "Maintenance",
+            "Resource management"
+        ],
+        "Author Keywords": [
+            "SATD",
+            "bug-proneness",
+            "change-proneness",
+            "code metrics",
+            "software maintenance"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00058",
+        "title": "Characterising the Knowledge about Primitive Variables in Java Code Comments.",
+        "year": 2021,
+        "numPages": 11,
+        "IEEE Terms": [
+            "Java",
+            "Computer languages",
+            "Taxonomy",
+            "Software",
+            "Data mining",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "Knowledge",
+            "documentation",
+            "variables",
+            "source code comments"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00054",
+        "title": "How Do Software Developers Use GitHub Actions to Automate Their Workflows?",
+        "year": 2021,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Tools",
+            "Encoding",
+            "Data models",
+            "Planning",
+            "Data mining",
+            "IEEE activities",
+            "Open source software"
+        ],
+        "Author Keywords": [
+            "GitHub Actions",
+            "GitHub Bots",
+            "Automated work-flow",
+            "Regression Discontinuity Design"
         ]
     },
     {
@@ -559,87 +659,20 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR52588.2021.00022",
-        "title": "Escaping the Time Pit: Pitfalls and Guidelines for Using Time-Based Git Data.",
-        "year": 2021,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Training",
-            "Out of order",
-            "Filtering",
-            "Machine learning",
-            "Tools",
-            "Software",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "time-based",
-            "survey"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00015",
-        "title": "Understanding the Time to First Response in GitHub Pull Requests.",
-        "year": 2023,
-        "numPages": 11,
-        "IEEE Terms": [
-            "Productivity",
-            "Focusing",
-            "Chatbots",
-            "Delays",
-            "Time factors",
-            "Data mining",
-            "Open source software"
-        ],
-        "Author Keywords": [
-            "pull request",
-            "first response",
-            "latency analysis",
-            "fine-grained analysis",
-            "code review"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00019",
-        "title": "Learning Off-By-One Mistakes: An Empirical Study.",
-        "year": 2021,
-        "numPages": 10,
-        "IEEE Terms": [
-            "Deep learning",
-            "Java",
-            "Analytical models",
-            "Adaptation models",
-            "Computer bugs",
-            "Static analysis",
-            "Tools"
-        ],
-        "Author Keywords": [
-            "machine learning for software engineering",
-            "deep learning for software engineering",
-            "software testing",
-            "boundary testing"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3528438",
-        "title": "CLIP meets GamePhysics: Towards bug identification in gameplay videos using zero-shot transfer learning.",
+        "DOI": "10.1145/3524842.3528464",
+        "title": "Searching for High-Fidelity Builds Using Active Learning.",
         "year": 2022,
         "numPages": 12,
         "IEEE Terms": [
-            "Training",
-            "Visualization",
-            "Social networking (online)",
-            "Computer bugs",
-            "Transfer learning",
-            "Games",
-            "Software"
+            "Adaptation models",
+            "Biological system modeling",
+            "Ecosystems",
+            "Fasteners",
+            "Reliability engineering",
+            "Software",
+            "Software reliability"
         ],
-        "Author Keywords": [
-            "video mining",
-            "bug reports",
-            "software testing",
-            "video games"
-        ]
+        "Author Keywords": []
     },
     {
         "DOI": "10.1109/MSR66628.2025.00105",
@@ -666,70 +699,275 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR59073.2023.00052",
-        "title": "MANDO-HGT: Heterogeneous Graph Transformers for Smart Contract Vulnerability Detection.",
+        "DOI": "10.1109/MSR59073.2023.00060",
+        "title": "Do Subjectivity and Objectivity Always Agree\u0192 A Case Study with Stack Overflow Questions.",
+        "year": 2023,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Measurement",
+            "Codes",
+            "Text analysis",
+            "Correlation",
+            "Machine learning",
+            "Entropy",
+            "User experience"
+        ],
+        "Author Keywords": [
+            "Stack Overflow",
+            "question quality",
+            "objective evaluation",
+            "subjective evaluation",
+            "quality metrics",
+            "classification model"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR59073.2023.00018",
+        "title": "Characterizing and Understanding Software Security Vulnerabilities in Machine Learning Libraries.",
+        "year": 2023,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Industries",
+            "Machine learning",
+            "Debugging",
+            "Reliability engineering",
+            "Libraries",
+            "Software",
+            "Software reliability"
+        ],
+        "Author Keywords": [
+            "Security vulnerability",
+            "machine learning libraries",
+            "empirical study"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00098",
+        "title": "Build Code Needs Maintenance Too: A Study on Refactoring and Technical Debt in Build Systems.",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Surveys",
+            "Codes",
+            "Source coding",
+            "Taxonomy",
+            "Manuals",
+            "Software",
+            "Maintenance",
+            "Optimization",
+            "Faces",
+            "Software engineering"
+        ],
+        "Author Keywords": [
+            "build systems",
+            "refactoring",
+            "technical debt",
+            "llms"
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3527949",
+        "title": "LineVD: Statement-level Vulnerability Detection using Graph Neural Networks.",
+        "year": 2022,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Deep learning",
+            "Training",
+            "Codes",
+            "Supervised learning",
+            "Predictive models",
+            "Transformers",
+            "Feature extraction"
+        ],
+        "Author Keywords": [
+            "Software Vulnerability Detection",
+            "Program Representation",
+            "Deep Learning"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644902",
+        "title": "An Investigation of Patch Porting Practices of the Linux Kernel Ecosystem.",
+        "year": 2024,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Measurement",
+            "Linux",
+            "Ecosystems",
+            "Computer bugs",
+            "Maintenance engineering",
+            "Delays",
+            "Stakeholders"
+        ],
+        "Author Keywords": []
+    },
+    {
+        "DOI": "10.1145/3643991.3644905",
+        "title": "Not all Dockerfile Smells are the Same: An Empirical Evaluation of Hadolint Writing Practices by Experts.",
+        "year": 2024,
+        "numPages": 11,
+        "IEEE Terms": [
+            "Surveys",
+            "Writing",
+            "Software",
+            "History",
+            "Data mining"
+        ],
+        "Author Keywords": [
+            "Empirical Software Engineering",
+            "Docker",
+            "Code Smells"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644896",
+        "title": "Comparing Apples to Androids: Discovery, Retrieval, and Matching of iOS and Android Apps for Cross-Platform Analyses.",
+        "year": 2024,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Software libraries",
+            "Publishing",
+            "Operating systems",
+            "Scalability",
+            "Pipelines",
+            "Metadata",
+            "Software"
+        ],
+        "Author Keywords": [
+            "iOS",
+            "Android",
+            "mobile apps",
+            "app retrieval",
+            "app matching",
+            "app stores"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644900",
+        "title": "A Large-Scale Empirical Study of Open Source License Usage: Practices and Challenges.",
+        "year": 2024,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Ethics",
+            "Law",
+            "Licenses",
+            "Metadata",
+            "Market research",
+            "Data mining",
+            "Open source software"
+        ],
+        "Author Keywords": [
+            "OSS Licenses",
+            "Empirical Study",
+            "Package Management Platform"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644918",
+        "title": "Unveiling ChatGPT's Usage in Open Source Projects: A Mining-based Study.",
+        "year": 2024,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Automation",
+            "Taxonomy",
+            "Chatbots",
+            "Filling",
+            "Encoding",
+            "Data mining",
+            "Task analysis"
+        ],
+        "Author Keywords": [
+            "ChatGPT",
+            "Empirical study"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00040",
+        "title": "SMATCH-M-LLM: Semantic Similarity in Metamodel Matching With Large Language Models.",
+        "year": 2025,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Accuracy",
+            "Costs",
+            "Terminology",
+            "Databases",
+            "Large language models",
+            "Semantics",
+            "Ontologies",
+            "Model driven engineering",
+            "Software",
+            "Iterative methods"
+        ],
+        "Author Keywords": [
+            "Model-driven Engineering",
+            "Metamodel Matching",
+            "Domain-Specific Languages",
+            "Model Migration"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644915",
+        "title": "How do Machine Learning Projects use Continuous Integration Practices? An Empirical Study on GitHub Actions.",
+        "year": 2024,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Codes",
+            "Machine learning",
+            "Market research",
+            "Software",
+            "Data mining",
+            "Software development management",
+            "Testing"
+        ],
+        "Author Keywords": [
+            "continuous integration",
+            "machine learning",
+            "github actions",
+            "mining software repositories"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR59073.2023.00086",
+        "title": "A Study of Gender Discussions in Mobile Apps.",
         "year": 2023,
         "numPages": 13,
         "IEEE Terms": [
             "Deep learning",
-            "Codes",
-            "Source coding",
-            "Soft sensors",
-            "Scalability",
-            "Image edge detection",
-            "Smart contracts"
+            "Computer bugs",
+            "Companies",
+            "Software",
+            "Censorship",
+            "Mobile applications",
+            "Internet"
         ],
         "Author Keywords": [
-            "vulnerability detection",
-            "smart contracts",
-            "source code",
-            "bytecode",
-            "heterogeneous graph learning",
-            "graph transformer"
+            "Gender",
+            "Mobile App",
+            "App Review",
+            "Machine Learning",
+            "Deep Learning"
         ]
     },
     {
-        "DOI": "10.1109/MSR66628.2025.00100",
-        "title": "How Do Infrastructure-as-Code Practitioners Update Their Dependencies? An Empirical Study on Terraform Module Updates.",
-        "year": 2025,
+        "DOI": "10.1145/3643991.3644906",
+        "title": "GIRT-Model: Automated Generation of Issue Report Templates.",
+        "year": 2024,
         "numPages": 12,
         "IEEE Terms": [
-            "Time-frequency analysis",
             "Codes",
-            "Pandemics",
-            "Ecosystems",
-            "Organizations",
-            "Market research",
             "Software",
-            "Stability analysis",
-            "Security",
+            "Meteors",
+            "Data mining",
             "Software development management"
         ],
         "Author Keywords": [
-            "Infrastructure-as-Code",
-            "Terraform Modules",
-            "Infrastructure Dependencies"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00016",
-        "title": "Automatic Part-of-Speech Tagging for Security Vulnerability Descriptions.",
-        "year": 2021,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Training",
-            "Training data",
-            "Tagging",
-            "Tools",
-            "Syntactics",
-            "Feature extraction",
-            "Natural language processing"
-        ],
-        "Author Keywords": [
-            "Fine-Tuning",
-            "Part-of-Speech tagging",
-            "Unsupervised word embedding",
-            "Security vulnerability descriptions"
+            "Issue Template Generation",
+            "Issue Report Template",
+            "Issue Template",
+            "Bug Template",
+            "GitHub",
+            "Issue Tracker",
+            "Bug Report"
         ]
     },
     {
@@ -754,87 +992,135 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR59073.2023.00033",
-        "title": "On Codex Prompt Engineering for OCL Generation: An Empirical Study.",
-        "year": 2023,
-        "numPages": 10,
+        "DOI": "10.1109/MSR66628.2025.00071",
+        "title": "Understanding Test Deletion in Java Applications.",
+        "year": 2025,
+        "numPages": 13,
         "IEEE Terms": [
-            "Productivity",
+            "Java",
             "Codes",
-            "Unified modeling language",
-            "Semantics",
-            "Syntactics",
-            "Writing",
-            "Reliability engineering"
+            "Costs",
+            "Production",
+            "Software",
+            "Maintenance",
+            "Data mining",
+            "Testing",
+            "Software development management"
         ],
         "Author Keywords": [
-            "Codex",
-            "Prompt Engineering",
-            "Object Constraint Language (OCL)",
-            "Code Generation",
-            "Large Language Models"
+            "Test deletion",
+            "test suite evolution",
+            "test suite reduction",
+            "test suite maintenance",
+            "regression testing"
         ]
     },
     {
-        "DOI": "10.1145/3643991.3644924",
-        "title": "The Impact of Code Ownership of DevOps Artefacts on the Outcome of DevOps CI Builds.",
+        "DOI": "10.1145/3643991.3644930",
+        "title": "Automating GUI-based Test Oracles for Mobile Apps.",
         "year": 2024,
         "numPages": 13,
         "IEEE Terms": [
-            "DevOps",
-            "Codes",
-            "Refining",
-            "Collaboration",
-            "Organizations",
-            "Grasping",
-            "Predictive models"
+            "Software testing",
+            "Software maintenance",
+            "Taxonomy",
+            "Computer bugs",
+            "Ecosystems",
+            "Natural language processing",
+            "Mobile applications"
         ],
         "Author Keywords": [
-            "DevOps",
-            "Code Ownership",
-            "Continuous Integrations",
-            "Empirical Study."
+            "Mobile apps",
+            "Test Oracles",
+            "Software Testing",
+            "UI Analysis"
         ]
     },
     {
-        "DOI": "10.1109/MSR66628.2025.00108",
-        "title": "Intelligent Semantic Matching (ISM) for Video Tutorial Search using Transformer Models.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Video description",
-            "Search methods",
-            "Semantics",
-            "Software algorithms",
-            "Tutorials",
-            "Programming",
-            "Transformers",
-            "Vectors",
-            "Software",
-            "Software development management"
-        ],
-        "Author Keywords": []
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00026",
-        "title": "Wolves in the Repository: A Software Engineering Analysis of the XZ Utils Supply Chain Attack.",
-        "year": 2025,
+        "DOI": "10.1109/MSR52588.2021.00029",
+        "title": "Automatically Selecting Follow-up Questions for Deficient Bug Reports.",
+        "year": 2021,
         "numPages": 12,
         "IEEE Terms": [
-            "Adaptation models",
-            "Reviews",
-            "Biological system modeling",
-            "Weapons",
-            "Ecosystems",
-            "Supply chains",
-            "Security",
+            "Measurement",
+            "Software maintenance",
+            "Computer bugs",
+            "Software quality",
+            "Data mining",
             "Open source software",
-            "Software engineering",
             "Software development management"
         ],
         "Author Keywords": [
-            "security",
-            "project management"
+            "follow-up questions",
+            "bug reporting",
+            "bug triage"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644935",
+        "title": "Global Prosperity or Local Monopoly? Understanding the Geography of App Popularity.",
+        "year": 2024,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Geography",
+            "Ecosystems",
+            "Linguistics",
+            "Software",
+            "Monopoly",
+            "Cultural differences",
+            "Stakeholders"
+        ],
+        "Author Keywords": [
+            "App popularity",
+            "Cross country",
+            "iOS",
+            "App store"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR59073.2023.00048",
+        "title": "An Exploratory Study on Energy Consumption of Dataframe Processing Libraries.",
+        "year": 2023,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Training",
+            "Energy consumption",
+            "Pipelines",
+            "Machine learning",
+            "Libraries",
+            "Energy efficiency",
+            "Cleaning"
+        ],
+        "Author Keywords": [
+            "dataframe",
+            "data preprocessing",
+            "energy efficiency",
+            "machine learning pipeline"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00028",
+        "title": "Good practice versus reality: A landscape analysis of Research Software metadata adoption in European Open Science Clusters.",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Data analysis",
+            "Europe",
+            "Documentation",
+            "Metadata",
+            "Software",
+            "Reproducibility of results",
+            "Distance measurement",
+            "Data mining",
+            "Physics",
+            "Guidelines"
+        ],
+        "Author Keywords": [
+            "Research Software",
+            "Metadata",
+            "FAIR software",
+            "FAIR principles",
+            "Guidelines."
         ]
     },
     {
@@ -855,6 +1141,50 @@
             "CI Acceleration",
             "CI Trustworthiness",
             "Mutation Testing"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR52588.2021.00060",
+        "title": "Mining Energy-Related Practices in Robotics Software.",
+        "year": 2021,
+        "numPages": 12,
+        "IEEE Terms": [
+            "Industries",
+            "Service robots",
+            "Operating systems",
+            "Ecosystems",
+            "Software",
+            "Energy efficiency",
+            "Data mining"
+        ],
+        "Author Keywords": [
+            "Energy consumption",
+            "Robotics",
+            "Software engeineering",
+            "Mining software repository"
+        ]
+    },
+    {
+        "DOI": "10.1145/3524842.3528431",
+        "title": "Does Configuration Encoding Matter in Learning Software Performance? An Empirical Study on Encoding Schemes.",
+        "year": 2022,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Training",
+            "Bridges",
+            "Systematics",
+            "Quality assurance",
+            "Neural networks",
+            "Software performance",
+            "Predictive models"
+        ],
+        "Author Keywords": [
+            "Encoding Scheme",
+            "Machine Learning",
+            "Software Engineering",
+            "Per-formance Prediction",
+            "Performance Learning",
+            "Configurable Software"
         ]
     },
     {
@@ -882,135 +1212,119 @@
         ]
     },
     {
-        "DOI": "10.1109/MSR66628.2025.00115",
-        "title": "Does Functional Package Management Enable Reproducible Builds at Scale? Yes.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Uncertainty",
-            "Software packages",
-            "Scalability",
-            "Supply chains",
-            "Ecosystems",
-            "Market research",
-            "Reproducibility of results",
-            "Security",
-            "Open source software",
-            "Monitoring"
-        ],
-        "Author Keywords": [
-            "reproducible builds",
-            "functional package management",
-            "software supply chain",
-            "reproducibility",
-            "security"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00065",
-        "title": "Pre-trained Model Based Feature Envy Detection.",
+        "DOI": "10.1109/MSR59073.2023.00015",
+        "title": "Understanding the Time to First Response in GitHub Pull Requests.",
         "year": 2023,
         "numPages": 11,
         "IEEE Terms": [
-            "Codes",
-            "Source coding",
-            "Semantics",
-            "Computer architecture",
-            "Predictive models",
-            "Feature extraction",
-            "Software systems"
-        ],
-        "Author Keywords": [
-            "Feature Envy",
-            "Deep Learning",
-            "Software Refactoring",
-            "Pre-trained Model",
-            "Code Smell"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR52588.2021.00036",
-        "title": "Which contributions count? Analysis of attribution in open source.",
-        "year": 2021,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Analytical models",
-            "Conferences",
-            "Taxonomy",
-            "Refining",
-            "Computer bugs",
-            "Finance",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "open source software",
-            "contributions",
-            "teams",
-            "github"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00080",
-        "title": "Method Chaining Redux: An Empirical Study of Method Chaining in Java, Kotlin, and Python.",
-        "year": 2023,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Java",
-            "Codes",
-            "Buildings",
-            "Software",
+            "Productivity",
+            "Focusing",
+            "Chatbots",
+            "Delays",
+            "Time factors",
             "Data mining",
-            "Python"
+            "Open source software"
         ],
         "Author Keywords": [
-            "method chaining",
-            "empirical study",
-            "replication",
-            "Java",
-            "Kotlin",
-            "Python"
+            "pull request",
+            "first response",
+            "latency analysis",
+            "fine-grained analysis",
+            "code review"
         ]
     },
     {
-        "DOI": "10.1145/3643991.3644909",
-        "title": "What Can Self-Admitted Technical Debt Tell Us About Security? A Mixed-Methods Study.",
+        "DOI": "10.1145/3643991.3644922",
+        "title": "Supporting High-Level to Low-Level Requirements Coverage Reviewing with Large Language Models.",
         "year": 2024,
         "numPages": 12,
         "IEEE Terms": [
-            "Surveys",
-            "Privacy",
-            "Software maintenance",
-            "Codes",
+            "Vocabulary",
+            "Reviews",
+            "Refining",
+            "Natural languages",
             "Software",
-            "Security",
+            "Regulation",
             "Data mining"
         ],
         "Author Keywords": [
-            "self-admitted technical debt",
-            "software security",
-            "software engineering",
-            "technical debt identification"
+            "Coverage",
+            "Traceability",
+            "Requirements",
+            "Design Definitions",
+            "High-level Requirements",
+            "Low-level Requirements",
+            "Requirements Satisfaction Assessment",
+            "Large Language Models",
+            "GPT"
         ]
     },
     {
-        "DOI": "10.1145/3524842.3528433",
-        "title": "On the Use of Fine-grained Vulnerable Code Statements for Software Vulnerability Assessment Models.",
-        "year": 2022,
+        "DOI": "10.1109/MSR59073.2023.00042",
+        "title": "Investigating the Resolution of Vulnerable Dependencies with Dependabot Security Updates.",
+        "year": 2023,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Pipelines",
+            "Manuals",
+            "Chatbots",
+            "Software",
+            "Libraries",
+            "Security",
+            "Task analysis"
+        ],
+        "Author Keywords": [
+            "Dependency Management",
+            "Security",
+            "Bot",
+            "Depend-abot"
+        ]
+    },
+    {
+        "DOI": "10.1109/MSR66628.2025.00072",
+        "title": "A Public Benchmark of REST APIs.",
+        "year": 2025,
+        "numPages": 13,
+        "IEEE Terms": [
+            "Systematics",
+            "Documentation",
+            "Benchmark testing",
+            "Reliability engineering",
+            "Software",
+            "Reproducibility of results",
+            "HTTP",
+            "Software reliability",
+            "Software engineering",
+            "Software development management"
+        ],
+        "Author Keywords": [
+            "REST API",
+            "Benchmark",
+            "Documentation",
+            "OpenAPI Specification",
+            "Testing",
+            "Systematic mapping study"
+        ]
+    },
+    {
+        "DOI": "10.1145/3643991.3644920",
+        "title": "Enhancing Performance Bug Prediction Using Performance Code Metrics.",
+        "year": 2024,
         "numPages": 13,
         "IEEE Terms": [
             "Measurement",
-            "Correlation coefficient",
+            "Software testing",
+            "Java",
             "Codes",
-            "Machine learning",
-            "Predictive models",
-            "Software",
-            "Data models"
+            "Machine learning algorithms",
+            "Source coding",
+            "Computer bugs"
         ],
         "Author Keywords": [
-            "Security Vulnerability",
-            "Vulnerability Assessment",
-            "Machine Learning",
-            "Mining Software Repositories"
+            "Performance bugs",
+            "Performance anti-patterns",
+            "Performance code metrics",
+            "Performance bug prediction"
         ]
     },
     {
@@ -1033,388 +1347,47 @@
         ]
     },
     {
-        "DOI": "10.1145/3643991.3644912",
-        "title": "CrashJS: A NodeJS Benchmark for Automated Crash Reproduction.",
-        "year": 2024,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Java",
-            "Target tracking",
-            "Computer bugs",
-            "Benchmark testing",
-            "Computer crashes",
-            "Software",
-            "Complexity theory"
-        ],
-        "Author Keywords": [
-            "Automated Crash Reproduction",
-            "Benchmark",
-            "Data Collection",
-            "Dataset",
-            "Software Testing",
-            "Test Generation"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00025",
-        "title": "Picaso: Enhancing API Recommendations with Relevant Stack Overflow Posts.",
-        "year": 2023,
+        "DOI": "10.1109/MSR52588.2021.00027",
+        "title": "An Exploratory Study of Log Placement Recommendation in an Enterprise System.",
+        "year": 2021,
         "numPages": 12,
         "IEEE Terms": [
-            "Analytical models",
-            "Codes",
-            "Annotations",
-            "Natural languages",
-            "Software",
-            "Libraries",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "API recommendation",
-            "Multi-source analytics",
-            "Sequence Generation",
-            "Pre-trained Models",
-            "Stack Overflow",
-            "Query Expansion"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00041",
-        "title": "How Effective are LLMs for Data Science Coding? A Controlled Experiment.",
-        "year": 2025,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Visualization",
-            "Accuracy",
-            "Statistical analysis",
-            "Large language models",
-            "Data visualization",
-            "Data science",
-            "Chatbots",
-            "Encoding",
-            "Data models",
-            "Testing"
-        ],
-        "Author Keywords": [
-            "data science",
-            "large language model",
-            "coding generation",
-            "empirical study",
-            "hypothesis testing"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00085",
-        "title": "The Ecosystem of Open-Source Music Production Software - A Mining Study on the Development Practices of VST Plugins on GitHub.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Systematics",
-            "Ecosystems",
-            "Production",
-            "Software",
-            "Data mining",
-            "Standards",
-            "Creativity",
-            "Software development management",
-            "Testing",
-            "Software engineering"
-        ],
-        "Author Keywords": [
-            "mining software repositories",
-            "music production software",
-            "empirical software engineering",
-            "vst"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644933",
-        "title": "Large Language Model vs. Stack Overflow in Addressing Android Permission Related Challenges.",
-        "year": 2024,
-        "numPages": 11,
-        "IEEE Terms": [
-            "Privacy",
-            "Navigation",
-            "Documentation",
-            "Chatbots",
-            "Software",
-            "Mobile handsets",
-            "Cognition"
-        ],
-        "Author Keywords": [
-            "Android Permissions",
-            "Stack Overflow",
-            "Large Language Model (LLM)"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644926",
-        "title": "Whodunit: Classifying Code as Human Authored or GPT-4 generated- A case study on CodeChef problems.",
-        "year": 2024,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Codes",
-            "Focusing",
-            "Machine learning",
-            "Software",
-            "Robustness",
-            "Regulation",
-            "Task analysis"
-        ],
-        "Author Keywords": [
-            "code stylometry",
-            "chatgpt",
-            "AI code",
-            "GPT-4 generated code",
-            "authorship profiling",
-            "software engineering"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644935",
-        "title": "Global Prosperity or Local Monopoly? Understanding the Geography of App Popularity.",
-        "year": 2024,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Geography",
-            "Ecosystems",
-            "Linguistics",
-            "Software",
-            "Monopoly",
-            "Cultural differences",
-            "Stakeholders"
-        ],
-        "Author Keywords": [
-            "App popularity",
-            "Cross country",
-            "iOS",
-            "App store"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3527951",
-        "title": "FaST: A linear time stack trace alignment heuristic for crash report deduplication.",
-        "year": 2022,
-        "numPages": 12,
-        "IEEE Terms": [
+            "Industries",
             "Measurement",
-            "Throughput",
-            "Data structures",
-            "Computer crashes",
-            "Indexes",
-            "Data mining",
-            "Open source software"
-        ],
-        "Author Keywords": [
-            "Duplicate Crash Report",
-            "Crash Report Deduplication",
-            "Duplicate Crash Report Detection",
-            "Automatic Crash Reporting",
-            "Stack Trace Similarity"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00038",
-        "title": "Combining Large Language Models with Static Analyzers for Code Review Generation.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
             "Training",
-            "Codes",
-            "Automation",
-            "Reviews",
-            "Large language models",
-            "Retrieval augmented generation",
-            "Knowledge based systems",
-            "Pipelines",
-            "Static analysis",
-            "Hybrid power systems"
-        ],
-        "Author Keywords": [
-            "Code Review",
-            "Knowledge-Based Systems",
-            "Language Models",
-            "Retrieval-Augmented Generation"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00064",
-        "title": "Don't Forget the Exception! : Considering Robustness Changes to Identify Design Problems.",
-        "year": 2023,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Couplings",
-            "Java",
-            "Computer languages",
-            "Codes",
-            "Correlation",
-            "Software systems",
-            "Robustness"
-        ],
-        "Author Keywords": [
-            "empirical study",
-            "design problems",
-            "robustness",
-            "exception handling",
-            "code smells"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00081",
-        "title": "Can LLMs Generate Higher Quality Code Than Humans? An Empirical Study.",
-        "year": 2025,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Measurement",
-            "Codes",
-            "Large language models",
-            "Radon",
-            "Programming",
-            "Benchmark testing",
-            "Software",
-            "Quality assessment",
-            "Reliability",
-            "Data mining"
-        ],
-        "Author Keywords": [
-            "Large Language Models (LLMs)",
-            "AI-assisted programming",
-            "code generation",
-            "code quality assessment",
-            "code quality metrics",
-            "trustworthy AI",
-            "GPT",
-            "HumanEval"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3528454",
-        "title": "To Type or Not to Type? A Systematic Comparison of the Software Quality of JavaScript and TypeScript Applications on GitHub.",
-        "year": 2022,
-        "numPages": 12,
-        "IEEE Terms": [
-            "Codes",
-            "Correlation",
-            "Systematics",
-            "Statistical analysis",
-            "Computer bugs",
-            "Software quality",
-            "Complexity theory"
-        ],
-        "Author Keywords": [
-            "JavaScript",
-            "TypeScript",
-            "software quality",
-            "repository mining",
-            "GitHub"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR66628.2025.00017",
-        "title": "Learning from Mistakes: Understanding Ad-hoc Logs through Analyzing Accidental Commits.",
-        "year": 2025,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Codes",
-            "Runtime",
-            "Market research",
-            "Software",
-            "Libraries",
-            "Encoding",
-            "Data mining",
-            "Monitoring",
-            "Videos",
-            "Software development management"
-        ],
-        "Author Keywords": [
-            "Empirical Software Engineering",
-            "Ad-hoc Logs",
-            "Mining Software Repository"
-        ]
-    },
-    {
-        "DOI": "10.1145/3524842.3528457",
-        "title": "Beyond Duplicates: Towards Understanding and Predicting Link Types in Issue Tracking Systems.",
-        "year": 2022,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Training",
-            "Analytical models",
-            "Uncertainty",
-            "Semantics",
+            "Biological system modeling",
             "Training data",
-            "Organizations",
-            "Predictive models"
-        ],
-        "Author Keywords": [
-            "Issue Management",
-            "Issue Tracking System",
-            "Duplicate Detection",
-            "Link Type Detection",
-            "Dependency Management"
-        ]
-    },
-    {
-        "DOI": "10.1109/MSR59073.2023.00060",
-        "title": "Do Subjectivity and Objectivity Always Agree\u0192 A Case Study with Stack Overflow Questions.",
-        "year": 2023,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Measurement",
-            "Codes",
-            "Text analysis",
-            "Correlation",
             "Machine learning",
-            "Entropy",
-            "User experience"
+            "Production"
         ],
         "Author Keywords": [
-            "Stack Overflow",
-            "question quality",
-            "objective evaluation",
-            "subjective evaluation",
-            "quality metrics",
-            "classification model"
+            "Log Placement",
+            "Log Recommendation",
+            "Logging Practices",
+            "Supervised Learning"
         ]
     },
     {
-        "DOI": "10.1109/MSR59073.2023.00072",
-        "title": "Boosting Just-in-Time Defect Prediction with Specific Features of C/C++ Programming Languages in Code Changes.",
-        "year": 2023,
-        "numPages": 13,
-        "IEEE Terms": [
-            "Computer languages",
-            "Program processors",
-            "Codes",
-            "Databases",
-            "Operating systems",
-            "Companies",
-            "Programming"
-        ],
-        "Author Keywords": [
-            "Just-in-Time",
-            "C/C++ programming language",
-            "Supervised Methods"
-        ]
-    },
-    {
-        "DOI": "10.1145/3643991.3644900",
-        "title": "A Large-Scale Empirical Study of Open Source License Usage: Practices and Challenges.",
-        "year": 2024,
+        "DOI": "10.1145/3524842.3528447",
+        "title": "A Large-Scale Comparison of Python Code in Jupyter Notebooks and Scripts.",
+        "year": 2022,
         "numPages": 12,
         "IEEE Terms": [
-            "Ethics",
-            "Law",
-            "Licenses",
-            "Metadata",
-            "Market research",
-            "Data mining",
-            "Open source software"
+            "Codes",
+            "Data visualization",
+            "Machine learning",
+            "Data science",
+            "Software",
+            "Reproducibility of results",
+            "Encoding"
         ],
         "Author Keywords": [
-            "OSS Licenses",
-            "Empirical Study",
-            "Package Management Platform"
+            "jupyter",
+            "jupyter notebooks",
+            "python",
+            "mining software repositories",
+            "static analysis",
+            "code style"
         ]
     }
 ]
