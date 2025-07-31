@@ -18,15 +18,15 @@ def main():
     input_path =  Path("tian_dataset.json")
     creation_date = Metadata.of_integer("creation_date")
     stars = Metadata.of_integer("stars")
-    libraries = Metadata.of("libraries", list)
+    libraries = Metadata.of("libraries", set)
     url = Metadata.of_string("url")
 
 
     # Workflow Declaration and Execution
-    workflow = WorkflowBuilder().input(CsvLoader(input_path,url,  creation_date,stars))\
+    workflow = WorkflowBuilder().input(CsvLoader(input_path,url,  creation_date,stars,libraries))\
                                 .filter_operator("creation_date >2014")\
                                 .filter_operator("stars > 100")\
-                                .filter_operator("libraries in ['Datetime', 'Arrow', 'Pendulum']")\
+                                .filter_operator("len(libraries.intersection(set(['Datetime', 'Arrow', 'Pendulum']))>0")\
                                 .output(CsvWriter("out.csv"))\
 
     workflow.execute_workflow()
