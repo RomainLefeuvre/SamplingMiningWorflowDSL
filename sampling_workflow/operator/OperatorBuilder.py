@@ -2,12 +2,15 @@ from typing import cast, TypeVar
 
 from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
+from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.element.Loader import Loader
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
+from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import \
+    SystematicSelectionOperator
 from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
 
 T = TypeVar('T')
@@ -58,6 +61,11 @@ class OperatorBuilder:
 
         filter_operator = FilterOperator(self.workflow, constraint_obj)
         self.workflow.add_operator(cast(Operator, filter_operator))
+        return self
+
+    def systematic_selection_operator(self, cardinality: int, order_constraint: Comparator, pas: int) -> "OperatorBuilder":
+        systematic_selection_operator = SystematicSelectionOperator(self.workflow, cardinality, order_constraint, pas)
+        self.workflow.add_operator(cast(Operator, systematic_selection_operator))
         return self
 
     def manual_sampling_operator(self, *ids: T) -> "OperatorBuilder":
