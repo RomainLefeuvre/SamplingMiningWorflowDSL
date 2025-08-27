@@ -1,6 +1,7 @@
 from typing import cast, TypeVar
 
 from sampling_workflow.Workflow import Workflow
+from sampling_workflow.constraint import NaturalComparator
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.constraint.Constraint import Constraint
@@ -63,8 +64,8 @@ class OperatorBuilder:
         self.workflow.add_operator(cast(Operator, filter_operator))
         return self
 
-    def systematic_selection_operator(self, cardinality: int, order_constraint: Comparator, pas: int) -> "OperatorBuilder":
-        systematic_selection_operator = SystematicSelectionOperator(self.workflow, cardinality, order_constraint, pas)
+    def systematic_selection_operator(self, cardinality: int ,metadata_name:str,reverse=False, step: int=1,order_constraint: Comparator=NaturalComparator) -> "OperatorBuilder":
+        systematic_selection_operator = SystematicSelectionOperator( self.workflow,cardinality ,metadata_name,reverse, step,order_constraint)
         self.workflow.add_operator(cast(Operator, systematic_selection_operator))
         return self
 

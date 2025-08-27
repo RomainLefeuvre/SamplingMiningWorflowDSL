@@ -2,6 +2,7 @@ from pathlib import Path
 from paper_extension.element.loader.CsvLoader import CsvLoader
 from paper_extension.element.writter.CsvWriter import CsvWriter
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
+from sampling_workflow.element.Loader import Loader
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import *
 from sampling_workflow.element.writer.WriterFactory import *
@@ -49,22 +50,21 @@ def months_between(start_year, start_month, end_year, end_month):
         yield year, month
 
 def main():
-    input_path =  Path("input_path")
  
     url = Metadata.of_string("id")
     creation_date = Metadata.of_long("creationDate")
     commits_metadata = Metadata("commitsMetadata", CommitsMetadata)
     pass_reaper = Metadata.of_boolean("passReaper")
     number_of_security_update_dependabot = Metadata.of_long("numberOfSecurityUpdateDependabo")
-    use_multiple_dependency_management_bots = Metadata.of_boolean("useMultipleDependecyManagementBots")
-    build_system = Metadata.of_string("buildSystem")
-    contains_package_json = Metadata.of_boolean("containsPackageJson")
+    use_multiple_dependency_management_bots = Metadata.of_boolean("use_multiple_dependency_management_bots")
+    build_system = Metadata.of_string("build_system")
+    contains_package_json = Metadata.of_boolean("contains_package_json")
     stars = Metadata.of_integer("stars")
-    is_fork = Metadata.of_boolean("isFork")
+    is_fork = Metadata.of_boolean("is_fork")
 
 
     # Workflow Declaration and Execution
-    workflow = (WorkflowBuilder().input(JsonLoader(input_path,url,  creation_date,commits_metadata,pass_reaper,number_of_security_update_dependabot,use_multiple_dependency_management_bots,build_system,contains_package_json,stars))
+    workflow = (WorkflowBuilder().input(Loader(url,  creation_date,commits_metadata,pass_reaper,number_of_security_update_dependabot,use_multiple_dependency_management_bots,build_system,contains_package_json,stars,is_fork))
                                 # Filter project non-fork
                                 .filter_operator("is_fork == False")
                                 # Filter project with more than X stars
@@ -85,6 +85,7 @@ def main():
                                 # * Filter project including package.json manifest at the root
                                 .filter_operator("contains_package_json == True")
                                 # * Filter project using Reaper
+                                .add_metadata(Loader(pass_reaper))
                                 .filter_operator("pass_reaper == True")
                                 # * Filter project having at least a dependabot security update targeting npm or yarn
                                 .filter_operator(

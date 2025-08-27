@@ -1,5 +1,7 @@
+from functools import cmp_to_key
 import random
 from typing import List, Iterator
+from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
 
 class Set(Element):
@@ -20,6 +22,15 @@ class Set(Element):
     def add_element(self, element: Element) -> 'Set':
         self.elements.append(element)
         return self
+    
+    def sort_by_metadata(self, metadata_name: str, comparator: Comparator,reverse=False) -> 'Set':
+        self.elements = sorted(
+            self.elements,
+            key=cmp_to_key(comparator.compare),
+             reverse=reverse
+        )
+        return self
+
 
     def union(self, other: 'Set') -> 'Set':
         self.elements.append(other.elements)

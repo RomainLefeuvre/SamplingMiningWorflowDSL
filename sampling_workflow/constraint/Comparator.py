@@ -11,5 +11,7 @@ class Comparator(ABC, Generic[T]):
         self.targeted_metadata = targeted_metadata
 
     @abstractmethod
-    def compare(self, a: Element, b: Element) -> Element:
+    def compare(self, a: Element, b: Element) -> int:
         pass
+
+
