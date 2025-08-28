@@ -31,7 +31,7 @@ class Operator(ABC):
 
         #Load new metadata set
         new_metadata_set : Set = self._loader.load_set() 
-        #Add metadata value to current input set
+        #Add metadata value to current output set
         for element in self._output.get_elements():
             if not isinstance(element, Set):
                 id= element.get_id()
