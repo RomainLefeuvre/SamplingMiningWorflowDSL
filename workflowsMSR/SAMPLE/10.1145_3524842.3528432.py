@@ -1,0 +1,32 @@
+from pathlib import Path
+from paper_extension.element.loader.CsvLoader import CsvLoader
+from paper_extension.element.writter.CsvWriter import CsvWriter
+from sampling_workflow.WorkflowBuilder import WorkflowBuilder
+from sampling_workflow.element.Loader import Loader
+from sampling_workflow.metadata.Metadata import Metadata
+from sampling_workflow.element.loader.LoaderFactory import *
+from sampling_workflow.element.writer.WriterFactory import *
+
+
+#Mining Code Review Data to Understand Waiting Times Between Acceptance and Merging: An Empirical Analysis.
+
+def main():
+    # --- Metadata declarations (shared) ---
+    url = Metadata.of_string("id")
+    code_reviews = Metadata.of_long("codeReviews")
+
+    # --- Workflow 1: Gerrit dataset (use entire dataset) ---
+    gerrit_workflow = (
+        WorkflowBuilder()
+        .input(Loader(Path(url))  # assuming Gerrit dataset in JSON
+        .output(CsvWriter("gerrit_out.csv"))
+    ))
+
+    # --- Workflow 2: Phabricator dataset ---
+    phabricator_workflow = (
+        WorkflowBuilder()
+        .input(Loader( url, code_reviews))
+        .filter_operator("codeReviews >= 10000")
+        .output(CsvWriter("phabricator_out.csv"))
+    )
+
