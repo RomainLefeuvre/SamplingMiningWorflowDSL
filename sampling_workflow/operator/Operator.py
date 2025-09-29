@@ -1,12 +1,14 @@
 import os
 import pickle
 from abc import ABC
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.Set import Set
 from sampling_workflow.element.Writer import Writer
-from sampling_workflow.metadata import MetadataValue
+
+if TYPE_CHECKING:
+    from sampling_workflow.metadata import MetadataValue
 
 
 class Operator(ABC):
@@ -124,7 +126,7 @@ class Operator(ABC):
         )
 
         class_name = self.__class__.__name__
-        result = (
+        return (
             f"{indent}{class_name}\n"
             f"{double_indent}{self.extra_to_string(level)}\n"
             f"{double_indent}input:\n"
@@ -134,7 +136,6 @@ class Operator(ABC):
             f"{double_indent}nextOperator:\n"
             f"{formatted_next_operator}"
         )
-        return result
 
     def extra_to_string(self, level: int) -> str:
         return ""

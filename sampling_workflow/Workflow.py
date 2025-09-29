@@ -116,6 +116,7 @@ class Workflow:
 
         if self.is_complete():
             return CompleteWorkflow(self)
+        return None
 
     def set_workflow_input(self, input_set: Set | None) -> "Workflow":
         self._input = input_set

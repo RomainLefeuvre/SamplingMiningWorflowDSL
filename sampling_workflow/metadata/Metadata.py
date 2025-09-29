@@ -1,10 +1,10 @@
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class Metadata(Generic[T]):
+class Metadata[T]:
     def __init__(self, name: str, type_: type[T]):
         self.name = name
         self.type = type_

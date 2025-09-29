@@ -1,12 +1,12 @@
 import abc
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 from sampling_workflow.metadata.Metadata import Metadata
 
 T = TypeVar("T")
 
 
-class Constraint(Generic[T]):
+class Constraint[T]:
     def __init__(self, workflow: "Workflow", *targeted_metadatas: Metadata[T]):
         self.targeted_metadatas = targeted_metadatas
         self.workflow = workflow

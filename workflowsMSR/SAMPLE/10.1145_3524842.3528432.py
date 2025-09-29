@@ -16,14 +16,14 @@ def main():
     code_reviews = Metadata.of_long("codeReviews")
 
     # --- Workflow 1: Gerrit dataset (use entire dataset) ---
-    gerrit_workflow = WorkflowBuilder().input(
+    WorkflowBuilder().input(
         Loader(Path(url)).output(  # assuming Gerrit dataset in JSON
             CsvWriter("gerrit_out.csv")
         )
     )
 
     # --- Workflow 2: Phabricator dataset ---
-    phabricator_workflow = (
+    (
         WorkflowBuilder()
         .input(Loader(url, code_reviews))
         .filter_operator("codeReviews >= 10000")

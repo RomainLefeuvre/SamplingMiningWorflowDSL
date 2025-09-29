@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 from sampling_workflow.element.Repository import Repository
 from sampling_workflow.element.Set import Set
@@ -11,7 +11,7 @@ from sampling_workflow.Workflow import Workflow
 T = TypeVar("T")
 
 
-class InteractiveManualSamplingOperator(ManualSamplingOperator, Generic[T]):
+class InteractiveManualSamplingOperator[T](ManualSamplingOperator):
     def __init__(self, workflow: Workflow):
         super().__init__(workflow)
 

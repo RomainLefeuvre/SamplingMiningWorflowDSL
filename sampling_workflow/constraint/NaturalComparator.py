@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
@@ -6,7 +6,7 @@ from sampling_workflow.element.Element import Element
 T = TypeVar("T")
 
 
-class NaturalComparator(Comparator[T], Generic[T]):
+class NaturalComparator[T](Comparator[T]):
     """
     Generic comparator for any type T that supports < and >.
     """

@@ -1,12 +1,14 @@
 import csv
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.Repository import Repository
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.metadata.MetadataValue import MetadataValue
+
+if TYPE_CHECKING:
+    from sampling_workflow.metadata.MetadataValue import MetadataValue
 
 
 class CsvLoader(Loader):

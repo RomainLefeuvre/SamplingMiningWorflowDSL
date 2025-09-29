@@ -1,12 +1,15 @@
 import os
 from collections import Counter
+from typing import TYPE_CHECKING
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
 from sampling_workflow.element.Set import Set
-from sampling_workflow.metadata import MetadataValue
 from sampling_workflow.metadata.Metadata import Metadata
+
+if TYPE_CHECKING:
+    from sampling_workflow.metadata import MetadataValue
 
 
 class HistAnalysis:

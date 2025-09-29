@@ -1,9 +1,8 @@
-from typing import TypeVar, cast
+from typing import TYPE_CHECKING, TypeVar, cast
 
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
-from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
@@ -13,6 +12,9 @@ from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator
     ManualSamplingOperator,
 )
 from sampling_workflow.Workflow import Workflow
+
+if TYPE_CHECKING:
+    from sampling_workflow.operator.Operator import Operator
 
 T = TypeVar("T")
 

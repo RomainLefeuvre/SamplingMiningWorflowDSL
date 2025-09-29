@@ -27,7 +27,7 @@ def main():
     is_discontinued = Metadata.of_boolean("is_discontinued")
     number_of_merge_change_android = Metadata.of_long("number_of_merge_change_android")
 
-    workflow = (
+    (
         WorkflowBuilder()
         # Input: Wikipedia-based dataset of Android forks on GitHub
         .input(

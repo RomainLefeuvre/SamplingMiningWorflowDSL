@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
@@ -8,7 +8,7 @@ from sampling_workflow.metadata.Metadata import Metadata
 T = TypeVar("T")
 
 
-class BoolComparator(Comparator[T], Generic[T]):
+class BoolComparator[T](Comparator[T]):
     def __init__(
         self, targeted_metadata: Metadata[T], comparator: Callable[[T, T], T] = None
     ):

@@ -1,9 +1,9 @@
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class MetadataValue(Generic[T]):
+class MetadataValue[T]:
     def __init__(self, metadata: "Metadata[T]", value: T = None):
         self.metadata = metadata
         self.value = value

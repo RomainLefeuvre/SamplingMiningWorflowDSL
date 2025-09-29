@@ -27,7 +27,7 @@ def main():
     is_fork = Metadata.of_boolean("isFork")
 
     # --- Workflow ---
-    workflow = (
+    (
         WorkflowBuilder()
         .input(
             Loader(
