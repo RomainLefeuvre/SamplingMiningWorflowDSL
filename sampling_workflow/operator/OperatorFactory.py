@@ -1,9 +1,10 @@
-from typing import TypeVar, List, Callable
+from collections.abc import Callable
+from typing import TypeVar
 
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
@@ -71,5 +72,5 @@ class OperatorFactory:
     @staticmethod
     def parameterized_operators(
         operator: Callable[[T], Operator], *values: T
-    ) -> List[Operator]:
+    ) -> list[Operator]:
         return [operator(value) for value in values]

@@ -30,7 +30,7 @@ class CsvWriter:
                 writer.writeheader()
                 writer.writerows(rows)
             print(f"CSV has been written to {self.set_path}")
-        except IOError as e:
+        except OSError as e:
             raise RuntimeError("Error while saving file") from e
 
     def _serialize_repository(self, repo: Repository):

@@ -1,4 +1,5 @@
 from typing import Generic, TypeVar
+
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
 

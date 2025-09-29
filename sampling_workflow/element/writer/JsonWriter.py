@@ -16,7 +16,7 @@ class JsonWriter:
             with self.set_path.open("w", encoding="utf-8") as f:
                 f.write(json_output)
             print(f"JSON has been written to {self.set_path}")
-        except IOError as e:
+        except OSError as e:
             raise RuntimeError("Error while saving file", e) from e
 
 
@@ -30,7 +30,7 @@ class CustomEncoder(json.JSONEncoder):
             }
 
         # Serialize Set
-        elif isinstance(obj, Set):
+        if isinstance(obj, Set):
             return [self.default(e) for e in obj.elements]
 
         # Default fallback

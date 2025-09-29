@@ -1,8 +1,9 @@
-from typing import Callable, Tuple, TypeVar, Optional
-from sampling_workflow.Workflow import Workflow
+from collections.abc import Callable
+from typing import TypeVar
+
 from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.Element import Element
+from sampling_workflow.metadata.Metadata import Metadata
 
 T = TypeVar("T")
 
@@ -11,13 +12,13 @@ class BoolConstraint(Constraint[T]):
     def __init__(
         self,
         workflow,
-        constraint: Callable[[Tuple[T, ...]], bool],
-        *targeted_metadatas: Tuple[Metadata[T], ...],
+        constraint: Callable[[tuple[T, ...]], bool],
+        *targeted_metadatas: tuple[Metadata[T], ...],
     ):
         super().__init__(workflow, *targeted_metadatas)
         self.constraint = constraint
-        self.or_constraint: Optional[Constraint] = None
-        self.and_constraint: Optional[Constraint] = None
+        self.or_constraint: Constraint | None = None
+        self.and_constraint: Constraint | None = None
 
     def is_satisfied(self, element: Element) -> bool:
         if self.or_constraint is not None and self.and_constraint is not None:

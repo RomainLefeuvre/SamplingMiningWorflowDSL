@@ -1,13 +1,12 @@
 import os
+from collections import Counter
 
-from sampling_workflow.element.Repository import Repository
+import matplotlib.pyplot as plt
+import pandas as pd
+
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata import MetadataValue
 from sampling_workflow.metadata.Metadata import Metadata
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-from collections import Counter
 
 
 class HistAnalysis:

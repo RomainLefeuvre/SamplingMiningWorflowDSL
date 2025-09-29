@@ -1,7 +1,4 @@
 import grpc
-
-from google.protobuf.field_mask_pb2 import FieldMask
-
 import swh.graph.grpc.swhgraph_pb2 as swhgraph
 import swh.graph.grpc.swhgraph_pb2_grpc as swhgraph_grpc
 

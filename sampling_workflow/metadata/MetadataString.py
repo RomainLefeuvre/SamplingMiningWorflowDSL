@@ -1,5 +1,5 @@
-from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
+from sampling_workflow.metadata.Metadata import Metadata
 
 
 class MetadataString(Metadata[str]):

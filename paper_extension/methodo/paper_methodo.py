@@ -1,13 +1,11 @@
 from pathlib import Path
-from typing import List
+
 from paper_extension.element.loader.CsvLoader import CsvLoader
-from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
-from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WriterFactory import WritterFactory
+from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.Workflow import Workflow
-import os
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer

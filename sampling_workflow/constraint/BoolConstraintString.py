@@ -1,9 +1,10 @@
-from typing import Callable, Tuple, TypeVar, Optional
-import re
-from sampling_workflow.Workflow import Workflow
+from typing import TypeVar
+
+from sampling_workflow.constraint.BoolConstraint import BoolConstraint
 from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.Element import Element
+from sampling_workflow.metadata.Metadata import Metadata
+from sampling_workflow.Workflow import Workflow
 
 T = TypeVar("T")
 
@@ -18,8 +19,8 @@ class BoolConstraintString(Constraint[T]):
         super().__init__(workflow, *targeted_metadatas)
 
         self.string_constraint = string_constraint
-        self.or_constraint: Optional[Constraint] = None
-        self.and_constraint: Optional[Constraint] = None
+        self.or_constraint: Constraint | None = None
+        self.and_constraint: Constraint | None = None
 
     def set_workflow(self, workflow: Workflow):
         self.workflow = workflow

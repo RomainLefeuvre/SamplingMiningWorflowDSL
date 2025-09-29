@@ -1,10 +1,9 @@
 from pathlib import Path
-from paper_extension.element.loader.CsvLoader import CsvLoader
+
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.WorkflowBuilder import WorkflowBuilder
+from sampling_workflow.element.loader import JsonLoader
 from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.element.loader.LoaderFactory import *
-from sampling_workflow.element.writer.WriterFactory import *
+from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 # The Ecosystem of Open-Source Music Production Software - A Mining Study on the Development Practices of VST Plugins on GitHub.
 

@@ -1,4 +1,5 @@
-from typing import List, Optional, cast, TypeVar
+from typing import TypeVar, cast
+
 from sampling_workflow import CompleteWorkflow
 from sampling_workflow.analysis.DistributionWorkflowAnalysis import (
     DistributionWorkflowAnalysis,
@@ -11,8 +12,8 @@ from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.Set import Set
 from sampling_workflow.element.Writer import Writer
 from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
@@ -26,14 +27,14 @@ T = TypeVar("T")
 
 class Workflow:
     def __init__(self):
-        self._input: Optional[Set] = None
-        self._output: Optional[Set] = None
-        self._output_writer: Optional[Writer] = None
-        self._root: Optional[Operator] = None
-        self._last_operator: Optional[Operator] = None
-        self._metadata: List[Metadata] = []
+        self._input: Set | None = None
+        self._output: Set | None = None
+        self._output_writer: Writer | None = None
+        self._root: Operator | None = None
+        self._last_operator: Operator | None = None
+        self._metadata: list[Metadata] = []
 
-    def get_all_Metadata(self) -> List[Metadata]:
+    def get_all_Metadata(self) -> list[Metadata]:
         return self._metadata
 
     def add_metadata_type(self, metadata: Metadata) -> "Workflow":
@@ -48,19 +49,19 @@ class Workflow:
         grouping_operator = GroupingOperator(self, *workflows)
 
         # Add the grouping operator to the current workflow
-        self.add_operator(cast(Operator, grouping_operator))
+        self.add_operator(cast("Operator", grouping_operator))
         return self
 
     def random_selection_operator(self, cardinality: int, seed: int = -1) -> "Workflow":
         random_selection_operator = RandomSelectionOperator(
             self, cardinality=cardinality, seed=seed
         )
-        self.add_operator(cast(Operator, random_selection_operator))
+        self.add_operator(cast("Operator", random_selection_operator))
         return self
 
     def filter_operator(self, constraint: Constraint):
         filter_operator = FilterOperator(self, constraint)
-        self.add_operator(cast(Operator, filter_operator))
+        self.add_operator(cast("Operator", filter_operator))
         return self
 
     def manual_sampling_operator(self, *ids: T) -> "Workflow":
@@ -70,7 +71,7 @@ class Workflow:
             )
 
         manual_sampling_operator = ManualSamplingOperator(self, *ids)
-        self.add_operator(cast(Operator, manual_sampling_operator))
+        self.add_operator(cast("Operator", manual_sampling_operator))
         return self
 
     def input(self, loader: Loader) -> "Workflow":
@@ -128,20 +129,20 @@ class Workflow:
         self._root.input_set(input_set)
         return self
 
-    def get_workflow_input(self) -> Optional[Element]:
+    def get_workflow_input(self) -> Element | None:
         return self._input
 
     def set_workflow_output(self, output_element: Element) -> "Workflow":
         self._output = output_element
         return self
 
-    def get_workflow_output(self) -> Optional[Set]:
+    def get_workflow_output(self) -> Set | None:
         return self._output
 
-    def get_root(self) -> Optional[Operator]:
+    def get_root(self) -> Operator | None:
         return self._root
 
-    def get_last_operator(self) -> Optional[Operator]:
+    def get_last_operator(self) -> Operator | None:
         if self._root is None:
             return None
         current = self._root
@@ -149,7 +150,7 @@ class Workflow:
             current = current._next_operator
         return current
 
-    def get_operator_by_position(self, position: int) -> Optional[Operator]:
+    def get_operator_by_position(self, position: int) -> Operator | None:
         if position < 0:
             return None
         current = self._root

@@ -1,6 +1,7 @@
 from collections import Counter
+
 from scipy.stats import chisquare
-import numpy as np
+
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
 

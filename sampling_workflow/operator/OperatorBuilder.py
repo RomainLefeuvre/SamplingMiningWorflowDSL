@@ -1,13 +1,12 @@
-from typing import cast, TypeVar
+from typing import TypeVar, cast
 
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint import NaturalComparator
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.element.Loader import Loader
-from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
@@ -18,6 +17,7 @@ from sampling_workflow.operator.selection.sampling.automatic.SystematicSelection
 from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
+from sampling_workflow.Workflow import Workflow
 
 T = TypeVar("T")
 
@@ -43,7 +43,7 @@ class OperatorBuilder:
 
         # Create and add the GroupingOperator
         grouping_operator = GroupingOperator(self.workflow, subWorkflows)
-        self.workflow.add_operator(cast(Operator, grouping_operator))
+        self.workflow.add_operator(cast("Operator", grouping_operator))
         return self
 
     def add_metadata(self, loader: Loader):
@@ -56,7 +56,7 @@ class OperatorBuilder:
         random_selection_operator = RandomSelectionOperator(
             self.workflow, cardinality=cardinality, seed=seed
         )
-        self.workflow.add_operator(cast(Operator, random_selection_operator))
+        self.workflow.add_operator(cast("Operator", random_selection_operator))
         return self
 
     def filter_operator(self, constraint: str | Constraint) -> "OperatorBuilder":
@@ -70,7 +70,7 @@ class OperatorBuilder:
             raise TypeError("constraint must be a string or a Constraint object")
 
         filter_operator = FilterOperator(self.workflow, constraint_obj)
-        self.workflow.add_operator(cast(Operator, filter_operator))
+        self.workflow.add_operator(cast("Operator", filter_operator))
         return self
 
     def systematic_selection_operator(
@@ -84,7 +84,7 @@ class OperatorBuilder:
         systematic_selection_operator = SystematicSelectionOperator(
             self.workflow, cardinality, metadata_name, reverse, step, order_constraint
         )
-        self.workflow.add_operator(cast(Operator, systematic_selection_operator))
+        self.workflow.add_operator(cast("Operator", systematic_selection_operator))
         return self
 
     def manual_sampling_operator(self, *ids: T) -> "OperatorBuilder":
@@ -94,7 +94,7 @@ class OperatorBuilder:
             )
 
         manual_sampling_operator = ManualSamplingOperator(*ids)
-        self.workflow.add_operator(cast(Operator, manual_sampling_operator))
+        self.workflow.add_operator(cast("Operator", manual_sampling_operator))
         return self
 
     def output(self, writer) -> "Workflow":

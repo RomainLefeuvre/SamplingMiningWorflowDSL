@@ -1,12 +1,12 @@
 import csv
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any
+
 from sampling_workflow.element.Loader import Loader
+from sampling_workflow.element.Repository import Repository
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.metadata.MetadataValue import MetadataValue
-
-from sampling_workflow.element.Repository import Repository
 
 
 class CsvLoader(Loader):
@@ -52,10 +52,10 @@ class CsvLoader(Loader):
                             )
 
             return self.set
-        except IOError as e:
+        except OSError as e:
             raise RuntimeError("Error reading the CSV file", e) from e
 
-    def create_repository_from_map(self, csv_row: Dict[str, Any]) -> Repository:
+    def create_repository_from_map(self, csv_row: dict[str, Any]) -> Repository:
         id_metadata_value = csv_row.get(self.metadata_id_name)
 
         if id_metadata_value is None or id_metadata_value == "":
@@ -63,7 +63,7 @@ class CsvLoader(Loader):
 
         repo = Repository(self.metadatas.get(self.metadata_id_name))
 
-        metadata_values: List[MetadataValue] = []
+        metadata_values: list[MetadataValue] = []
         for metadata in self.metadatas.values():
             # Convert string value from CSV using the type defined in metadata
 

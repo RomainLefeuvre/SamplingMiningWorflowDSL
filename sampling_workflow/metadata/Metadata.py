@@ -1,10 +1,11 @@
-from typing import Type, TypeVar, Callable, Generic
+from collections.abc import Callable
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
 
 class Metadata(Generic[T]):
-    def __init__(self, name: str, type_: Type[T]):
+    def __init__(self, name: str, type_: type[T]):
         self.name = name
         self.type = type_
 
@@ -37,7 +38,7 @@ class Metadata(Generic[T]):
         return MetadataValue(self, value)
 
     @staticmethod
-    def of(name: str, type_: Type[T]):
+    def of(name: str, type_: type[T]):
         return Metadata(name, type_)
 
     @staticmethod

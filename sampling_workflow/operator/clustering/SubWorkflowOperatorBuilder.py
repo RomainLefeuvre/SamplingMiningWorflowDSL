@@ -1,11 +1,10 @@
-from typing import cast, TypeVar
+from typing import TypeVar, cast
 
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
 from sampling_workflow.constraint.Constraint import Constraint
+from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
@@ -13,6 +12,7 @@ from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOper
 from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
+from sampling_workflow.Workflow import Workflow
 
 T = TypeVar("T")
 
@@ -41,7 +41,7 @@ class SubWorkflowOperatorBuilder:
         random_selection_operator = RandomSelectionOperator(
             subWorkflow, cardinality=cardinality, seed=seed
         )
-        subWorkflow.add_operator(cast(Operator, random_selection_operator))
+        subWorkflow.add_operator(cast("Operator", random_selection_operator))
         return OperatorBuilder(subWorkflow)
 
     @staticmethod
@@ -58,7 +58,7 @@ class SubWorkflowOperatorBuilder:
             raise TypeError("constraint must be a string or a Constraint object")
 
         filter_operator = FilterOperator(subWorkflow, constraint_obj)
-        subWorkflow.add_operator(cast(Operator, filter_operator))
+        subWorkflow.add_operator(cast("Operator", filter_operator))
         return OperatorBuilder(subWorkflow)
 
     @staticmethod
@@ -70,5 +70,5 @@ class SubWorkflowOperatorBuilder:
 
         subWorkflow = Workflow()
         manual_sampling_operator = ManualSamplingOperator(*ids)
-        subWorkflow.add_operator(cast(Operator, manual_sampling_operator))
+        subWorkflow.add_operator(cast("Operator", manual_sampling_operator))
         return OperatorBuilder(subWorkflow)

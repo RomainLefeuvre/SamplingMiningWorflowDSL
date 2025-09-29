@@ -1,5 +1,5 @@
 import abc
-from typing import Generic, Tuple, TypeVar
+from typing import Generic, TypeVar
 
 from sampling_workflow.metadata.Metadata import Metadata
 

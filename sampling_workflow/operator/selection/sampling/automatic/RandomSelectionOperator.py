@@ -1,8 +1,9 @@
+import random
+
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
-import random
 
 
 class RandomSelectionOperator(AutomaticSamplingOperator):

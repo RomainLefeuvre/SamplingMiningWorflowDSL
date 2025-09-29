@@ -1,11 +1,10 @@
-from typing import List
 
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.element.Set import Set
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
+from sampling_workflow.Workflow import Workflow
 
 
 class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
@@ -24,7 +23,7 @@ class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
         is_set_of_set = all(isinstance(x, Set) for x in self._input.get_elements())
 
         if is_set_of_set:
-            input_sets: List[Set] = [
+            input_sets: list[Set] = [
                 x for x in self._input.get_elements() if isinstance(x, Set)
             ]
             total_size = sum(len(s.get_elements()) for s in input_sets)
@@ -60,5 +59,4 @@ class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
                 self._output.add_element(sampled_set)
 
             return self
-        else:
-            raise RuntimeError("Input is not a set of sets")
+        raise RuntimeError("Input is not a set of sets")

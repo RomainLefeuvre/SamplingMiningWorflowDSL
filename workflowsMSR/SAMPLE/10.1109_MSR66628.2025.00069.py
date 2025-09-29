@@ -1,6 +1,6 @@
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 from sampling_workflow.element.loader.LoaderFactory import *
+from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 # It Works (only) on My Machine: A Study on Reproducibility Smells in Ansible Scripts.
 

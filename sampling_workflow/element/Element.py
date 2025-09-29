@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, TypeVar
+from typing import TypeVar
+
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.metadata.MetadataValue import MetadataValue
 
@@ -8,7 +9,7 @@ T = TypeVar("T")
 
 class Element(ABC):
     def __init__(self):
-        self.metadata: Dict[Metadata, MetadataValue] = {}
+        self.metadata: dict[Metadata, MetadataValue] = {}
 
     def __hash__(self) -> int:
         return hash(frozenset(self.metadata.items()))
@@ -23,17 +24,17 @@ class Element(ABC):
             raise RuntimeError(f"Missing metadata {metadata.name}")
         return self.metadata[metadata]
 
-    def add_metadata_values(self, metadata_values: List[MetadataValue]):
+    def add_metadata_values(self, metadata_values: list[MetadataValue]):
         for metadata_value in metadata_values:
             self.metadata[metadata_value.get_metadata()] = metadata_value
 
     def add_metadata_value(self, metadata_value: MetadataValue):
         self.metadata[metadata_value.get_metadata()] = metadata_value
 
-    def get_all_metadata_values(self) -> Dict[Metadata, MetadataValue]:
+    def get_all_metadata_values(self) -> dict[Metadata, MetadataValue]:
         return self.metadata.copy()
 
-    def get_raw_metadata_values(self) -> Dict[str, T]:
+    def get_raw_metadata_values(self) -> dict[str, T]:
         self
 
     def get_id(self) -> str:

@@ -1,4 +1,3 @@
-from abc import ABC
 
 from sampling_workflow.operator.selection.SelectionOperator import SelectionOperator
 

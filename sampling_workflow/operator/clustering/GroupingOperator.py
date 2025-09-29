@@ -1,4 +1,3 @@
-from typing import List
 
 from sampling_workflow.element.Set import Set
 from sampling_workflow.operator.Operator import Operator
@@ -7,7 +6,6 @@ from sampling_workflow.operator.Operator import Operator
 class GroupingOperator(Operator):
     def __init__(self, root_workflow, workflows):
         super().__init__(root_workflow)
-        from sampling_workflow.Workflow import Workflow
 
         self.workflows = workflows
 
@@ -22,7 +20,7 @@ class GroupingOperator(Operator):
         super().execute()
         return self
 
-    def get_workflows(self) -> List["Workflow"]:
+    def get_workflows(self) -> list["Workflow"]:
         return self.workflows
 
     def extra_to_string(self, level: int) -> str:

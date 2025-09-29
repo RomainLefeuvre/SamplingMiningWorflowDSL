@@ -1,4 +1,4 @@
-from typing import List
+
 from scipy.stats import ks_2samp
 
 from sampling_workflow.element.Repository import Repository
@@ -18,7 +18,7 @@ class kolmogorov_smirnov:
         ks_stat, ks_p_value = ks_2samp(first_list, second_list)
         return ks_p_value
 
-    def extract_list(self, s: Set) -> List[int]:
+    def extract_list(self, s: Set) -> list[int]:
         metadata_values = []
 
         for element in s.get_elements():

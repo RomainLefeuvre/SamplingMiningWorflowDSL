@@ -1,7 +1,8 @@
 # Enhancing Performance Bug Prediction Using Performance Code Metrics
 # DOI : 10.1145/3643991.3644920
-from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WritterFactory import WritterFactory
+
+from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
 
@@ -41,7 +42,7 @@ def main():
 
     op = (
         filter_operator(language.bool_constraint(lambda x: x == "Java"))
-        .chain(filter_operator(commit_nb.bool_constraint(lambda x: 2000 <= x)))
+        .chain(filter_operator(commit_nb.bool_constraint(lambda x: x >= 2000)))
         .chain(filter_operator(is_archived.bool_constraint(lambda x: not x)))
         .chain(filter_operator(is_forked.bool_constraint(lambda x: not x)))
         .chain(filter_operator(no_bug_report.bool_constraint(lambda x: not x)))

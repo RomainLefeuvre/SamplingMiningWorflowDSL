@@ -1,8 +1,8 @@
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
+from sampling_workflow.Workflow import Workflow
 
 
 class SystematicRandomSelectionOperator(AutomaticSamplingOperator):

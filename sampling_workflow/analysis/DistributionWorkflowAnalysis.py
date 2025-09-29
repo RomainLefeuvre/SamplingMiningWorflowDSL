@@ -1,14 +1,13 @@
-from typing import Dict
+
+from sampling_workflow.analysis.kolmogorov_smirnov import kolmogorov_smirnov
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
-from sampling_workflow.analysis.kolmogorov_smirnov import kolmogorov_smirnov
 
 
 class DistributionWorkflowAnalysis:
     def __init__(self, metadata: Metadata[int]):
-        self.map: Dict[str, Set] = {}
+        self.map: dict[str, Set] = {}
         self.metadata = metadata
 
     def analyze(self, workflow):

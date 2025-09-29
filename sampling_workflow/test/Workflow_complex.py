@@ -1,8 +1,7 @@
-from sampling_workflow.Workflow import Workflow
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.OperatorFactory import OperatorFactory
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.element.writer.WriterFactory import WritterFactory
+from sampling_workflow.metadata.Metadata import Metadata
+from sampling_workflow.Workflow import Workflow
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer

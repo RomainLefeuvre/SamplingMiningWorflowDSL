@@ -1,13 +1,13 @@
-from typing import TypeVar, Type
+from typing import TypeVar
 
-from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
+from sampling_workflow.metadata.Metadata import Metadata
 
 T = TypeVar("T")
 
 
 class MetadataNumber(Metadata[T]):
-    def __init__(self, name: str, type_: Type[T]):
+    def __init__(self, name: str, type_: type[T]):
         super().__init__(name, type_)
 
     def is_greater_than(self, value: T) -> BoolConstraint:

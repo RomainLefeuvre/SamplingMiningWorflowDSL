@@ -1,11 +1,10 @@
-from sampling_workflow.Workflow import Workflow
 from sampling_workflow.constraint import NaturalComparator
 from sampling_workflow.constraint.Comparator import Comparator
-from sampling_workflow.metadata import Metadata
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
+from sampling_workflow.Workflow import Workflow
 
 
 class SystematicSelectionOperator(AutomaticSamplingOperator):

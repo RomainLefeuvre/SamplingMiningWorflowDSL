@@ -1,4 +1,5 @@
 from collections import Counter
+
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
 
@@ -61,5 +62,4 @@ class CoverageTest:
                 else:
                     result.append(v)
             return result
-        else:
-            return [values]
+        return [values]

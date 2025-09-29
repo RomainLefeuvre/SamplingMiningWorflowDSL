@@ -1,5 +1,5 @@
 import os
-from typing import cast, List
+from typing import cast
 
 from graphviz import Digraph
 
@@ -54,7 +54,7 @@ class WorkflowVisualizer:
         workflow_number: int = 0,
         op_number: int = 0,
         parent_names=None,
-    ) -> List[str]:
+    ) -> list[str]:
         if parent_names is None:
             parent_names = []
 
@@ -70,7 +70,7 @@ class WorkflowVisualizer:
                 op.get_constraint(), BoolConstraintString
             ):
                 constraint = cast(
-                    BoolConstraintString, op.get_constraint()
+                    "BoolConstraintString", op.get_constraint()
                 ).get_string_constraint()
                 label = f"Filter Operator\n{constraint}\nSize : {output_set.flatten_set().size()}"
             elif isinstance(op, GroupingOperator):

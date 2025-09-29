@@ -1,6 +1,6 @@
-from functools import cmp_to_key
 import random
-from typing import List, Iterator
+from functools import cmp_to_key
+
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
 
@@ -81,7 +81,7 @@ class Set(Element):
 
         return result
 
-    def get_elements(self) -> List[Element]:
+    def get_elements(self) -> list[Element]:
         return list(self.elements)
 
     def __str__(self) -> str:

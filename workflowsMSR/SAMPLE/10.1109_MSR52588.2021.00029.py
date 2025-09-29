@@ -1,8 +1,8 @@
-from sampling_workflow.WorkflowBuilder import WorkflowBuilder
-from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.CsvWriter import CsvWriter
 from sampling_workflow.Metadata import Metadata
 
+from sampling_workflow.element.Loader import Loader
+from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 # ---- Metadata ----
 url = Metadata.of_string("id")  # repository id

@@ -1,7 +1,8 @@
+from sampling_workflow.element.writer.WritterFactory import WritterFactory
+
+from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
-from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
-from sampling_workflow.element.writer.WritterFactory import WritterFactory
 
 # Multi-faceted Code Smell Detection at Scale using DesigniteJava 2.0
 # DOI : 10.1145/3643991.3644881

@@ -1,7 +1,7 @@
 import os
 import pickle
 from abc import ABC
-from typing import List, Optional, Union
+from typing import Optional
 
 from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.Set import Set
@@ -12,13 +12,13 @@ from sampling_workflow.metadata import MetadataValue
 class Operator(ABC):
     def __init__(self, worflow):
         self.workflow = worflow
-        self._input: Optional[Set] = None
-        self._output: Optional[Set] = None
-        self._output_writter: Optional[Writer] = None
-        self._next_operator: Optional["Operator"] = None
-        self._previous_operator: Optional["Operator"] = None
+        self._input: Set | None = None
+        self._output: Set | None = None
+        self._output_writter: Writer | None = None
+        self._next_operator: Operator | None = None
+        self._previous_operator: Operator | None = None
         # Loader to add metadata on output during the execution
-        self._loader: Optional[Loader] = None
+        self._loader: Loader | None = None
 
     def add_metadata_loader(self, loader) -> "Operator":
         self._loader = loader
@@ -38,7 +38,7 @@ class Operator(ABC):
                 id = element.get_id()
                 try:
                     new_element = new_metadata_set.get_element(id)
-                    metadata_values: List[MetadataValue] = (
+                    metadata_values: list[MetadataValue] = (
                         new_element.get_all_metadata_values().values()
                     )
                     metadata_values_filtered = [
@@ -73,7 +73,7 @@ class Operator(ABC):
     def get_next_operator(self) -> Optional["Operator"]:
         return self._next_operator
 
-    def get_output(self) -> Optional[Set]:
+    def get_output(self) -> Set | None:
         return self._output
 
     def get_merged_output(self) -> Set:
@@ -99,7 +99,7 @@ class Operator(ABC):
         self._output = output_set
         return self
 
-    def get_input(self) -> Optional[Set]:
+    def get_input(self) -> Set | None:
         return self._input
 
     def input(self, loader: Loader) -> "Operator":

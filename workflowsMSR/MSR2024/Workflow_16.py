@@ -1,7 +1,8 @@
+from sampling_workflow.element.writer.WritterFactory import WritterFactory
+
+from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
-from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
-from sampling_workflow.element.writer.WritterFactory import WritterFactory
 
 # "Opening the Valve on Pure-Data: Usage Patterns and Programming Practices of a Data-Flow Based Visual Programming Language"
 # DOI : 1145/3643991.3644865

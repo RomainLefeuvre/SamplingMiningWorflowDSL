@@ -1,5 +1,5 @@
 import pandas as pd
-from rapidfuzz import process, fuzz
+from rapidfuzz import fuzz, process
 
 # Charger les fichiers
 csv1 = pd.read_csv("MSR_24.csv")
