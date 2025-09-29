@@ -13,11 +13,12 @@ class JsonWriter:
         flattened_set = set_obj.flatten_set()
         json_output = json.dumps(flattened_set, cls=CustomEncoder, indent=4)
         try:
-            with self.set_path.open('w', encoding='utf-8') as f:
+            with self.set_path.open("w", encoding="utf-8") as f:
                 f.write(json_output)
             print(f"JSON has been written to {self.set_path}")
         except IOError as e:
-            raise RuntimeError("Error while saving file",e) from e
+            raise RuntimeError("Error while saving file", e) from e
+
 
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -34,4 +35,3 @@ class CustomEncoder(json.JSONEncoder):
 
         # Default fallback
         return super().default(obj)
-

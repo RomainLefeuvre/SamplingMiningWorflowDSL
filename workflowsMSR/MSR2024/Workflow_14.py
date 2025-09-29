@@ -17,6 +17,7 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
+
 def main():
     # Les repos sont forcément publiques non ?
 
@@ -32,7 +33,16 @@ def main():
         .chain(filter_operator(is_archived.bool_constraint(lambda x: not x)))
         .chain(filter_operator(nb_stars.bool_constraint(lambda x: x >= 5)))
         .chain(filter_operator(has_ptm_signature.bool_constraint(lambda x: x)))
-        .input(json_loader("input.json", is_public, is_forked, is_archived, nb_stars, has_ptm_signature))
+        .input(
+            json_loader(
+                "input.json",
+                is_public,
+                is_forked,
+                is_archived,
+                nb_stars,
+                has_ptm_signature,
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )

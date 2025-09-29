@@ -16,6 +16,7 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
+
 def main():
     # What about the steps about the package name ?
 
@@ -25,7 +26,9 @@ def main():
 
     op = (
         filter_operator(topic.bool_constraint(lambda x: x == "Android"))
-        .chain(filter_operator(creation_date.bool_constraint(lambda x: x >= "2023-12-01")))
+        .chain(
+            filter_operator(creation_date.bool_constraint(lambda x: x >= "2023-12-01"))
+        )
         .chain(filter_operator(hasAndroidManifest.bool_constraint(lambda x: x)))
         .input(json_loader("input.json", topic, creation_date, hasAndroidManifest))
         .output(json_writer("out.json"))

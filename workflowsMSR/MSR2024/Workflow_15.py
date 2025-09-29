@@ -15,8 +15,8 @@ random_selection_operator = OperatorFactory.random_selection_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     test_coverage = Metadata.of_float("testCoverage")
 
     op = (

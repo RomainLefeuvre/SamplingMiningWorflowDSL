@@ -1,17 +1,19 @@
 import pandas as pd
 from rapidfuzz import process, fuzz
+
 # Charger les fichiers
-csv1 = pd.read_csv('MSR_24.csv')
-csv2 = pd.read_csv('../DBLP/msr.csv')
+csv1 = pd.read_csv("MSR_24.csv")
+csv2 = pd.read_csv("../DBLP/msr.csv")
 
 # Nettoyer les DOIs dans csv2
-csv2['doi_clean'] = csv2['doi'].str.replace('https://doi.org/', '', regex=False)
+csv2["doi_clean"] = csv2["doi"].str.replace("https://doi.org/", "", regex=False)
 # Créer dictionnaire titre → DOI (nettoyé)
-title_to_doi = dict(zip(csv2['title'], csv2['doi_clean']))
+title_to_doi = dict(zip(csv2["title"], csv2["doi_clean"]))
 
 # Initialiser listes de log
 fuzzy_matched = []
 non_trouves = []
+
 
 # Fonction de correspondance
 def trouver_doi(titre_csv1, seuil=95):
@@ -20,7 +22,9 @@ def trouver_doi(titre_csv1, seuil=95):
         return title_to_doi[titre_csv1], "exact"
 
     # Sinon fuzzy matching
-    match, score, _ = process.extractOne(titre_csv1, title_to_doi.keys(), scorer=fuzz.token_sort_ratio)
+    match, score, _ = process.extractOne(
+        titre_csv1, title_to_doi.keys(), scorer=fuzz.token_sort_ratio
+    )
     if score >= seuil:
         fuzzy_matched.append((titre_csv1, match, score))
         return title_to_doi[match], "fuzzy"
@@ -29,16 +33,17 @@ def trouver_doi(titre_csv1, seuil=95):
     non_trouves.append(titre_csv1)
     return None, "none"
 
+
 # Appliquer correspondance à chaque ligne
 dois = []
-for titre in csv1['Document Title']:
+for titre in csv1["Document Title"]:
     doi, status = trouver_doi(titre)
     dois.append(doi)
 
-csv1['DOI'] = dois
+csv1["DOI"] = dois
 
 # Sauvegarder le fichier mis à jour
-csv1.to_csv('csv1_mis_a_jour.csv', index=False)
+csv1.to_csv("csv1_mis_a_jour.csv", index=False)
 
 # Afficher les résultats
 print(f"\n🔍 Correspondances via fuzzy matching ({len(fuzzy_matched)} titres) :")

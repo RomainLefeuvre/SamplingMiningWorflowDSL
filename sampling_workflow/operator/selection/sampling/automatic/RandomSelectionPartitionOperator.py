@@ -3,22 +3,30 @@ from typing import List
 from sampling_workflow.Workflow import Workflow
 from sampling_workflow.element.Set import Set
 from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import AutomaticSamplingOperator
+from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
+    AutomaticSamplingOperator,
+)
+
 
 class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
-    def __init__(self, workflow:Workflow,cardinality: int, seed: int = 0):
-        super().__init__(workflow,cardinality)
+    def __init__(self, workflow: Workflow, cardinality: int, seed: int = 0):
+        super().__init__(workflow, cardinality)
         self.seed = seed
 
     def execute(self) -> Operator:
-        from sampling_workflow.operator.OperatorFactory import OperatorFactory  # Local import
+        from sampling_workflow.operator.OperatorFactory import (
+            OperatorFactory,
+        )  # Local import
+
         random_selection_operator = OperatorFactory.random_selection_operator
 
         self._output = Set()
         is_set_of_set = all(isinstance(x, Set) for x in self._input.get_elements())
 
         if is_set_of_set:
-            input_sets: List[Set] = [x for x in self._input.get_elements() if isinstance(x, Set)]
+            input_sets: List[Set] = [
+                x for x in self._input.get_elements() if isinstance(x, Set)
+            ]
             total_size = sum(len(s.get_elements()) for s in input_sets)
 
             # Compute the number of elements per list

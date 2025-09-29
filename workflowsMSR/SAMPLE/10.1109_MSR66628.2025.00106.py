@@ -6,9 +6,9 @@ from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import *
 from sampling_workflow.element.writer.WriterFactory import *
 
-#Prompting in the Wild: An Empirical Study of Prompt Evolution in Software Repositories.
+# Prompting in the Wild: An Empirical Study of Prompt Evolution in Software Repositories.
 
-# 1.Start from Prompt Set, a refined dataset of prompt extracted from 20,598 projects. We consider the associated raw dataset composed of the different projects. 
+# 1.Start from Prompt Set, a refined dataset of prompt extracted from 20,598 projects. We consider the associated raw dataset composed of the different projects.
 # 2. Project are filtered if they do not contains at least one prompts that satisfy:
 # - non empty prompt
 # - in english
@@ -21,25 +21,31 @@ from sampling_workflow.element.writer.WriterFactory import *
 
 
 def main():
-    input_path =  Path("prompt_set.json")
+    input_path = Path("prompt_set.json")
     contributors_nb = Metadata.of_integer("contributors_nb")
     stars = Metadata.of_integer("stars")
-    number_of_prompts_after_filtering = Metadata.of_integer("number_of_prompts_after_filtering")
+    number_of_prompts_after_filtering = Metadata.of_integer(
+        "number_of_prompts_after_filtering"
+    )
     is_dev_active_in_6_months = Metadata.of_boolean("is_dev_active_in_6_months")
     url = Metadata.of_string("url")
 
-
     # Workflow Declaration and Execution
-    workflow = WorkflowBuilder().input(JsonLoader(input_path,url,  contributors_nb,stars,is_dev_active_in_6_months))\
-                                .filter_operator("number_of_prompts_after_filtering > 0")\
-                                .filter_operator("contributors_nb >= 10")\
-                                .filter_operator("stars >= 50")\
-                                .filter_operator("is_dev_active_in_6_months == True")\
-                                .output(CsvWriter("out.csv"))\
-
+    workflow = (
+        WorkflowBuilder()
+        .input(
+            JsonLoader(
+                input_path, url, contributors_nb, stars, is_dev_active_in_6_months
+            )
+        )
+        .filter_operator("number_of_prompts_after_filtering > 0")
+        .filter_operator("contributors_nb >= 10")
+        .filter_operator("stars >= 50")
+        .filter_operator("is_dev_active_in_6_months == True")
+        .output(CsvWriter("out.csv"))
+    )
     workflow.execute_workflow()
-  
+
+
 if __name__ == "__main__":
     main()
-
-

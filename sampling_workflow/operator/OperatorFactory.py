@@ -5,17 +5,27 @@ from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionPartitionOperator import \
-    RandomSelectionPartitionOperator
-from sampling_workflow.operator.selection.sampling.automatic.SystematicRandomSelectionOperator import \
-    SystematicRandomSelectionOperator
-from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import SystematicSelectionOperator
-from sampling_workflow.operator.selection.sampling.manual.InteractiveManualSamplingOperator import \
-    InteractiveManualSamplingOperator
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+    RandomSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionPartitionOperator import (
+    RandomSelectionPartitionOperator,
+)
+from sampling_workflow.operator.selection.sampling.automatic.SystematicRandomSelectionOperator import (
+    SystematicRandomSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import (
+    SystematicSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.manual.InteractiveManualSamplingOperator import (
+    InteractiveManualSamplingOperator,
+)
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+    ManualSamplingOperator,
+)
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class OperatorFactory:
     @staticmethod
@@ -23,12 +33,16 @@ class OperatorFactory:
         return FilterOperator(constraint)
 
     @staticmethod
-    def random_selection_operator(cardinality: int, seed: int = 0) -> RandomSelectionOperator:
+    def random_selection_operator(
+        cardinality: int, seed: int = 0
+    ) -> RandomSelectionOperator:
         return RandomSelectionOperator(cardinality, seed)
 
     @staticmethod
-    def random_selection_partition_operator(seed: int, cardinality: int) -> RandomSelectionPartitionOperator:
-        return RandomSelectionPartitionOperator(cardinality = cardinality, seed = seed)
+    def random_selection_partition_operator(
+        seed: int, cardinality: int
+    ) -> RandomSelectionPartitionOperator:
+        return RandomSelectionPartitionOperator(cardinality=cardinality, seed=seed)
 
     @staticmethod
     def grouping_operator(*operators: Operator):
@@ -43,13 +57,19 @@ class OperatorFactory:
         return InteractiveManualSamplingOperator()
 
     @staticmethod
-    def systematic_selection_operator(cardinality: int, order_constraint: Comparator, pas: int) -> SystematicSelectionOperator:
+    def systematic_selection_operator(
+        cardinality: int, order_constraint: Comparator, pas: int
+    ) -> SystematicSelectionOperator:
         return SystematicSelectionOperator(cardinality, order_constraint, pas)
 
     @staticmethod
-    def systematic_random_selection_operator(cardinality: int, pas: int) -> SystematicRandomSelectionOperator:
+    def systematic_random_selection_operator(
+        cardinality: int, pas: int
+    ) -> SystematicRandomSelectionOperator:
         return SystematicRandomSelectionOperator(cardinality, pas)
 
     @staticmethod
-    def parameterized_operators(operator: Callable[[T], Operator], *values: T) -> List[Operator]:
+    def parameterized_operators(
+        operator: Callable[[T], Operator], *values: T
+    ) -> List[Operator]:
         return [operator(value) for value in values]

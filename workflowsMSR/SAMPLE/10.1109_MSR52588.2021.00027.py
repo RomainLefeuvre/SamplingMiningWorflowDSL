@@ -22,16 +22,19 @@ language = Metadata.of_string("language")
 is_clonable = Metadata.of_boolean("isClonable")
 percentage_log_method = Metadata.of_double("percentageLogMethod")
 
+
 def apache_foundation_workflow():
     return (
         WorkflowBuilder()
         # Start from Apache Foundation list
-        .input(Loader(
-            url,
-            language,
-            is_clonable,
-            percentage_log_method,
-        ))
+        .input(
+            Loader(
+                url,
+                language,
+                is_clonable,
+                percentage_log_method,
+            )
+        )
         # Filter Java projects
         .filter_operator("language == 'Java'")
         # Add clonable metadata

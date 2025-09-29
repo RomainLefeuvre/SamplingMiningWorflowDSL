@@ -9,12 +9,17 @@ from sampling_workflow.element.Loader import Loader
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
-from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import \
-    SystematicSelectionOperator
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+    RandomSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import (
+    SystematicSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+    ManualSamplingOperator,
+)
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class OperatorBuilder:
@@ -40,13 +45,17 @@ class OperatorBuilder:
         grouping_operator = GroupingOperator(self.workflow, subWorkflows)
         self.workflow.add_operator(cast(Operator, grouping_operator))
         return self
-    
-    def add_metadata(self, loader: Loader) :
+
+    def add_metadata(self, loader: Loader):
         self.workflow.add_metadata(loader)
         return self
 
-    def random_selection_operator(self, cardinality: int, seed: int = 0) -> "OperatorBuilder":
-        random_selection_operator = RandomSelectionOperator(self.workflow, cardinality=cardinality, seed=seed)
+    def random_selection_operator(
+        self, cardinality: int, seed: int = 0
+    ) -> "OperatorBuilder":
+        random_selection_operator = RandomSelectionOperator(
+            self.workflow, cardinality=cardinality, seed=seed
+        )
         self.workflow.add_operator(cast(Operator, random_selection_operator))
         return self
 
@@ -64,14 +73,25 @@ class OperatorBuilder:
         self.workflow.add_operator(cast(Operator, filter_operator))
         return self
 
-    def systematic_selection_operator(self, cardinality: int ,metadata_name:str,reverse=False, step: int=1,order_constraint: Comparator=NaturalComparator) -> "OperatorBuilder":
-        systematic_selection_operator = SystematicSelectionOperator( self.workflow,cardinality ,metadata_name,reverse, step,order_constraint)
+    def systematic_selection_operator(
+        self,
+        cardinality: int,
+        metadata_name: str,
+        reverse=False,
+        step: int = 1,
+        order_constraint: Comparator = NaturalComparator,
+    ) -> "OperatorBuilder":
+        systematic_selection_operator = SystematicSelectionOperator(
+            self.workflow, cardinality, metadata_name, reverse, step, order_constraint
+        )
         self.workflow.add_operator(cast(Operator, systematic_selection_operator))
         return self
 
     def manual_sampling_operator(self, *ids: T) -> "OperatorBuilder":
         if not ids:
-            raise ValueError("At least one element must be provided for manual sampling.")
+            raise ValueError(
+                "At least one element must be provided for manual sampling."
+            )
 
         manual_sampling_operator = ManualSamplingOperator(*ids)
         self.workflow.add_operator(cast(Operator, manual_sampling_operator))

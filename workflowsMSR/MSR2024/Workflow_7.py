@@ -21,16 +21,19 @@ systematic_selection_operator = OperatorFactory.systematic_selection_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     language = Metadata.of_string("language")
     nb_stars = Metadata.of_integer("nbStars")
     last_commit_date = Metadata.of_string("lastCommitDate")
 
-
     op = (
         filter_operator(language.bool_constraint(lambda x: x == "PHP"))
-        .chain(filter_operator(last_commit_date.bool_constraint(lambda x: x > "2021-01-01")))
+        .chain(
+            filter_operator(
+                last_commit_date.bool_constraint(lambda x: x > "2021-01-01")
+            )
+        )
         # Sorted by number of stars and then latest commit date ?
         .chain(systematic_selection_operator(5000, nb_stars, 1))
         .chain(systematic_selection_operator(5000, last_commit_date, 1))

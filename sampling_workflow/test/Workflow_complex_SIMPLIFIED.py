@@ -1,4 +1,3 @@
-
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
@@ -8,10 +7,13 @@ filter_operator = OperatorFactory.filter_operator
 random_selection_operator = OperatorFactory.random_selection_operator
 grouping_operator = OperatorFactory.grouping_operator
 manual_sampling_operator = OperatorFactory.manual_sampling_operator
-interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
+interactive_manual_sampling_operator = (
+    OperatorFactory.interactive_manual_sampling_operator
+)
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
+
 
 def main():
     input_path = "input.json"  # Adjust path as needed
@@ -54,12 +56,15 @@ def main():
     # Quota Operator
     quota_operator = (
         grouping_operator(
-            filter_operator(commit_nb.bool_constraint(lambda x: x < 100))
-            .chain(interactive_manual_sampling_operator()),
-            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000))
-            .chain(interactive_manual_sampling_operator()),
-            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000))
-            .chain(interactive_manual_sampling_operator())
+            filter_operator(commit_nb.bool_constraint(lambda x: x < 100)).chain(
+                interactive_manual_sampling_operator()
+            ),
+            filter_operator(commit_nb.bool_constraint(lambda x: 100 <= x < 1000)).chain(
+                interactive_manual_sampling_operator()
+            ),
+            filter_operator(commit_nb.bool_constraint(lambda x: x >= 1000)).chain(
+                interactive_manual_sampling_operator()
+            ),
         )
         .get_workflow_root_operator()
         .input(json_loader(input_path, id, commit_nb, url, lang))
@@ -81,6 +86,7 @@ def main():
     # print("Stratified Operator")
     # print(stratified_operator)
     # print("--------------------------------------")
+
 
 if __name__ == "__main__":
     main()

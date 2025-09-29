@@ -5,19 +5,25 @@ from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.Element import Element
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class BoolConstraintString(Constraint[T]):
-    def __init__(self,workflow:Workflow, string_constraint: str , *targeted_metadatas: Metadata[T]):
-        super().__init__(workflow,*targeted_metadatas)
+    def __init__(
+        self,
+        workflow: Workflow,
+        string_constraint: str,
+        *targeted_metadatas: Metadata[T],
+    ):
+        super().__init__(workflow, *targeted_metadatas)
 
         self.string_constraint = string_constraint
         self.or_constraint: Optional[Constraint] = None
         self.and_constraint: Optional[Constraint] = None
-    
+
     def set_workflow(self, workflow: Workflow):
         self.workflow = workflow
-        worflow_metadatas =  workflow.get_all_Metadata()
+        worflow_metadatas = workflow.get_all_Metadata()
         self.targeted_metadatas = tuple(worflow_metadatas)
         return self
 
@@ -25,7 +31,11 @@ class BoolConstraintString(Constraint[T]):
         all_metadata = self.workflow.get_all_Metadata()
 
         # Retrieve matching Metadata objects by checking if their names exist in the string_constraint
-        matching_metadata = [metadata for metadata in all_metadata if metadata.name in self.string_constraint]
+        matching_metadata = [
+            metadata
+            for metadata in all_metadata
+            if metadata.name in self.string_constraint
+        ]
 
         metadata_values = {}
         for metadata in matching_metadata:
@@ -41,11 +51,11 @@ class BoolConstraintString(Constraint[T]):
             print(f"Error evaluating string_constraint: {e}")
         return constraint_result
 
-    def or_(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def or_(self, other: "BoolConstraint") -> "BoolConstraint":
         self.or_constraint = other
         return other
 
-    def and_(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def and_(self, other: "BoolConstraint") -> "BoolConstraint":
         self.and_constraint = other
         return other
 

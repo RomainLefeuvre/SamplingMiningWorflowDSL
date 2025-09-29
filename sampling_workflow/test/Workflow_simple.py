@@ -6,15 +6,19 @@ from sampling_workflow.element.writer.WriterFactory import WritterFactory
 from sampling_workflow.Workflow import Workflow
 from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
-from sampling_workflow.operator.clustering.SubWorkflowOperatorBuilder import SubWorkflowOperatorBuilder
+from sampling_workflow.operator.clustering.SubWorkflowOperatorBuilder import (
+    SubWorkflowOperatorBuilder,
+)
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 filter_operator = SubWorkflowOperatorBuilder.filter_operator
 
+
 def main():
     import os
+
     input_path = os.path.join(os.path.dirname(__file__), "input.json")
 
     url = Metadata.of_string("url")
@@ -23,7 +27,8 @@ def main():
     commit_nb = Metadata.of_integer("commitNb")
     year = Metadata.of_integer("year")
 
-    w = (WorkflowBuilder()
+    w = (
+        WorkflowBuilder()
         .input(json_loader(input_path, id_, commit_nb, language))
         .filter_operator("commitNb > 2000 and commitNb < 7000")
         .random_selection_operator(40)
@@ -39,8 +44,6 @@ def main():
     #     .random_selection_operator(1)
     #     .output(json_writer("out.json"))
     # )
-
-
 
     # w = (
     #     Workflow()
@@ -58,7 +61,8 @@ def main():
 
     WorkflowVisualizer(w).generate_graph()
 
-    print (w)
+    print(w)
+
 
 if __name__ == "__main__":
     main()

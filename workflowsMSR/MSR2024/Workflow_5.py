@@ -20,8 +20,8 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     use_github_action_tests = Metadata.of_boolean("useGithubActionTests")
     language = Metadata.of_string("language")
     nb_stars = Metadata.of_integer("nbStars")
@@ -34,7 +34,16 @@ def main():
         .chain(filter_operator(nb_stars.bool_constraint(lambda x: x >= 20)))
         .chain(filter_operator(size.bool_constraint(lambda x: x < 200)))
         .chain(filter_operator(is_archived.bool_constraint(lambda x: not x)))
-        .input(json_loader("input.json", use_github_action_tests, language, nb_stars, size, is_archived))
+        .input(
+            json_loader(
+                "input.json",
+                use_github_action_tests,
+                language,
+                nb_stars,
+                size,
+                is_archived,
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )

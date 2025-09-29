@@ -4,6 +4,6 @@ from sampling_workflow.operator.selection.SelectionOperator import SelectionOper
 
 
 class SamplingOperator(SelectionOperator):
-    def __init__(self,workflow, cardinality: int):
+    def __init__(self, workflow, cardinality: int):
         super().__init__(workflow)
         self._cardinality = cardinality

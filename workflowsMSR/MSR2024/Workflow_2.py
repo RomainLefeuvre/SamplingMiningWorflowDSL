@@ -5,15 +5,17 @@ from sampling_workflow.element.writer.WritterFactory import WritterFactory
 # An Investigation of Patch Porting Practices of the Linux Kernel Ecosystem
 # DOI : 10.1145/3643991.3644902
 
-interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
+interactive_manual_sampling_operator = (
+    OperatorFactory.interactive_manual_sampling_operator
+)
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
 # Purposive sampling on OS repositories from LWN list
 
-def main():
 
+def main():
     op = (
         interactive_manual_sampling_operator()
         .input(json_loader("lwn_dist_list.json"))

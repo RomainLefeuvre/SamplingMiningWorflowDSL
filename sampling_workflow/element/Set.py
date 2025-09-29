@@ -4,6 +4,7 @@ from typing import List, Iterator
 from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
 
+
 class Set(Element):
     def __init__(self):
         super().__init__()
@@ -19,38 +20,37 @@ class Set(Element):
             return False
         return self.elements == other.elements
 
-    def add_element(self, element: Element) -> 'Set':
+    def add_element(self, element: Element) -> "Set":
         self.elements.append(element)
         return self
-    
-    def sort_by_metadata(self, metadata_name: str, comparator: Comparator,reverse=False) -> 'Set':
+
+    def sort_by_metadata(
+        self, metadata_name: str, comparator: Comparator, reverse=False
+    ) -> "Set":
         self.elements = sorted(
-            self.elements,
-            key=cmp_to_key(comparator.compare),
-             reverse=reverse
+            self.elements, key=cmp_to_key(comparator.compare), reverse=reverse
         )
         return self
 
-
-    def union(self, other: 'Set') -> 'Set':
+    def union(self, other: "Set") -> "Set":
         self.elements.append(other.elements)
         return self
-    
+
     def size(self) -> int:
         return len(self.elements)
-    
-    def get_element(self, id:str)-> Element:
+
+    def get_element(self, id: str) -> Element:
         for element in self.elements:
             if element.get_id() == id:
                 return element
         raise ValueError(f"Element with id {id} not found in the set")
-    
+
     def get_id(self):
         id = ""
         for element in self.elements:
-            id = id +"_"+ element.get_id()
+            id = id + "_" + element.get_id()
 
-    def flatten_set(self) -> 'Set':
+    def flatten_set(self) -> "Set":
         flattened = Set()
         for element in self.elements:
             if isinstance(element, Set):
@@ -64,9 +64,11 @@ class Set(Element):
     def set_elements(self, elements: set) -> None:
         self.elements = elements
 
-    def get_random_subset(self, subset_size: int, seed: int) -> 'Set':
+    def get_random_subset(self, subset_size: int, seed: int) -> "Set":
         if subset_size > len(self.elements):
-            print(f"Caution, subset size is larger than the size of the original set, subset size: {subset_size}, current set size: {len(self.elements)}")
+            print(
+                f"Caution, subset size is larger than the size of the original set, subset size: {subset_size}, current set size: {len(self.elements)}"
+            )
             subset_size = len(self.elements)
 
         random.seed(seed)

@@ -4,10 +4,13 @@ from sampling_workflow.constraint.Comparator import Comparator
 from sampling_workflow.element.Element import Element
 from sampling_workflow.metadata.Metadata import Metadata
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class BoolComparator(Comparator[T], Generic[T]):
-    def __init__(self, targeted_metadata: Metadata[T], comparator: Callable[[T, T], T] = None):
+    def __init__(
+        self, targeted_metadata: Metadata[T], comparator: Callable[[T, T], T] = None
+    ):
         super().__init__(targeted_metadata)
         self.comparator = comparator
 

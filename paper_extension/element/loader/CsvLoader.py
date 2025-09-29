@@ -16,40 +16,44 @@ class CsvLoader(Loader):
         self.set = Set()
 
     def load_set(self) -> Set:
-       
-
         try:
             if self.set_path.is_dir():
                 csv_files = sorted(self.set_path.glob("*.csv"))
                 if not csv_files:
-                    raise RuntimeError(f"No CSV files found in directory: {self.set_path}")
+                    raise RuntimeError(
+                        f"No CSV files found in directory: {self.set_path}"
+                    )
                 self.set = Set()
                 for csv_file in csv_files:
                     print(f"Loading CSV file: {csv_file}")
                     with csv_file.open("r", newline="") as csvfile:
                         reader = csv.DictReader(csvfile)
-                        
+
                         for row in reader:
                             try:
                                 repository = self.create_repository_from_map(row)
                                 self.set.add_element(repository)
                             except Exception as e:
-                                print(f"Error fetching row: {row}. Error: {e} from {csv_file}")
+                                print(
+                                    f"Error fetching row: {row}. Error: {e} from {csv_file}"
+                                )
             else:
-                    if not self.set_path.exists():
-                        raise RuntimeError(f"File not found: {self.set_path}")
-                    with self.set_path.open("r", newline="") as f:
-                        reader = csv.DictReader(f)
-                        for row in reader:
-                            try:
-                                repository = self.create_repository_from_map(row)
-                                self.set.add_element(repository)
-                            except Exception as e:
-                                print(f"Error fetching row: {row}. Error: {e} from {self.set_path}")
+                if not self.set_path.exists():
+                    raise RuntimeError(f"File not found: {self.set_path}")
+                with self.set_path.open("r", newline="") as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        try:
+                            repository = self.create_repository_from_map(row)
+                            self.set.add_element(repository)
+                        except Exception as e:
+                            print(
+                                f"Error fetching row: {row}. Error: {e} from {self.set_path}"
+                            )
 
             return self.set
         except IOError as e:
-            raise RuntimeError("Error reading the CSV file",e) from e
+            raise RuntimeError("Error reading the CSV file", e) from e
 
     def create_repository_from_map(self, csv_row: Dict[str, Any]) -> Repository:
         id_metadata_value = csv_row.get(self.metadata_id_name)
@@ -58,17 +62,21 @@ class CsvLoader(Loader):
             raise ValueError(f"Invalid ID '{self.metadata_id_name}' in row: {csv_row}")
 
         repo = Repository(self.metadatas.get(self.metadata_id_name))
-        
+
         metadata_values: List[MetadataValue] = []
         for metadata in self.metadatas.values():
             # Convert string value from CSV using the type defined in metadata
-            
-                if metadata.type == list:
-                    string_list= csv_row.get(metadata.name)
-                    value =metadata.type(csv_row.get(metadata.name).split(";")) if string_list != "" else []
-                else:
-                    value = metadata.type(csv_row.get(metadata.name))
-                metadata_values.append(metadata.create_metadata_value(value))
-           
+
+            if metadata.type == list:
+                string_list = csv_row.get(metadata.name)
+                value = (
+                    metadata.type(csv_row.get(metadata.name).split(";"))
+                    if string_list != ""
+                    else []
+                )
+            else:
+                value = metadata.type(csv_row.get(metadata.name))
+            metadata_values.append(metadata.create_metadata_value(value))
+
         repo.add_metadata_values(metadata_values)
         return repo

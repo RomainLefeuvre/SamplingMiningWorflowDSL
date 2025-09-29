@@ -1,13 +1,15 @@
 from typing import TypeVar
 
 
+T = TypeVar("T")
 
-T = TypeVar('T')
 
 class CompleteWorkflow:
     def __init__(self, workflow):
         if not workflow.is_complete():
-            raise ValueError("Workflow is incomplete. Ensure it has an input, output, and at least one operator.")
+            raise ValueError(
+                "Workflow is incomplete. Ensure it has an input, output, and at least one operator."
+            )
         self._workflow = workflow
 
     def execute_workflow(self):

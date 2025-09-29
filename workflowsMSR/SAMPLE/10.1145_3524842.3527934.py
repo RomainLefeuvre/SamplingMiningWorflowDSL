@@ -12,9 +12,10 @@ from sampling_workflow.element.loader.LoaderFactory import *
 # * filter project with more than 20 commits
 # * filter project with at least 50 weeks of developement activity
 # * filter project with more than 10 issues
-# * filter project with at least 10 contributors 
+# * filter project with at least 10 contributors
 # * filter project with at least 10 defective commit
 # * filter out project that are forks
+
 
 def main():
     # --- Metadata declarations ---
@@ -30,16 +31,18 @@ def main():
     # --- Workflow ---
     workflow = (
         WorkflowBuilder()
-        .input(Loader(
-            url,
-            pull_requests,
-            commits,
-            weeks_of_activity,
-            issues,
-            contributors,
-            defective_commits,
-            is_fork
-        ))
+        .input(
+            Loader(
+                url,
+                pull_requests,
+                commits,
+                weeks_of_activity,
+                issues,
+                contributors,
+                defective_commits,
+                is_fork,
+            )
+        )
         .filter_operator("pullRequests > 0")
         .filter_operator("commits > 20")
         .filter_operator("weeksOfActivity >= 50")

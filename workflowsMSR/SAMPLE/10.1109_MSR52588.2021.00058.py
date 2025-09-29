@@ -8,13 +8,12 @@ from sampling_workflow.metadata.Metadata import Metadata
 # Characterising the Knowledge about Primitive Variables in Java Code Comments.
 
 
-
 # * Start from github
-# * filter java project 
+# * filter java project
 # * filter project with at least one star
 # * add metadata available_on_github
 # * filter repo available_on_github
-# * add engineered_project metadata with repo reaper  
+# * add engineered_project metadata with repo reaper
 # * filter engineered_project
 # * add metadata  have_readme
 # * filter project having readme
@@ -35,15 +34,17 @@ def main():
     workflow = (
         WorkflowBuilder()
         # Start from GitHub dataset
-        .input(Loader(
-            url,
-            language,
-            stars,
-            available_on_github,
-            engineered_project,
-            have_readme,
-            documentation_in_readme
-        ))
+        .input(
+            Loader(
+                url,
+                language,
+                stars,
+                available_on_github,
+                engineered_project,
+                have_readme,
+                documentation_in_readme,
+            )
+        )
         # Filter Java projects
         .filter_operator("language == 'Java'")
         # Filter project with at least one star

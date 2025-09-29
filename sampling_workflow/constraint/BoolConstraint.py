@@ -4,11 +4,17 @@ from sampling_workflow.constraint.Constraint import Constraint
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.Element import Element
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class BoolConstraint(Constraint[T]):
-    def __init__(self, workflow, constraint: Callable[[Tuple[T, ...]], bool], *targeted_metadatas: Tuple[Metadata[T],...]):
-        super().__init__(workflow,*targeted_metadatas)
+    def __init__(
+        self,
+        workflow,
+        constraint: Callable[[Tuple[T, ...]], bool],
+        *targeted_metadatas: Tuple[Metadata[T], ...],
+    ):
+        super().__init__(workflow, *targeted_metadatas)
         self.constraint = constraint
         self.or_constraint: Optional[Constraint] = None
         self.and_constraint: Optional[Constraint] = None
@@ -17,7 +23,10 @@ class BoolConstraint(Constraint[T]):
         if self.or_constraint is not None and self.and_constraint is not None:
             raise RuntimeError("Both 'and' & 'or' constraints are defined")
 
-        value_objs = [element.get_metadata_value(target_metadata).get_value() for target_metadata in self.targeted_metadatas ]
+        value_objs = [
+            element.get_metadata_value(target_metadata).get_value()
+            for target_metadata in self.targeted_metadatas
+        ]
         # TODO add type check
         # if not isinstance(value_objs, self.targeted_metadatas.type):
         #     raise RuntimeError(f"Unexpected metadata type: {type(value_objs)}")
@@ -31,10 +40,10 @@ class BoolConstraint(Constraint[T]):
 
         return constraint_result
 
-    def or_(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def or_(self, other: "BoolConstraint") -> "BoolConstraint":
         self.or_constraint = other
         return other
 
-    def and_(self, other: 'BoolConstraint') -> 'BoolConstraint':
+    def and_(self, other: "BoolConstraint") -> "BoolConstraint":
         self.and_constraint = other
         return other

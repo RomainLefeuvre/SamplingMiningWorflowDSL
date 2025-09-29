@@ -3,6 +3,7 @@ from typing import Dict, Optional
 from sampling_workflow.metadata import Metadata
 from sampling_workflow.element import Set
 
+
 class Loader(ABC):
     def __init__(self, *metadatas: Optional[Metadata]):
         # Assuming the first metadata is the ID, store its name for further use

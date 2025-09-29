@@ -12,5 +12,3 @@ with grpc.insecure_channel(GRAPH_GRPC_SERVER) as channel:
     swhid = "swh:1:cnt:0000000000000000000000000000000000000001"
     response = stub.GetNode(swhgraph.GetNodeRequest(swhid=swhid))
     print(response)
-
-

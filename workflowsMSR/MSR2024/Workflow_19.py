@@ -13,8 +13,8 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     nb_contributors = Metadata.of_integer("nbContributors")
 
     op = (

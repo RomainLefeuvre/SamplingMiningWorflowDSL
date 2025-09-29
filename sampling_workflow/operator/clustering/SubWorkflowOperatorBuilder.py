@@ -7,17 +7,22 @@ from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+    RandomSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+    ManualSamplingOperator,
+)
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class SubWorkflowOperatorBuilder:
-
     @staticmethod
     def grouping_operator(*workflows: "OperatorBuilder") -> "OperatorBuilder":
-        workflows = [w.workflow for w in workflows]  # Extract the Workflow objects from OperatorBuilder instances
+        workflows = [
+            w.workflow for w in workflows
+        ]  # Extract the Workflow objects from OperatorBuilder instances
         if not workflows:
             raise ValueError("At least one workflow must be provided.")
 
@@ -33,7 +38,9 @@ class SubWorkflowOperatorBuilder:
     @staticmethod
     def random_selection_operator(cardinality: int, seed: int = 0) -> "OperatorBuilder":
         subWorkflow = Workflow()
-        random_selection_operator = RandomSelectionOperator(subWorkflow, cardinality=cardinality, seed=seed)
+        random_selection_operator = RandomSelectionOperator(
+            subWorkflow, cardinality=cardinality, seed=seed
+        )
         subWorkflow.add_operator(cast(Operator, random_selection_operator))
         return OperatorBuilder(subWorkflow)
 
@@ -57,10 +64,11 @@ class SubWorkflowOperatorBuilder:
     @staticmethod
     def manual_sampling_operator(*ids: T) -> "OperatorBuilder":
         if not ids:
-            raise ValueError("At least one element must be provided for manual sampling.")
+            raise ValueError(
+                "At least one element must be provided for manual sampling."
+            )
 
         subWorkflow = Workflow()
         manual_sampling_operator = ManualSamplingOperator(*ids)
         subWorkflow.add_operator(cast(Operator, manual_sampling_operator))
         return OperatorBuilder(subWorkflow)
-

@@ -6,7 +6,7 @@ from sampling_workflow.element.Loader import Loader
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.element.loader.LoaderFactory import *
 from sampling_workflow.element.writer.WriterFactory import *
-#Wasmizer: Curating WebAssembly-driven Projects on GitHub.
+# Wasmizer: Curating WebAssembly-driven Projects on GitHub.
 
 
 # start from github
@@ -28,7 +28,7 @@ def main():
     stars = Metadata.of_integer("stars")
     forks = Metadata.of_integer("forks")
     language = Metadata.of_string("language")
-    keywords = Metadata.of_list("keywords", str)  
+    keywords = Metadata.of_list("keywords", str)
 
     wasm_in_readme = Metadata.of_boolean("wasm_in_readme")
     compilation_target_wasm = Metadata.of_boolean("compilation_target_wasm")
@@ -36,42 +36,34 @@ def main():
     workflow = (
         WorkflowBuilder()
         # Input loader: all metadata included
-        .input(Loader(
-            input_path,
-            url,
-            stars,
-            forks,
-            language,
-            keywords,
-            wasm_in_readme,
-            compilation_target_wasm
-        ))
-
+        .input(
+            Loader(
+                input_path,
+                url,
+                stars,
+                forks,
+                language,
+                keywords,
+                wasm_in_readme,
+                compilation_target_wasm,
+            )
+        )
         # * Filter repo with more than 10 stars
         .filter_operator("stars > 10")
-
         # * Filter repo with more than 12 forks
         .filter_operator("forks > 12")
-
         # * Filter repo using C or C++
         .filter_operator("language in ['C', 'C++']")
-
-
         # * Filter repo that have wasm/webassembly/emscripten/web assembly as keyword
         .filter_operator(
             "any(kw in keywords for kw in ['wasm', 'webassembly', 'emscripten', 'web assembly'])"
         )
-
         .add_metadata(Loader(input_path, url, wasm_in_readme))
-
         # * Filter repo having webassembly as important keyword in readme
         .filter_operator("wasm_in_readme")
-
         .add_metadata(Loader(input_path, url, compilation_target_wasm))
-
         # * Filter repo having 'compilation_target_webassembly'
         .filter_operator("compilation_target_wasm")
-
     )
 
     workflow.execute_workflow()

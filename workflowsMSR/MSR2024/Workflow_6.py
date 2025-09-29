@@ -16,16 +16,16 @@ systematic_selection_operator = OperatorFactory.systematic_selection_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     language = Metadata.of_string("language")
     nb_stars = Metadata.of_integer("nbStars")
     issues = Metadata.of_string("issues")
 
-    cardinality = 42 # Ambiguous, should be the number of projects to sample ?
+    cardinality = 42  # Ambiguous, should be the number of projects to sample ?
 
     op = (
-        filter_operator(language.bool_constraint(lambda x : x == "C"))
+        filter_operator(language.bool_constraint(lambda x: x == "C"))
         .chain(systematic_selection_operator(cardinality, nb_stars, 1))
         .input(json_loader("input.json", nb_stars))
         .output(json_writer("out.json"))

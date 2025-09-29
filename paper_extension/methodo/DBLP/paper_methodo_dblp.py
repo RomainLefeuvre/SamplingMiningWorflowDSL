@@ -4,7 +4,9 @@ from paper_extension.element.loader.CsvLoader import CsvLoader
 from paper_extension.element.writter.CsvWriter import CsvWriter
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 from sampling_workflow.analysis.CoverageTest import CoverageTest
-from sampling_workflow.analysis.DistributionWorkflowAnalysis import DistributionWorkflowAnalysis
+from sampling_workflow.analysis.DistributionWorkflowAnalysis import (
+    DistributionWorkflowAnalysis,
+)
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.analysis.ChiSquareAnalysis import ChiSquareAnalysis
 from sampling_workflow.constraint.BoolConstraint import BoolConstraint
@@ -18,7 +20,7 @@ import os
 
 def main():
     # Define the input path and metadata of DBLB dataset
-    input_path =  Path("paper_extension/methodo/DBLP/msr.csv")
+    input_path = Path("paper_extension/methodo/DBLP/msr.csv")
     title = Metadata.of_string("title")
     year = Metadata.of_integer("year")
     numPages = Metadata.of_integer("numPages")
@@ -26,17 +28,19 @@ def main():
     doi = Metadata.of_string("DOI")
 
     # Define the IEEE dataset path and metadata
-    IEEE_path =  Path("paper_extension/methodo/IEEE_DATA")
+    IEEE_path = Path("paper_extension/methodo/IEEE_DATA")
     iee_keyword_list = Metadata.of("IEEE Terms", list)
 
     # Workflow Declaration and Execution
-    workflow = WorkflowBuilder().input(CsvLoader(input_path, doi, title,year,numPages))\
-                                .filter_operator("2021 <= year <= 2025")\
-                                .filter_operator("numPages > 6")\
-                                .add_metadata(CsvLoader(IEEE_path, doi,iee_keyword_list))\
-                                .random_selection_operator(cardinality=65,seed=42)\
-                                .output(CsvWriter("paper_extension/methodo/DBLP/study.csv"))\
-
+    workflow = (
+        WorkflowBuilder()
+        .input(CsvLoader(input_path, doi, title, year, numPages))
+        .filter_operator("2021 <= year <= 2025")
+        .filter_operator("numPages > 6")
+        .add_metadata(CsvLoader(IEEE_path, doi, iee_keyword_list))
+        .random_selection_operator(cardinality=65, seed=42)
+        .output(CsvWriter("paper_extension/methodo/DBLP/study.csv"))
+    )
     # Workflow Execution
     workflow.execute_workflow()
     # Workflow Analysis
@@ -52,7 +56,7 @@ def main():
     WorkflowVisualizer(workflow).generate_graph()
     print(workflow)
     DistributionWorkflowAnalysis(year).analyze(workflow)
+
+
 if __name__ == "__main__":
     main()
-
-

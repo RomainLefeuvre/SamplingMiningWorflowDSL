@@ -4,6 +4,7 @@ import numpy as np
 from sampling_workflow.element.Set import Set
 from sampling_workflow.metadata.Metadata import Metadata
 
+
 class ChiSquareAnalysis:
     def __init__(self, metadata: Metadata[str]):
         self.metadata = metadata
@@ -33,7 +34,6 @@ class ChiSquareAnalysis:
     #     keywords_1 = self.extract_keywords(set_1)
     #     keywords_2 = self.extract_keywords(set_2)
     #
-
 
     def extract_keywords(self, s: Set):
         keywords = []

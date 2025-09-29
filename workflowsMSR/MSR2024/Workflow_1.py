@@ -19,8 +19,8 @@ json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 filter_operator = OperatorFactory.filter_operator
 
-def main():
 
+def main():
     language = Metadata.of_string("language")
     commit_nb = Metadata.of_integer("commitNb")
     is_archived = Metadata.of_boolean("isArchived")
@@ -34,7 +34,9 @@ def main():
     lifespan = Metadata.of_double("lifespan")
 
     # Method on his own to allow this very precise filter ?
-    has_limited_performance_bug_fixing_commit = Metadata.of_boolean("hasLimitedPerformanceBugFixingCommit")
+    has_limited_performance_bug_fixing_commit = Metadata.of_boolean(
+        "hasLimitedPerformanceBugFixingCommit"
+    )
     # Same with last criteria
 
     op = (
@@ -45,13 +47,29 @@ def main():
         .chain(filter_operator(no_bug_report.bool_constraint(lambda x: not x)))
         .chain(filter_operator(is_managed_bugtracking.bool_constraint(lambda x: not x)))
         .chain(filter_operator(lifespan.bool_constraint(lambda x: x > 1)))
-        .chain(filter_operator(has_limited_performance_bug_fixing_commit.bool_constraint(lambda x: not x)))
-        .input(json_loader("GHTorrent.json", language, commit_nb, is_archived, is_forked, has_limited_performance_bug_fixing_commit))
+        .chain(
+            filter_operator(
+                has_limited_performance_bug_fixing_commit.bool_constraint(
+                    lambda x: not x
+                )
+            )
+        )
+        .input(
+            json_loader(
+                "GHTorrent.json",
+                language,
+                commit_nb,
+                is_archived,
+                is_forked,
+                has_limited_performance_bug_fixing_commit,
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )
 
     print(op)
+
 
 if __name__ == "__main__":
     main()

@@ -9,10 +9,18 @@ import numpy as np
 import pandas as pd
 from collections import Counter
 
+
 class HistAnalysis:
-    def __init__(self, save_path: str, metadata: Metadata,top_x: int = -1, category: bool = True, sort: bool = False):
+    def __init__(
+        self,
+        save_path: str,
+        metadata: Metadata,
+        top_x: int = -1,
+        category: bool = True,
+        sort: bool = False,
+    ):
         self.metadata = metadata
-        #Wether data should be treated as categorical data or continous
+        # Wether data should be treated as categorical data or continous
         self.category = category
         self.top_x = top_x
         self.sort = sort
@@ -25,7 +33,9 @@ class HistAnalysis:
             metadata_values = []
             for element in s.get_elements():
                 if not isinstance(element, Set):
-                    metadata_value: MetadataValue = element.get_metadata_value(self.metadata)
+                    metadata_value: MetadataValue = element.get_metadata_value(
+                        self.metadata
+                    )
                     if self.metadata.type == list:
                         metadata_values.extend(metadata_value.get_value())
                     else:
@@ -50,24 +60,24 @@ class HistAnalysis:
             return
 
     def create_histogram(self, data: list, op_info: str):
-        df = pd.DataFrame(data, columns=['value'])
-        series = df['value']
+        df = pd.DataFrame(data, columns=["value"])
+        series = df["value"]
 
         unique_values = series.nunique()
 
         fig, ax = plt.subplots()
         if not self.category:
-            ax.hist(x=data,bins=min(10, unique_values))
+            ax.hist(x=data, bins=min(10, unique_values))
         else:
             if self.sort:
-                value_counts = series.value_counts(ascending=False,sort=True)
+                value_counts = series.value_counts(ascending=False, sort=True)
             else:
                 value_counts = series.value_counts().sort_index(ascending=True)
-            value_counts.plot(kind='bar', ax=ax)
-            ax.set_xlabel('Category')
+            value_counts.plot(kind="bar", ax=ax)
+            ax.set_xlabel("Category")
 
         ax.set_title(op_info)
-        ax.set_ylabel('Frequency')
+        ax.set_ylabel("Frequency")
         plt.tight_layout()
         return fig, ax
 
@@ -80,7 +90,5 @@ class HistAnalysis:
             self.show_histogram()
         plt.close(fig)
 
-
     def show_histogram(self):
         plt.show()
-

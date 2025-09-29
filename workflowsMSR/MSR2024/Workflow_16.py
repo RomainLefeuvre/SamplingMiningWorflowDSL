@@ -15,8 +15,8 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     has_pd_files = Metadata.of_boolean("hasPDFiles")
 
     op = (

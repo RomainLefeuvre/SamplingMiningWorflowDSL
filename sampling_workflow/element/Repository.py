@@ -2,6 +2,7 @@ from sampling_workflow.element.Element import Element
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.metadata.MetadataValue import MetadataValue
 
+
 class Repository(Element):
     def __init__(self, id_metadata: Metadata[str]):
         super().__init__()

@@ -5,7 +5,7 @@ from sampling_workflow.Metadata import Metadata
 
 
 # ---- Metadata ----
-url = Metadata.of_string("id")                        # repository id
+url = Metadata.of_string("id")  # repository id
 contain_correct_Dockerfile = Metadata.of_boolean("contain_correct_Dockerfile")
 
 
@@ -13,10 +13,7 @@ def main():
     workflow = (
         WorkflowBuilder()
         # Start from WOC distinct repositories
-        .input(Loader(
-            url,
-            contain_correct_Dockerfile
-        ))
+        .input(Loader(url, contain_correct_Dockerfile))
         # Keep only repositories containing a correct Dockerfile
         .filter_operator("contain_correct_Dockerfile")
         # Output the filtered repositories

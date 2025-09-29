@@ -22,18 +22,19 @@ json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
 filter_operator = OperatorFactory.filter_operator
-interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
+interactive_manual_sampling_operator = (
+    OperatorFactory.interactive_manual_sampling_operator
+)
 systematic_selection_operator = OperatorFactory.systematic_selection_operator
 
 
 def main():
-
     language = Metadata.of_string("language")
     framework = Metadata.of_string("framework")
     nb_stars = Metadata.of_integer("nbStars")
     issues = Metadata.of_string("issues")
 
-    cardinality = 42 # Ambiguous, should be the number of projects to sample ?
+    cardinality = 42  # Ambiguous, should be the number of projects to sample ?
 
     # "Projects from this search that are client-side JavaScript
     # frameworks or tools, such as React, Vue, and Bootstrap were ex-

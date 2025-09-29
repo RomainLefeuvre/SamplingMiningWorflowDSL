@@ -8,42 +8,46 @@ from sampling_workflow.element.Set import Set
 from sampling_workflow.element.Writer import Writer
 from sampling_workflow.metadata import MetadataValue
 
+
 class Operator(ABC):
-    def __init__(self,worflow):
+    def __init__(self, worflow):
         self.workflow = worflow
         self._input: Optional[Set] = None
         self._output: Optional[Set] = None
         self._output_writter: Optional[Writer] = None
         self._next_operator: Optional["Operator"] = None
         self._previous_operator: Optional["Operator"] = None
-        #Loader to add metadata on output during the execution
+        # Loader to add metadata on output during the execution
         self._loader: Optional[Loader] = None
 
     def add_metadata_loader(self, loader) -> "Operator":
         self._loader = loader
         return self
-    
+
     def add_metadata(self) -> "Operator":
-        #Add the new metadata to the existing workflow metadata list
+        # Add the new metadata to the existing workflow metadata list
         for metadata in self._loader.metadatas.values():
             if metadata != self._loader.metadata_id_name:
                 self.workflow.add_metadata_type(metadata)
 
-        #Load new metadata set
-        new_metadata_set : Set = self._loader.load_set() 
-        #Add metadata value to current output set
+        # Load new metadata set
+        new_metadata_set: Set = self._loader.load_set()
+        # Add metadata value to current output set
         for element in self._output.get_elements():
             if not isinstance(element, Set):
-                id= element.get_id()
+                id = element.get_id()
                 try:
                     new_element = new_metadata_set.get_element(id)
-                    metadata_values : List[MetadataValue] = new_element.get_all_metadata_values().values()
-                    metadata_values_filtered = [x for x in metadata_values if x.get_value() != id] 
+                    metadata_values: List[MetadataValue] = (
+                        new_element.get_all_metadata_values().values()
+                    )
+                    metadata_values_filtered = [
+                        x for x in metadata_values if x.get_value() != id
+                    ]
                     element.add_metadata_values(metadata_values_filtered)
 
                 except ValueError:
                     print(f"Element with id {id} not found in the metadata set")
-                
 
     def execute(self) -> "Operator":
         if self._loader:
@@ -114,7 +118,9 @@ class Operator(ABC):
         indent = "    " * level
         double_indent = "    " * (level + 1)
         formatted_next_operator = (
-            self._next_operator.to_string(level + 3) if self._next_operator else double_indent
+            self._next_operator.to_string(level + 3)
+            if self._next_operator
+            else double_indent
         )
 
         class_name = self.__class__.__name__
@@ -135,7 +141,7 @@ class Operator(ABC):
 
     def serialize(self, path: str):
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, 'wb') as file:
+        with open(path, "wb") as file:
             pickle.dump(self, file)
 
     @staticmethod

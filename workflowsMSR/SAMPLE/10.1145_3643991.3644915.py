@@ -42,7 +42,7 @@ from sampling_workflow.element.writer.WriterFactory import *
 
 
 def main():
-    input_path_main =  Path("github.json")
+    input_path_main = Path("github.json")
 
     default_branch = Metadata.of_string("default_branch")
     nb_workflow_config_files = Metadata.of_integer("nb_workflow_config_files")
@@ -52,44 +52,54 @@ def main():
     first_run_ci = Metadata.of_integer("first_run_ci")
     last_run_ci = Metadata.of_integer("last_run_ci")
 
-    main_workflow = (WorkflowBuilder().input(JsonLoader(input_path_main, default_branch, nb_workflow_config_files, has_active_ci_workflow, nb_runs_ci, first_run_ci, last_run_ci))
-                                .filter_operator("default_branch in ['main', 'master']")
-                                .filter_operator("nb_workflow_config_files > 0")
-                                .filter_operator("has_active_ci_workflow > 0")
-                                .manual_sampling_operator()
-                                .filter_operator("nb_runs_ci > 100")
-                                .filter_operator("last_run_ci - first_run_ci > 6")  # At least 6 months
-                                .output(CsvWriter("out_main.csv"))
-                     )
+    main_workflow = (
+        WorkflowBuilder()
+        .input(
+            JsonLoader(
+                input_path_main,
+                default_branch,
+                nb_workflow_config_files,
+                has_active_ci_workflow,
+                nb_runs_ci,
+                first_run_ci,
+                last_run_ci,
+            )
+        )
+        .filter_operator("default_branch in ['main', 'master']")
+        .filter_operator("nb_workflow_config_files > 0")
+        .filter_operator("has_active_ci_workflow > 0")
+        .manual_sampling_operator()
+        .filter_operator("nb_runs_ci > 100")
+        .filter_operator("last_run_ci - first_run_ci > 6")  # At least 6 months
+        .output(CsvWriter("out_main.csv"))
+    )
 
-
-    input_path =  Path("github.json")
+    input_path = Path("github.json")
     stars = Metadata.of_integer("stars")
     nb_runs = Metadata.of_integer("nb_runs")
     forks = Metadata.of_integer("forks")
     has_updates_in_2023 = Metadata.of_integer("has_updates_in_2023")
     url = Metadata.of_string("url")
 
-
     # Workflow for step 6
-    w_step_6 = (WorkflowBuilder().input(JsonLoader(input_path,url, stars, nb_runs, forks, has_updates_in_2023))
-                                .systematic_selection_operator(150, stars, 1)
-                                .filter_operator("nb_runs > 100")
-                                .filter_operator("stars > 5")
-                                .filter_operator("forks > 0")
-                                .filter_operator("has_updates_in_2023 > 2023")
-                                .manual_sampling_operator()
-
-                                # Steps 1 to 5
-                                .filter_operator("default_branch in ['main', 'master']")
-                                .filter_operator("nb_workflow_config_files > 0")
-                                .filter_operator("has_active_ci_workflow > 0")
-                                .manual_sampling_operator()
-                                .filter_operator("nb_runs_ci > 100")
-                                .filter_operator("last_run_ci - first_run_ci > 6")  # At least 6 months
-
-                                .output(CsvWriter("out.csv")))
-
+    w_step_6 = (
+        WorkflowBuilder()
+        .input(JsonLoader(input_path, url, stars, nb_runs, forks, has_updates_in_2023))
+        .systematic_selection_operator(150, stars, 1)
+        .filter_operator("nb_runs > 100")
+        .filter_operator("stars > 5")
+        .filter_operator("forks > 0")
+        .filter_operator("has_updates_in_2023 > 2023")
+        .manual_sampling_operator()
+        # Steps 1 to 5
+        .filter_operator("default_branch in ['main', 'master']")
+        .filter_operator("nb_workflow_config_files > 0")
+        .filter_operator("has_active_ci_workflow > 0")
+        .manual_sampling_operator()
+        .filter_operator("nb_runs_ci > 100")
+        .filter_operator("last_run_ci - first_run_ci > 6")  # At least 6 months
+        .output(CsvWriter("out.csv"))
+    )
 
     main_workflow.execute_workflow()
     w_step_6.execute_workflow()

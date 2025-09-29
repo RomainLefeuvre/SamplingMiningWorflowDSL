@@ -20,14 +20,16 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     last_commit = Metadata.of_string("lastCommit")
     nb_commits = Metadata.of_integer("nbCommits")
     nb_contributors = Metadata.of_integer("nbContributors")
 
     op = (
-        filter_operator(last_commit.bool_constraint(lambda x: "2021-01-01" < x < "2023-12-31"))
+        filter_operator(
+            last_commit.bool_constraint(lambda x: "2021-01-01" < x < "2023-12-31")
+        )
         .chain(filter_operator(nb_commits.bool_constraint(lambda x: x >= 100)))
         .chain(filter_operator(nb_contributors.bool_constraint(lambda x: x >= 3)))
         .input(json_loader("input.json", last_commit, nb_commits, nb_contributors))

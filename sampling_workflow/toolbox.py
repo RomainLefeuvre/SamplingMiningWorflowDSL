@@ -1,5 +1,6 @@
 import ast
 
+
 def get_variable_names(code_str):
     tree = ast.parse(code_str)
     variable_names = set()

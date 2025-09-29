@@ -5,16 +5,18 @@ from sampling_workflow.Metadata import Metadata
 from pathlib import Path
 
 
-
-
-
 def main():
-
     # ---- Metadata ----
     url = Metadata.of_string("id")
-    workflow = WorkflowBuilder().input(JsonLoader(
-            Path("Malavolt.json"),
-            url,
-        )).output(CsvWriter("out.csv"))
-    
+    workflow = (
+        WorkflowBuilder()
+        .input(
+            JsonLoader(
+                Path("Malavolt.json"),
+                url,
+            )
+        )
+        .output(CsvWriter("out.csv"))
+    )
+
     workflow.execute_workflow()

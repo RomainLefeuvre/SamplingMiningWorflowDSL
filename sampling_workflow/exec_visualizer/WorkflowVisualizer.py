@@ -7,6 +7,7 @@ from sampling_workflow.constraint.BoolConstraintString import BoolConstraintStri
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
 
+
 class WorkflowVisualizer:
     def __init__(self, workflow):
         self.workflow = workflow
@@ -18,10 +19,16 @@ class WorkflowVisualizer:
         dot.attr(rankdir="LR")
 
         # Add input node
-        dot.node("InputSet", label=f"INPUT SET\nSize : {self.workflow.get_workflow_input().flatten_set().size()}", shape="box")
+        dot.node(
+            "InputSet",
+            label=f"INPUT SET\nSize : {self.workflow.get_workflow_input().flatten_set().size()}",
+            shape="box",
+        )
 
         # Traverse and draw the workflow
-        last_nodes = self._add_nodes_and_edges(dot, self.workflow, parent_names=["InputSet"])
+        last_nodes = self._add_nodes_and_edges(
+            dot, self.workflow, parent_names=["InputSet"]
+        )
 
         # Add output node
         output_set = self.workflow.get_workflow_output().flatten_set()
@@ -39,8 +46,15 @@ class WorkflowVisualizer:
         # HTML wrapper
         self.create_html_page(svg_path)
 
-    def _add_nodes_and_edges(self, dot, workflow, level: int = 0, workflow_number: int = 0, op_number: int = 0,
-                             parent_names=None) -> List[str]:
+    def _add_nodes_and_edges(
+        self,
+        dot,
+        workflow,
+        level: int = 0,
+        workflow_number: int = 0,
+        op_number: int = 0,
+        parent_names=None,
+    ) -> List[str]:
         if parent_names is None:
             parent_names = []
 
@@ -52,8 +66,12 @@ class WorkflowVisualizer:
             node_name = f"{op.__class__.__name__}_{level}_{workflow_number}_{op_number}"
 
             # Label formatting
-            if isinstance(op, FilterOperator) and isinstance(op.get_constraint(), BoolConstraintString):
-                constraint = cast(BoolConstraintString, op.get_constraint()).get_string_constraint()
+            if isinstance(op, FilterOperator) and isinstance(
+                op.get_constraint(), BoolConstraintString
+            ):
+                constraint = cast(
+                    BoolConstraintString, op.get_constraint()
+                ).get_string_constraint()
                 label = f"Filter Operator\n{constraint}\nSize : {output_set.flatten_set().size()}"
             elif isinstance(op, GroupingOperator):
                 label = "Grouping\nOperator"
@@ -71,15 +89,18 @@ class WorkflowVisualizer:
                 sub_last_nodes = []
                 for i, sub_workflow in enumerate(op.get_workflows()):
                     sub_nodes = self._add_nodes_and_edges(
-                        dot, sub_workflow,
+                        dot,
+                        sub_workflow,
                         level=level + 1,
                         workflow_number=i,
                         op_number=0,
-                        parent_names=[node_name]
+                        parent_names=[node_name],
                     )
                     sub_last_nodes.extend(sub_nodes)
 
-                parent_names = sub_last_nodes  # They become the parents of the next operator
+                parent_names = (
+                    sub_last_nodes  # They become the parents of the next operator
+                )
                 last_nodes = sub_last_nodes
             else:
                 parent_names = [node_name]

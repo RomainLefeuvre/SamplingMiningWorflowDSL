@@ -5,6 +5,7 @@ from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.analysis.kolmogorov_smirnov import kolmogorov_smirnov
 
+
 class DistributionWorkflowAnalysis:
     def __init__(self, metadata: Metadata[int]):
         self.map: Dict[str, Set] = {}
@@ -36,11 +37,15 @@ class DistributionWorkflowAnalysis:
         while op is not None:
             if isinstance(op, GroupingOperator):
                 grouping_operator: GroupingOperator = op
-                self.map[f"{prefix}operator_{count}_merged"] = grouping_operator.get_merged_output()
+                self.map[f"{prefix}operator_{count}_merged"] = (
+                    grouping_operator.get_merged_output()
+                )
 
                 child_count = 1
                 for internal_w in grouping_operator.get_workflows():
-                    self.populate_map(internal_w, f"{prefix}operator_{count}_Child_{child_count}_")
+                    self.populate_map(
+                        internal_w, f"{prefix}operator_{count}_Child_{child_count}_"
+                    )
                     child_count += 1
             else:
                 self.map[f"{prefix}operator_{count}"] = op.get_output()

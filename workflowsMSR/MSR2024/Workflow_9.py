@@ -18,8 +18,8 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     language = Metadata.of_string("language")
     is_forked = Metadata.of_integer("is_forked")
     is_deleted = Metadata.of_integer("is_deleted")
@@ -30,7 +30,11 @@ def main():
         .chain(filter_operator(is_forked.bool_constraint(lambda x: not x)))
         .chain(filter_operator(is_deleted.bool_constraint(lambda x: not x)))
         .chain(filter_operator(has_markdown_file.bool_constraint(lambda x: x)))
-        .input(json_loader("GHTorrent.json", language, is_forked, is_deleted, has_markdown_file))
+        .input(
+            json_loader(
+                "GHTorrent.json", language, is_forked, is_deleted, has_markdown_file
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )

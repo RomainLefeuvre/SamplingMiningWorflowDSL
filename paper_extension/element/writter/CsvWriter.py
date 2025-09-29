@@ -4,7 +4,8 @@ from pathlib import Path
 from sampling_workflow.element.Repository import Repository
 from sampling_workflow.element.Set import Set
 
-#Note that the depth of the set should be 1 
+
+# Note that the depth of the set should be 1
 class CsvWriter:
     def __init__(self, set_path: str):
         self.set_path = Path(set_path)
@@ -24,7 +25,7 @@ class CsvWriter:
         headers = sorted(rows[0].keys())
 
         try:
-            with self.set_path.open('w', encoding='utf-8', newline='') as f:
+            with self.set_path.open("w", encoding="utf-8", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=headers)
                 writer.writeheader()
                 writer.writerows(rows)

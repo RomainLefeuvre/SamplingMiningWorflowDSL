@@ -3,7 +3,8 @@ from typing import Dict, List, TypeVar
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.metadata.MetadataValue import MetadataValue
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class Element(ABC):
     def __init__(self):
@@ -31,14 +32,13 @@ class Element(ABC):
 
     def get_all_metadata_values(self) -> Dict[Metadata, MetadataValue]:
         return self.metadata.copy()
-    
-    
-    def get_raw_metadata_values(self) -> Dict[str,T]:
+
+    def get_raw_metadata_values(self) -> Dict[str, T]:
         self
 
     def get_id(self) -> str:
         raise NotImplementedError("Subclasses must implement get_id method")
-    
+
     @abstractmethod
     def to_string(self, level: int) -> str:
         pass

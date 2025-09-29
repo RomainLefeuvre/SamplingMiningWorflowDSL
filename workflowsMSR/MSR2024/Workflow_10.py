@@ -16,12 +16,15 @@ from sampling_workflow.element.writer.WritterFactory import WritterFactory
 # *Purposive sampling to keep only one repo
 
 filter_operator = OperatorFactory.filter_operator
-interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
+interactive_manual_sampling_operator = (
+    OperatorFactory.interactive_manual_sampling_operator
+)
 systematic_selection_operator = OperatorFactory.systematic_selection_operator
 
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
+
 
 def main():
     # Take top 3 when sorted by stars, and then purpose sampling ?
@@ -41,7 +44,17 @@ def main():
         .chain(filter_operator(nb_developpers.bool_constraint(lambda x: x >= 2)))
         .chain(systematic_selection_operator(3, nb_stars, 1))
         .chain(interactive_manual_sampling_operator())
-        .input(json_loader("RepoReapers.json", language, size, has_unit_test, documentation_ratio, nb_developpers, nb_stars))
+        .input(
+            json_loader(
+                "RepoReapers.json",
+                language,
+                size,
+                has_unit_test,
+                documentation_ratio,
+                nb_developpers,
+                nb_stars,
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )

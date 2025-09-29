@@ -5,9 +5,10 @@ from sampling_workflow.operator.Operator import Operator
 
 
 class GroupingOperator(Operator):
-    def __init__(self,root_workflow ,workflows):
+    def __init__(self, root_workflow, workflows):
         super().__init__(root_workflow)
         from sampling_workflow.Workflow import Workflow
+
         self.workflows = workflows
 
     def execute(self) -> Operator:

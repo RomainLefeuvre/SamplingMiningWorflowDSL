@@ -8,6 +8,7 @@ from sampling_workflow.metadata.MetadataValue import MetadataValue
 
 from sampling_workflow.element.Repository import Repository
 
+
 class JsonLoader(Loader):
     def __init__(self, set_path: Path, *metadatas: Metadata):
         super().__init__(*metadatas)
@@ -47,7 +48,11 @@ class JsonLoader(Loader):
 
         parser = argparse.ArgumentParser(description="Sampling Workflow")
         parser.add_argument(
-            "-i", "--inputPath", type=str, default=str(default_input_path), help="Input path file"
+            "-i",
+            "--inputPath",
+            type=str,
+            default=str(default_input_path),
+            help="Input path file",
         )
         parsed_args = parser.parse_args(args)
         return vars(parsed_args)

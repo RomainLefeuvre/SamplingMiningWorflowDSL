@@ -19,8 +19,8 @@ filter_operator = OperatorFactory.filter_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     is_fork = Metadata.of_boolean("isFork")
     nb_stars = Metadata.of_integer("nbStars")
     parent_nb_stars = Metadata.of_integer("parentNbStars")
@@ -33,22 +33,41 @@ def main():
     size = Metadata.of_integer("size")
 
     op = (
-        filter_operator(is_fork.bool_constraint(lambda x: not x)
-            .or_(
+        filter_operator(
+            is_fork.bool_constraint(lambda x: not x).or_(
                 # bool constraint can't take 2 metadata (parent_nb_stars can't be used this way
-                is_fork.bool_constraint(lambda x: x).and_(nb_stars.bool_constraint(lambda x: x > parent_nb_stars))
+                is_fork.bool_constraint(lambda x: x).and_(
+                    nb_stars.bool_constraint(lambda x: x > parent_nb_stars)
+                )
             )
-        ) # or condition like this ?
+        )  # or condition like this ?
         .chain(filter_operator(nb_files.bool_constraint(lambda x: x < 500000)))
-        .chain(filter_operator(last_activity.bool_constraint(lambda x: x > "2023-01-01")
-            .or_(
-                in_search_results.bool_constraint(lambda x: x)
+        .chain(
+            filter_operator(
+                last_activity.bool_constraint(lambda x: x > "2023-01-01").or_(
+                    in_search_results.bool_constraint(lambda x: x)
+                )
             )
-        ))
+        )
         # .chain(filter_operator(last_activity.bool_constraint(lambda x: x > "2023-01-01"))) # Or returned in search results ?
-        .chain(filter_operator(searched_files_default_branch.bool_constraint(lambda x: x)))
-        .chain(filter_operator(size.bool_constraint(lambda x: x < 384 * 1024)))  # 384 KB
-        .input(json_loader("input.json", is_fork, nb_stars, parent_nb_stars, nb_files, last_activity, searched_files_default_branch, size))
+        .chain(
+            filter_operator(searched_files_default_branch.bool_constraint(lambda x: x))
+        )
+        .chain(
+            filter_operator(size.bool_constraint(lambda x: x < 384 * 1024))
+        )  # 384 KB
+        .input(
+            json_loader(
+                "input.json",
+                is_fork,
+                nb_stars,
+                parent_nb_stars,
+                nb_files,
+                last_activity,
+                searched_files_default_branch,
+                size,
+            )
+        )
         .output(json_writer("out.json"))
         .execute_workflow()
     )

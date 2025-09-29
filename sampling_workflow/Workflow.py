@@ -1,6 +1,8 @@
 from typing import List, Optional, cast, TypeVar
 from sampling_workflow import CompleteWorkflow
-from sampling_workflow.analysis.DistributionWorkflowAnalysis import DistributionWorkflowAnalysis
+from sampling_workflow.analysis.DistributionWorkflowAnalysis import (
+    DistributionWorkflowAnalysis,
+)
 from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
 from sampling_workflow.analysis.YamaneWorkflowAnalysis import YamaneWorkflowAnalysis
 from sampling_workflow.constraint.Constraint import Constraint
@@ -12,10 +14,15 @@ from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.Operator import Operator
 from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
 from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import RandomSelectionOperator
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import ManualSamplingOperator
+from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+    RandomSelectionOperator,
+)
+from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+    ManualSamplingOperator,
+)
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class Workflow:
     def __init__(self):
@@ -28,7 +35,7 @@ class Workflow:
 
     def get_all_Metadata(self) -> List[Metadata]:
         return self._metadata
-    
+
     def add_metadata_type(self, metadata: Metadata) -> "Workflow":
         self._metadata.append(metadata)
         return self
@@ -38,27 +45,31 @@ class Workflow:
             raise ValueError("At least one workflow must be provided.")
 
         # Create a GroupingOperator with the provided sub workflows
-        grouping_operator = GroupingOperator(self,*workflows)
+        grouping_operator = GroupingOperator(self, *workflows)
 
         # Add the grouping operator to the current workflow
         self.add_operator(cast(Operator, grouping_operator))
         return self
 
     def random_selection_operator(self, cardinality: int, seed: int = -1) -> "Workflow":
-        random_selection_operator = RandomSelectionOperator(self,cardinality=cardinality, seed=seed)
+        random_selection_operator = RandomSelectionOperator(
+            self, cardinality=cardinality, seed=seed
+        )
         self.add_operator(cast(Operator, random_selection_operator))
         return self
 
     def filter_operator(self, constraint: Constraint):
-        filter_operator = FilterOperator(self,constraint)
+        filter_operator = FilterOperator(self, constraint)
         self.add_operator(cast(Operator, filter_operator))
         return self
 
     def manual_sampling_operator(self, *ids: T) -> "Workflow":
         if not ids:
-            raise ValueError("At least one element must be provided for manual sampling.")
+            raise ValueError(
+                "At least one element must be provided for manual sampling."
+            )
 
-        manual_sampling_operator = ManualSamplingOperator(self,*ids)
+        manual_sampling_operator = ManualSamplingOperator(self, *ids)
         self.add_operator(cast(Operator, manual_sampling_operator))
         return self
 
@@ -66,11 +77,10 @@ class Workflow:
         self._metadata = list(loader.metadatas.values())
         self._input = loader.load_set()
         return self
-    
+
     def add_metadata(self, loader: Loader) -> "Workflow":
-       
-        #Add metadata value to last declared operator 
-        current_operator :Operator = self.get_last_operator()
+        # Add metadata value to last declared operator
+        current_operator: Operator = self.get_last_operator()
         if current_operator:
             current_operator.add_metadata_loader(loader)
         return self
@@ -82,9 +92,12 @@ class Workflow:
             last_operator.output(writer)
         return self
 
-
     def is_complete(self) -> bool:
-        return self._root is not None and self._input is not None and self._output_writer is not None
+        return (
+            self._root is not None
+            and self._input is not None
+            and self._output_writer is not None
+        )
 
     def add_operator(self, operator: Operator):
         # If the workflow is empty, set the root operator
@@ -135,7 +148,7 @@ class Workflow:
         while current._next_operator is not None:
             current = current._next_operator
         return current
-    
+
     def get_operator_by_position(self, position: int) -> Optional[Operator]:
         if position < 0:
             return None
@@ -158,6 +171,7 @@ class Workflow:
     def print(self) -> "Workflow":
         print(self)
         return self
+
     def analyze_workflow(self, metadata: Metadata[T]) -> "Workflow":
         # Perform analysis on a given metadata
         # workflow_analysis = HistWorkflowAnalysis(metadata)
@@ -187,7 +201,3 @@ class Workflow:
 
         res += "\n" + indent + "]]]\n"
         return res
-
-
-
-

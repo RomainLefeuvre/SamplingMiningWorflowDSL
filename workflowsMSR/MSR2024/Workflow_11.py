@@ -12,10 +12,13 @@ from sampling_workflow.element.writer.WritterFactory import WritterFactory
 # *Exclude repos without declared required dependencies
 
 filter_operator = OperatorFactory.filter_operator
-interactive_manual_sampling_operator = OperatorFactory.interactive_manual_sampling_operator
+interactive_manual_sampling_operator = (
+    OperatorFactory.interactive_manual_sampling_operator
+)
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
+
 
 def main():
     # Last update = last commit ?
@@ -25,7 +28,6 @@ def main():
     title = Metadata.of_string("title")
     owner = Metadata.of_string("owner")
     last_commit = Metadata.of_string("lastCommit")
-
 
     op = (
         filter_operator(nb_stars.bool_constraint(lambda x: x >= 100))

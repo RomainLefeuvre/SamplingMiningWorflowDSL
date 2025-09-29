@@ -17,8 +17,8 @@ systematic_selection_operator = OperatorFactory.systematic_selection_operator
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 
-def main():
 
+def main():
     language = Metadata.of_string("language")
     nb_stars = Metadata.of_integer("nbStars")
     nb_commits = Metadata.of_integer("nbCommits")

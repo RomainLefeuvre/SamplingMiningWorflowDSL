@@ -39,13 +39,17 @@ class CoverageTest:
 
         # Calcul de la couverture
         if not set_1_unique:
-            print(f"Aucune valeur à évaluer pour {self.metadata.name}. Couverture = 0.0")
+            print(
+                f"Aucune valeur à évaluer pour {self.metadata.name}. Couverture = 0.0"
+            )
             return 0.0
 
         intersection = set_1_unique.intersection(set_2_unique)
         coverage = len(intersection) / len(set_1_unique)
 
-        print(f"Coverage for {self.metadata.name} (top {top_x if top_x is not None else 'all'}): {coverage:.2f}")
+        print(
+            f"Coverage for {self.metadata.name} (top {top_x if top_x is not None else 'all'}): {coverage:.2f}"
+        )
         return coverage
 
     def flatten(self, values):

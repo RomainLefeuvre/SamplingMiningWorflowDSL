@@ -2,6 +2,7 @@ import http.server
 import socketserver
 import webbrowser
 
+
 def serve_html_page(port: int = 8000, html_file: str = "workflow.html"):
     handler = http.server.SimpleHTTPRequestHandler
     with socketserver.TCPServer(("", port), handler) as httpd:
@@ -13,5 +14,6 @@ def serve_html_page(port: int = 8000, html_file: str = "workflow.html"):
             print("\nShutting down the server...")
             httpd.shutdown()
             httpd.server_close()
+
 
 serve_html_page()

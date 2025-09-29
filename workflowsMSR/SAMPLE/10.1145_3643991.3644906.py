@@ -10,14 +10,17 @@ from sampling_workflow.element.writer.WriterFactory import *
 
 # * Retrieve the GIRT-Data dataset
 
+
 def main():
-    input_path =  Path("girt-dataset.json")
+    input_path = Path("girt-dataset.json")
     url = Metadata.of_string("url")
 
-
     # Workflow Declaration and Execution
-    workflow = (WorkflowBuilder().input(JsonLoader(input_path,url))
-                                .output(CsvWriter("out.csv")))
+    workflow = (
+        WorkflowBuilder()
+        .input(JsonLoader(input_path, url))
+        .output(CsvWriter("out.csv"))
+    )
 
     workflow.execute_workflow()
 

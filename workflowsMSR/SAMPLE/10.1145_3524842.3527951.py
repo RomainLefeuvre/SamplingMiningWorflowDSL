@@ -5,16 +5,18 @@ from sampling_workflow.Metadata import Metadata
 from pathlib import Path
 
 from sampling_workflow.element.Loader import Loader
+
+
 def main():
     url = Metadata.of_string("id")
 
-
     workflow = (
         WorkflowBuilder()
-        .input(Loader(
-            url,
-           
-        ))
+        .input(
+            Loader(
+                url,
+            )
+        )
         .output(CsvWriter("rodrigues.csv"))
     )
 

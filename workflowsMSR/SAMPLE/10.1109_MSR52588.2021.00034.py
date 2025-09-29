@@ -14,11 +14,7 @@ def main():
     workflow = (
         WorkflowBuilder()
         # Start from Sourcegraph
-        .input(Loader(
-            url,
-            presence_of_flaky_annotation,
-            flaky_nb
-        ))
+        .input(Loader(url, presence_of_flaky_annotation, flaky_nb))
         # Keep projects that have flaky annotation
         .filter_operator("presence_of_flaky_annotation")
         # Keep projects with more than 30 flaky annotations
