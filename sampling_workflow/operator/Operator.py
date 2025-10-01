@@ -83,7 +83,7 @@ class Operator(ABC):
         for element in self._output.get_elements():
             if isinstance(element, Set):
                 # Recursively flatten nested Sets
-                result.elements.extend(element.flatten_set().get_elements())
+                result.union(element.flatten_set())
             else:
                 # Add non-Set elements directly
                 result.add_element(element)

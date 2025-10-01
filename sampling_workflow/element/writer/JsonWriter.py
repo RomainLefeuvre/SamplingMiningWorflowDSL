@@ -31,7 +31,7 @@ class CustomEncoder(json.JSONEncoder):
 
         # Serialize Set
         if isinstance(obj, Set):
-            return [self.default(e) for e in obj.elements]
+            return [self.default(e) for e in obj.get_elements()]
 
         # Default fallback
         return super().default(obj)

@@ -15,7 +15,7 @@ class CsvWriter:
             raise TypeError("Expected a Set object")
 
         # Depth-1: elements are Repository instances
-        repositories = set_obj.elements
+        repositories = set_obj.elements.values()
 
         if not repositories:
             raise ValueError("The set is empty. Nothing to write.")
