@@ -31,15 +31,25 @@ class Metadata[T]:
         return BoolComparator(self, comparator)
 
     def create_metadata_value(self, value):
+        typed_value=value
         if not isinstance(value, self.type):
-            raise TypeError(f"Value {value} is not of type {self.type.__name__}")
+            try:
+                typed_value=self.type(value) #instantiate the type to convert it
+            except Exception as e:
+                raise TypeError(f"Value {value} is not of type {self.type} and cannot be converted to it.",e) from e
         from sampling_workflow.metadata.MetadataValue import MetadataValue
 
-        return MetadataValue(self, value)
+        return MetadataValue(self, typed_value)
 
     @staticmethod
     def of(name: str, type_: type[T]):
         return Metadata(name, type_)
+    
+    @staticmethod
+    def of_date(name: str):
+        from sampling_workflow.metadata.MetadataDate import MetadataDate
+
+        return MetadataDate(name)
 
     @staticmethod
     def of_string(name: str):

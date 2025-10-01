@@ -9,6 +9,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "python-dateutil>=2.9.0",
     "graphviz>=0.21",
     "matplotlib>=3.10.6",
     "pandas>=2.3.2",

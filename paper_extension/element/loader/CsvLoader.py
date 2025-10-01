@@ -76,9 +76,10 @@ class CsvLoader(Loader):
                     if string_list != ""
                     else []
                 )
+                metadata_value=metadata.create_metadata_value(value)
             else:
-                value = metadata.type(csv_row.get(metadata.name))
-            metadata_values.append(metadata.create_metadata_value(value))
+                metadata_value = metadata.create_metadata_value(csv_row.get(metadata.name))
+            metadata_values.append(metadata_value)
 
         repo.add_metadata_values(metadata_values)
         return repo
