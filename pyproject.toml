@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/paper_extension", "src/sampling_workflow"]
+packages = ["paper_extension", "sampling_workflow"]
 
 [tool.ruff.lint]
 extend-select = [
