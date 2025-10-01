@@ -1,13 +1,12 @@
-from sampling_workflow.element.CsvWriter import CsvWriter
-from sampling_workflow.Metadata import Metadata
 
+from paper_extension.element.writter.CsvWriter import CsvWriter
 from sampling_workflow.element.Loader import Loader
+from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 # ---- Metadata ----
 url = Metadata.of_string("id")
 referenced_on_f_droid = Metadata.of_boolean("referenced_on_f_droid")
-
 
 def main():
     workflow = (

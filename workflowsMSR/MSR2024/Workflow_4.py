@@ -1,6 +1,5 @@
-from sampling_workflow.element.writer.WritterFactory import WritterFactory
-
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
+from sampling_workflow.element.writer.WriterFactory import WritterFactory
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
 

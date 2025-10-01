@@ -69,7 +69,7 @@ class CsvLoader(Loader):
         for metadata in self.metadatas.values():
             # Convert string value from CSV using the type defined in metadata
 
-            if metadata.type == list:
+            if metadata.type is list:
                 string_list = csv_row.get(metadata.name)
                 value = (
                     metadata.type(csv_row.get(metadata.name).split(";"))

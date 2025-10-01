@@ -1,7 +1,7 @@
 
-from sampling_workflow.Metadata import Metadata
 
 from sampling_workflow.element.Loader import Loader
+from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 url = Metadata.of_string("url")

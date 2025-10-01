@@ -8,7 +8,7 @@ from sampling_workflow.element.Set import Set
 from sampling_workflow.element.Writer import Writer
 
 if TYPE_CHECKING:
-    from sampling_workflow.metadata import MetadataValue
+    from sampling_workflow.metadata.MetadataValue import MetadataValue
 
 
 class Operator(ABC):

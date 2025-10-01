@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.element.loader.LoaderFactory import *
-from sampling_workflow.element.writer.WriterFactory import *
+from sampling_workflow.element.loader import JsonLoader
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
@@ -14,8 +13,8 @@ from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 def main():
     input_path = Path("input.json")
     url = Metadata.of_string("url")
-    is_code_available_on_github = Metadata.of_boolean("is_code_available_on_github")
-    nb_downloads = Metadata.of_integer("nb_downloads")
+    is_code_available_on_github = Metadata.of_boolean("is_code_available_on_github")  # noqa: F841
+    nb_downloads = Metadata.of_integer("nb_downloads")  # noqa: F841
 
     # Workflow Declaration and Execution
     workflow = (

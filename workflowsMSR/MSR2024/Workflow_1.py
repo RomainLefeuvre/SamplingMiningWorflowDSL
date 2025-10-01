@@ -1,8 +1,8 @@
 # Enhancing Performance Bug Prediction Using Performance Code Metrics
 # DOI : 10.1145/3643991.3644920
-from sampling_workflow.element.writer.WritterFactory import WritterFactory
 
 from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
+from sampling_workflow.element.writer.WriterFactory import WritterFactory
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.operator.OperatorFactory import OperatorFactory
 
@@ -20,7 +20,7 @@ json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer
 filter_operator = OperatorFactory.filter_operator
 
-
+#Todo fix old syntax
 def main():
     language = Metadata.of_string("language")
     commit_nb = Metadata.of_integer("commitNb")

@@ -17,11 +17,9 @@ def main():
 
     input_path = os.path.join(os.path.dirname(__file__), "input.json")
 
-    url = Metadata.of_string("url")
     language = Metadata.of_string("language")
     id_ = Metadata.of_string("id")
     commit_nb = Metadata.of_integer("commitNb")
-    year = Metadata.of_integer("year")
 
     w = (
         WorkflowBuilder()

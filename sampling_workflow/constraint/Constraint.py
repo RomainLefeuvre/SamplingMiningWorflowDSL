@@ -1,7 +1,10 @@
 import abc
-from typing import TypeVar
+from typing import TYPE_CHECKING, TypeVar
 
 from sampling_workflow.metadata.Metadata import Metadata
+
+if TYPE_CHECKING:
+    from sampling_workflow.Workflow import Workflow
 
 T = TypeVar("T")
 

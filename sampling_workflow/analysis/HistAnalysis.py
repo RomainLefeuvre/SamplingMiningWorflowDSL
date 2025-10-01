@@ -38,7 +38,7 @@ class HistAnalysis:
                     metadata_value: MetadataValue = element.get_metadata_value(
                         self.metadata
                     )
-                    if self.metadata.type == list:
+                    if self.metadata.type is list:
                         metadata_values.extend(metadata_value.get_value())
                     else:
                         metadata_values.append(metadata_value.get_value())

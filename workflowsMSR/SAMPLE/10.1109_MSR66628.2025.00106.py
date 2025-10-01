@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.element.loader.LoaderFactory import *
-from sampling_workflow.element.writer.WriterFactory import *
+from sampling_workflow.element.loader import JsonLoader
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
@@ -24,7 +23,7 @@ def main():
     input_path = Path("prompt_set.json")
     contributors_nb = Metadata.of_integer("contributors_nb")
     stars = Metadata.of_integer("stars")
-    number_of_prompts_after_filtering = Metadata.of_integer(
+    number_of_prompts_after_filtering = Metadata.of_integer(  # noqa: F841
         "number_of_prompts_after_filtering"
     )
     is_dev_active_in_6_months = Metadata.of_boolean("is_dev_active_in_6_months")

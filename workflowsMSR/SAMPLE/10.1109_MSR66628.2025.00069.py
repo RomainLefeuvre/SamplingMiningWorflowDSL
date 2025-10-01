@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.element.loader.LoaderFactory import *
+from sampling_workflow.element.Loader import Loader
+from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 # It Works (only) on My Machine: A Study on Reproducibility Smells in Ansible Scripts.
@@ -14,7 +17,6 @@ from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
 def main():
     input_path = Path("ansible-galaxy.json")
-    oci_ansible_dataset = Path("oci-ansible-dataset.json")
     downloads_nb = Metadata.of_integer("downloads")
     scripts_nb = Metadata.of_integer("scripts_nb")
     stars_nb = Metadata.of_integer("stars")
@@ -28,7 +30,7 @@ def main():
     workflow = (
         WorkflowBuilder()
         .input(
-            JsonLoader(input_path, url, downloads_nb, scripts_nb, stars_nb, commits_nb)
+            Loader(input_path, url, downloads_nb, scripts_nb, stars_nb, commits_nb)
         )
         .systematic_selection_operator(
             cardinality, downloads_nb, 1

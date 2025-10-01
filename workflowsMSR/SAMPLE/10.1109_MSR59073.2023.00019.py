@@ -1,8 +1,7 @@
 from pathlib import Path
 
 from paper_extension.element.writter.CsvWriter import CsvWriter
-from sampling_workflow.element.loader.LoaderFactory import *
-from sampling_workflow.element.writer.WriterFactory import *
+from sampling_workflow.element.loader import JsonLoader
 from sampling_workflow.metadata.Metadata import Metadata
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
 
@@ -42,7 +41,7 @@ def main():
     automl_fw_extraction.execute_workflow()
     # Identified AutoML frameworks from the paper in part III/1
     # Expected result from the first workflow
-    extracted_frameworks = ["nni", "tpot", "autokeras", "auto-sklearn", "autogluon"]
+    extracted_frameworks = ["nni", "tpot", "autokeras", "auto-sklearn", "autogluon"]  # noqa: F841
 
     downstream_repos_workflow = (
         WorkflowBuilder()

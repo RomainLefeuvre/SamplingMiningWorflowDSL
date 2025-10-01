@@ -32,6 +32,13 @@ class Set(Element):
         )
         return self
 
+    def get_depth(self) -> int:
+        max_depth = 1
+        for element in self.elements:
+            if isinstance(element, Set):
+                max_depth = max(max_depth, 1 + element.get_depth())
+        return max_depth
+    
     def union(self, other: "Set") -> "Set":
         self.elements.append(other.elements)
         return self
