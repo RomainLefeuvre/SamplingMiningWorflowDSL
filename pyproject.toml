@@ -3,11 +3,15 @@ requires = ["hatchling", "setuptools>=65.0", "wheel"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pythonworkflowdsl"
+name = "sampling_mining_workflows_dsl"
 version = "0.1.0"
-description = "Add your description here"
+description = "A python internal DSL to specify, execute and analyse mining software repositories sampling workflows."
 readme = "README.md"
 requires-python = ">=3.13"
+authors = [
+    { name = "Romain Lefeuvre", email = "romain.lefeuvre@inria.fr"},
+    { name = "Maiwenn Le Gouaster", email = "maiwenn.le-goasteller@irisa.fr"}
+]
 dependencies = [
     "python-dateutil>=2.9.0",
     "graphviz>=0.21",
@@ -17,7 +21,7 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["paper_extension", "sampling_workflow"]
+packages = ["src"]
 
 [tool.ruff.lint]
 extend-select = [
