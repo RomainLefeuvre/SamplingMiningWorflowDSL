@@ -1,5 +1,6 @@
 from collections.abc import Callable
-from typing import TypeVar
+from typing import List, TypeVar
+
 
 T = TypeVar("T")
 
@@ -102,3 +103,9 @@ class Metadata[T]:
     @staticmethod
     def of_byte(name: str):
         return Metadata(name, bytes)
+    
+    @staticmethod
+    def of_list(name: str, type,transfo:Callable[[str],List[T]]=None):
+        from sampling_workflow.metadata.MetadataList import MetadataList
+
+        return MetadataList(name,type,transfo)

@@ -59,16 +59,16 @@ class CsvLoader(Loader):
         for metadata in self.metadatas.values():
             # Convert string value from CSV using the type defined in metadata
 
-            if metadata.type is list:
-                string_list = csv_row.get(metadata.name)
-                value = (
-                    metadata.type(csv_row.get(metadata.name).split(";"))
-                    if string_list != ""
-                    else []
-                )
-                metadata_value=metadata.create_metadata_value(value)
-            else:
-                metadata_value = metadata.create_metadata_value(csv_row.get(metadata.name))
+            # if metadata.type is list:
+            #     string_list = csv_row.get(metadata.name)
+            #     value = (
+            #         metadata.type(csv_row.get(metadata.name).split(";"))
+            #         if string_list != ""
+            #         else []
+            #     )
+            #     metadata_value=metadata.create_metadata_value(value)
+            # else:
+            metadata_value = metadata.create_metadata_value(csv_row.get(metadata.name))
             metadata_values.append(metadata_value)
 
         repo.add_metadata_values(metadata_values)

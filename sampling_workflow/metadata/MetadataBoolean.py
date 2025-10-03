@@ -11,3 +11,4 @@ class MetadataBoolean(Metadata[bool]):
 
     def is_false(self) -> BoolConstraint:
         return BoolConstraint(lambda x: not x, self)
+
