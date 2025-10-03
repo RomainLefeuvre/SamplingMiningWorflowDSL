@@ -2,6 +2,7 @@ from collections.abc import Callable
 from typing import TypeVar
 
 T = TypeVar("T")
+V = TypeVar("V")
 
 
 class Metadata[T]:
@@ -108,3 +109,9 @@ class Metadata[T]:
         from sampling_workflow.metadata.MetadataList import MetadataList
 
         return MetadataList(name,type,transfo)
+
+    @staticmethod
+    def of_dict(name: str, key_type, value_type, transfo:Callable[[str],dict[T, V]]=None):
+        from sampling_workflow.metadata.MetadataDict import MetadataDict
+
+        return MetadataDict(name,key_type,value_type,transfo)
