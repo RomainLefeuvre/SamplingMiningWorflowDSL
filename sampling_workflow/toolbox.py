@@ -25,3 +25,18 @@ def get_variable_names(code_str):
 
     VariableVisitor().visit(tree)
     return variable_names
+
+
+def setup_logging(log_file="app.log", level="DEBUG"):
+    import logging
+
+    numeric_level = getattr(logging, level.upper(), None)
+    if not isinstance(numeric_level, int):
+        raise ValueError(f"Invalid log level: {level}")
+
+    logging.basicConfig(
+        level=numeric_level,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        filename=log_file,
+        filemode="a",  # Append to file (use "w" to overwrite each run)
+    )

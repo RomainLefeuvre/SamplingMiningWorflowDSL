@@ -11,8 +11,12 @@ from sampling_workflow.element.loader.CsvLoader import CsvLoader
 from sampling_workflow.element.writer.CsvWriter import CsvWriter
 # from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
 from sampling_workflow.WorkflowBuilder import WorkflowBuilder
+from sampling_workflow.toolbox import setup_logging
 
 def main():
+
+    setup_logging(level="INFO",log_file="log.txt")
+
     # Define the input path and metadata of DBLB dataset
     input_path = Path("paper_extension/methodo/DBLP/msr.csv")
     title = Metadata.of_string("title")

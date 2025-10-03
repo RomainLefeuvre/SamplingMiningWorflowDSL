@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
-
+import logging
 from sampling_workflow.element.Loader import Loader
 from sampling_workflow.element.Repository import Repository
 from sampling_workflow.element.Set import Set
@@ -40,9 +40,7 @@ class CsvLoader(Loader):
                             if repository is not None:
                                 self.set.add_element(repository)
                         except Exception as e:
-                            print(
-                                f"Error fetching row: {row}. Error: {e} from {csv_file}"
-                            )
+                            logging.info(f"Row skipped due to {e} : {row}")
             return self.set
         except OSError as e:
             raise RuntimeError("Error reading the CSV file", e) from e
@@ -51,25 +49,19 @@ class CsvLoader(Loader):
         id_metadata_value = csv_row.get(self.metadata_id_name)
 
         if id_metadata_value is None or id_metadata_value == "":
-            raise ValueError(f"Invalid ID '{self.metadata_id_name}' in row: {csv_row}")
+            raise ValueError(f"Invalid ID {self.metadata_id_name}")
 
         repo = Repository(self.metadatas.get(self.metadata_id_name))
 
         metadata_values: list[MetadataValue] = []
         for metadata in self.metadatas.values():
-            # Convert string value from CSV using the type defined in metadata
-
-            # if metadata.type is list:
-            #     string_list = csv_row.get(metadata.name)
-            #     value = (
-            #         metadata.type(csv_row.get(metadata.name).split(";"))
-            #         if string_list != ""
-            #         else []
-            #     )
-            #     metadata_value=metadata.create_metadata_value(value)
-            # else:
-            metadata_value = metadata.create_metadata_value(csv_row.get(metadata.name))
-            metadata_values.append(metadata_value)
+            try:
+                metadata_value = metadata.create_metadata_value(csv_row.get(metadata.name))
+                metadata_values.append(metadata_value)
+            except Exception as e:
+                raise ValueError(
+                    f"Error creating metadata value for '{metadata.name}' with value '{csv_row.get(metadata.name)}'",
+                ) from e
 
         repo.add_metadata_values(metadata_values)
         return repo
