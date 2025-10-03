@@ -1,12 +1,12 @@
 
 from typing import TYPE_CHECKING
 
-from sampling_workflow.analysis.kolmogorov_smirnov import kolmogorov_smirnov
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from src.analysis.kolmogorov_smirnov import kolmogorov_smirnov
+from src.metadata.Metadata import Metadata
+from src.operator.clustering.GroupingOperator import GroupingOperator
 
 if TYPE_CHECKING:
-    from sampling_workflow.element.Set import Set
+    from src.element.Set import Set
 
 
 class DistributionWorkflowAnalysis:

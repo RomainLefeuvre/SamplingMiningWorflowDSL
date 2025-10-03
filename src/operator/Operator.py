@@ -3,12 +3,12 @@ import pickle
 from abc import ABC
 from typing import TYPE_CHECKING, Optional
 
-from sampling_workflow.element.Loader import Loader
-from sampling_workflow.element.Set import Set
-from sampling_workflow.element.Writer import Writer
+from src.element.Loader import Loader
+from src.element.Set import Set
+from src.element.Writer import Writer
 
 if TYPE_CHECKING:
-    from sampling_workflow.metadata.MetadataValue import MetadataValue
+    from src.metadata.MetadataValue import MetadataValue
 
 
 class Operator(ABC):

@@ -1,13 +1,13 @@
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
-from sampling_workflow.element.loader.CsvLoader import CsvLoader
-from sampling_workflow.element.Repository import Repository
-from sampling_workflow.element.Set import Set
-from sampling_workflow.github_seart.metadata import all_metadatas
+from src.element.loader.CsvLoader import CsvLoader
+from src.element.Repository import Repository
+from src.element.Set import Set
+from src.github_seart.metadata import all_metadatas
 
 if TYPE_CHECKING:
-    from sampling_workflow.metadata.MetadataValue import MetadataValue
+    from src.metadata.MetadataValue import MetadataValue
 
 class SEARTGithubLoader(CsvLoader):
     def __init__(self, set_path: Path):

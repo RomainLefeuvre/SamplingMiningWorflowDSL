@@ -1,4 +1,4 @@
-from sampling_workflow.element.writer.JsonWriter import JsonWriter
+from src.element.writer.JsonWriter import JsonWriter
 
 
 class WritterFactory:

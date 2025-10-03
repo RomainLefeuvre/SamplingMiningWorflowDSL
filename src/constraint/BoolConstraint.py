@@ -1,9 +1,9 @@
 from collections.abc import Callable
 from typing import TypeVar
 
-from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.element.Element import Element
-from sampling_workflow.metadata.Metadata import Metadata
+from src.constraint.Constraint import Constraint
+from src.element.Element import Element
+from src.metadata.Metadata import Metadata
 
 T = TypeVar("T")
 

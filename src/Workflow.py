@@ -1,24 +1,24 @@
 from typing import TypeVar, cast
 
-from sampling_workflow import CompleteWorkflow
-from sampling_workflow.analysis.DistributionWorkflowAnalysis import (
+from src import CompleteWorkflow
+from src.analysis.DistributionWorkflowAnalysis import (
     DistributionWorkflowAnalysis,
 )
-from sampling_workflow.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
-from sampling_workflow.analysis.YamaneWorkflowAnalysis import YamaneWorkflowAnalysis
-from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.element.Element import Element
-from sampling_workflow.element.Loader import Loader
-from sampling_workflow.element.Set import Set
-from sampling_workflow.element.Writer import Writer
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
-from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+from src.analysis.HistWorkflowAnalysis import HistWorkflowAnalysis
+from src.analysis.YamaneWorkflowAnalysis import YamaneWorkflowAnalysis
+from src.constraint.Constraint import Constraint
+from src.element.Element import Element
+from src.element.Loader import Loader
+from src.element.Set import Set
+from src.element.Writer import Writer
+from src.metadata.Metadata import Metadata
+from src.operator.clustering.GroupingOperator import GroupingOperator
+from src.operator.Operator import Operator
+from src.operator.selection.filter.FilterOperator import FilterOperator
+from src.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
 )
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+from src.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
 

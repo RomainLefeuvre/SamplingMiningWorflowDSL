@@ -1,11 +1,11 @@
 
 from typing import TYPE_CHECKING
 
-from sampling_workflow.element.Set import Set
-from sampling_workflow.operator.Operator import Operator
+from src.element.Set import Set
+from src.operator.Operator import Operator
 
 if TYPE_CHECKING:
-    from sampling_workflow.Workflow import Workflow
+    from src.Workflow import Workflow
 
 
 class GroupingOperator(Operator):

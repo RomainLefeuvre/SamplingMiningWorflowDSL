@@ -1,12 +1,12 @@
 from typing import TYPE_CHECKING, TypeVar
 
-from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.element.Element import Element
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.Workflow import Workflow
+from src.constraint.Constraint import Constraint
+from src.element.Element import Element
+from src.metadata.Metadata import Metadata
+from src.Workflow import Workflow
 
 if TYPE_CHECKING:
-    from sampling_workflow.constraint.BoolConstraint import BoolConstraint
+    from src.constraint.BoolConstraint import BoolConstraint
 
 T = TypeVar("T")
 

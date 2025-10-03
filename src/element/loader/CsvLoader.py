@@ -2,13 +2,13 @@ import csv
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 import logging
-from sampling_workflow.element.Loader import Loader
-from sampling_workflow.element.Repository import Repository
-from sampling_workflow.element.Set import Set
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element.Loader import Loader
+from src.element.Repository import Repository
+from src.element.Set import Set
+from src.metadata.Metadata import Metadata
 
 if TYPE_CHECKING:
-    from sampling_workflow.metadata.MetadataValue import MetadataValue
+    from src.metadata.MetadataValue import MetadataValue
 
 
 class CsvLoader(Loader):

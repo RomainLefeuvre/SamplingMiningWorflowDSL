@@ -1,5 +1,5 @@
 
-from sampling_workflow.operator.selection.sampling.SamplingOperator import (
+from src.operator.selection.sampling.SamplingOperator import (
     SamplingOperator,
 )
 

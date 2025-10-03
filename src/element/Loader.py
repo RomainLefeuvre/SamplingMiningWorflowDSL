@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from sampling_workflow.element import Set
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element import Set
+from src.metadata.Metadata import Metadata
 
 
 class Loader(ABC):

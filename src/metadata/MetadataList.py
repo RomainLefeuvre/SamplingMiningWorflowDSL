@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from typing import TypeVar
 
-from sampling_workflow.metadata.Metadata import Metadata
+from src.metadata.Metadata import Metadata
 
 T = TypeVar("T")
 class MetadataList(Metadata[list[T]]):

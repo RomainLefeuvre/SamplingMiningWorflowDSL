@@ -1,8 +1,8 @@
 import csv
 from pathlib import Path
 
-from sampling_workflow.element.Repository import Repository
-from sampling_workflow.element.Set import Set
+from src.element.Repository import Repository
+from src.element.Set import Set
 
 
 # Note that the depth of the set should be 1

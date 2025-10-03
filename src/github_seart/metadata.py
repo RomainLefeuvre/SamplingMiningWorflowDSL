@@ -2,8 +2,8 @@
 import json
 from typing import TypedDict
 
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.metadata.MetadataValue import MetadataValue
+from src.metadata.Metadata import Metadata
+from src.metadata.MetadataValue import MetadataValue
 
 
 class LanguageMetrics(TypedDict):

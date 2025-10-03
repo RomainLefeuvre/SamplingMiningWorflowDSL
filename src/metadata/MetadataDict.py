@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from typing import TypeVar
 
-from sampling_workflow.metadata.Metadata import Metadata
+from src.metadata.Metadata import Metadata
 
 K, V = TypeVar("K"), TypeVar("V")
 

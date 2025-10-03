@@ -1,5 +1,5 @@
-from sampling_workflow.analysis.WorkflowAnalysis import WorkflowAnalysis
-from sampling_workflow.analysis.YamaneTest import YamaneTest
+from src.analysis.WorkflowAnalysis import WorkflowAnalysis
+from src.analysis.YamaneTest import YamaneTest
 
 
 class YamaneWorkflowAnalysis(WorkflowAnalysis):

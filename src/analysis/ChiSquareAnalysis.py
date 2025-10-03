@@ -2,8 +2,8 @@ from collections import Counter
 
 from scipy.stats import chisquare
 
-from sampling_workflow.element.Set import Set
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element.Set import Set
+from src.metadata.Metadata import Metadata
 
 
 class ChiSquareAnalysis:

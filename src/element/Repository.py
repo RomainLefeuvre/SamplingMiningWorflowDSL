@@ -1,5 +1,5 @@
-from sampling_workflow.element.Element import Element
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element.Element import Element
+from src.metadata.Metadata import Metadata
 
 
 class Repository(Element):

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from sampling_workflow.element.Set import Set
+from src.element.Set import Set
 
 
 class Writer(ABC):

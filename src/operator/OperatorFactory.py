@@ -1,27 +1,27 @@
 from collections.abc import Callable
 from typing import TypeVar
 
-from sampling_workflow.constraint.Comparator import Comparator
-from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
-from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionOperator import (
+from src.constraint.Comparator import Comparator
+from src.constraint.Constraint import Constraint
+from src.operator.clustering.GroupingOperator import GroupingOperator
+from src.operator.Operator import Operator
+from src.operator.selection.filter.FilterOperator import FilterOperator
+from src.operator.selection.sampling.automatic.RandomSelectionOperator import (
     RandomSelectionOperator,
 )
-from sampling_workflow.operator.selection.sampling.automatic.RandomSelectionPartitionOperator import (
+from src.operator.selection.sampling.automatic.RandomSelectionPartitionOperator import (
     RandomSelectionPartitionOperator,
 )
-from sampling_workflow.operator.selection.sampling.automatic.SystematicRandomSelectionOperator import (
+from src.operator.selection.sampling.automatic.SystematicRandomSelectionOperator import (
     SystematicRandomSelectionOperator,
 )
-from sampling_workflow.operator.selection.sampling.automatic.SystematicSelectionOperator import (
+from src.operator.selection.sampling.automatic.SystematicSelectionOperator import (
     SystematicSelectionOperator,
 )
-from sampling_workflow.operator.selection.sampling.manual.InteractiveManualSamplingOperator import (
+from src.operator.selection.sampling.manual.InteractiveManualSamplingOperator import (
     InteractiveManualSamplingOperator,
 )
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+from src.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
 

@@ -1,7 +1,7 @@
 import random
 
-from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
+from src.operator.Operator import Operator
+from src.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
 

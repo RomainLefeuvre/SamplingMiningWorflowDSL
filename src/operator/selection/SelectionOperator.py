@@ -1,4 +1,4 @@
-from sampling_workflow.operator.Operator import Operator
+from src.operator.Operator import Operator
 
 
 class SelectionOperator(Operator):

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import TypeVar
 
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.metadata.MetadataValue import MetadataValue
+from src.metadata.Metadata import Metadata
+from src.metadata.MetadataValue import MetadataValue
 
 T = TypeVar("T")
 

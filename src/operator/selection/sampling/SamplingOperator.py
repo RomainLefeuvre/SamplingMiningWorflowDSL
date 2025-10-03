@@ -1,5 +1,5 @@
 
-from sampling_workflow.operator.selection.SelectionOperator import SelectionOperator
+from src.operator.selection.SelectionOperator import SelectionOperator
 
 
 class SamplingOperator(SelectionOperator):

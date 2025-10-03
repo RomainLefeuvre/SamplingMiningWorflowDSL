@@ -2,8 +2,8 @@ import random
 from functools import cmp_to_key
 from collections import OrderedDict
 
-from sampling_workflow.constraint.Comparator import Comparator
-from sampling_workflow.element.Element import Element
+from src.constraint.Comparator import Comparator
+from src.element.Element import Element
 
 
 class Set(Element):

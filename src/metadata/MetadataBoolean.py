@@ -1,5 +1,5 @@
-from sampling_workflow.constraint.BoolConstraint import BoolConstraint
-from sampling_workflow.metadata.Metadata import Metadata
+from src.constraint.BoolConstraint import BoolConstraint
+from src.metadata.Metadata import Metadata
 
 
 class MetadataBoolean(Metadata[bool]):

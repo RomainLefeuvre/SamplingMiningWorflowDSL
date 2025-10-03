@@ -1,8 +1,7 @@
 from collections import Counter
 
-from sampling_workflow.element.Set import Set
-from sampling_workflow.metadata.Metadata import Metadata
-
+from src.metadata.Metadata import Metadata
+from src.element.Set import Set
 
 class CoverageTest:
     def __init__(self, metadata: Metadata, set_1: Set, set_2: Set):

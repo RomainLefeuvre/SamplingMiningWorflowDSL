@@ -1,9 +1,9 @@
 from typing import TypeVar
 
-from sampling_workflow.analysis.HistAnalysis import HistAnalysis
-from sampling_workflow.analysis.WorkflowAnalysis import WorkflowAnalysis
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
+from src.analysis.HistAnalysis import HistAnalysis
+from src.analysis.WorkflowAnalysis import WorkflowAnalysis
+from src.metadata.Metadata import Metadata
+from src.operator.clustering.GroupingOperator import GroupingOperator
 
 T = TypeVar("T")
 

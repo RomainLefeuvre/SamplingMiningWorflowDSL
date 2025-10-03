@@ -43,7 +43,7 @@
 This reposiotry proposes a python internal DSL to model sampling workflow of MSR studies. 
 ```
 .
-├── sampling_workflow   // Python package containing the Python Internal DSL
+├── src   // Python package containing the Python Internal DSL
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

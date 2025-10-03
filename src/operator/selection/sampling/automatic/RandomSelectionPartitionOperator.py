@@ -1,10 +1,10 @@
 
-from sampling_workflow.element.Set import Set
-from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
+from src.element.Set import Set
+from src.operator.Operator import Operator
+from src.operator.selection.sampling.automatic.AutomaticSamplingOperator import (
     AutomaticSamplingOperator,
 )
-from sampling_workflow.Workflow import Workflow
+from src.Workflow import Workflow
 
 
 class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
@@ -13,7 +13,7 @@ class RandomSelectionPartitionOperator(AutomaticSamplingOperator):
         self.seed = seed
 
     def execute(self) -> Operator:
-        from sampling_workflow.operator.OperatorFactory import (
+        from src.operator.OperatorFactory import (
             OperatorFactory,
         )  # Local import
 

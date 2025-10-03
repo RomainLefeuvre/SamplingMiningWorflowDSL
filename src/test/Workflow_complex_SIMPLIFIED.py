@@ -1,10 +1,10 @@
-from sampling_workflow.element.writer.WritterFactory import (
+from src.element.writer.WritterFactory import (
     WritterFactory
 )
 
-from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.OperatorFactory import OperatorFactory
+from src.element.loader.LoaderFactory import LoaderFactory
+from src.metadata.Metadata import Metadata
+from src.operator.OperatorFactory import OperatorFactory
 
 filter_operator = OperatorFactory.filter_operator
 random_selection_operator = OperatorFactory.random_selection_operator

@@ -1,8 +1,8 @@
 from datetime import datetime, date
 from typing import Union
 from dateutil import parser
-from sampling_workflow.constraint.BoolConstraint import BoolConstraint
-from sampling_workflow.metadata.Metadata import Metadata
+from src.constraint.BoolConstraint import BoolConstraint
+from src.metadata.Metadata import Metadata
 
 
 class MetadataDate(Metadata[Union[datetime, date]]):
@@ -16,7 +16,7 @@ class MetadataDate(Metadata[Union[datetime, date]]):
                 typed_value=parser.parse(str(value)) 
             except Exception as e:
                 raise TypeError(f"Value {value} date is not parsable" ) from e
-        from sampling_workflow.metadata.MetadataValue import MetadataValue
+        from src.metadata.MetadataValue import MetadataValue
 
         return MetadataValue(self, typed_value)
 

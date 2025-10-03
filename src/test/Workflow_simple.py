@@ -1,11 +1,11 @@
-from sampling_workflow.element.loader.LoaderFactory import LoaderFactory
-from sampling_workflow.element.writer.WriterFactory import WritterFactory
-from sampling_workflow.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
-from sampling_workflow.metadata.Metadata import Metadata
-from sampling_workflow.operator.clustering.SubWorkflowOperatorBuilder import (
+from src.element.loader.LoaderFactory import LoaderFactory
+from src.element.writer.WriterFactory import WritterFactory
+from src.exec_visualizer.WorkflowVisualizer import WorkflowVisualizer
+from src.metadata.Metadata import Metadata
+from src.operator.clustering.SubWorkflowOperatorBuilder import (
     SubWorkflowOperatorBuilder,
 )
-from sampling_workflow.WorkflowBuilder import WorkflowBuilder
+from src.WorkflowBuilder import WorkflowBuilder
 
 json_loader = LoaderFactory.json_loader
 json_writer = WritterFactory.json_writer

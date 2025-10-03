@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from sampling_workflow.element.loader.JsonLoader import JsonLoader
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element.loader.JsonLoader import JsonLoader
+from src.metadata.Metadata import Metadata
 
 
 class LoaderFactory:

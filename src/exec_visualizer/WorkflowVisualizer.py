@@ -3,9 +3,9 @@ from typing import cast
 
 from graphviz import Digraph
 
-from sampling_workflow.constraint.BoolConstraintString import BoolConstraintString
-from sampling_workflow.operator.clustering.GroupingOperator import GroupingOperator
-from sampling_workflow.operator.selection.filter.FilterOperator import FilterOperator
+from src.constraint.BoolConstraintString import BoolConstraintString
+from src.operator.clustering.GroupingOperator import GroupingOperator
+from src.operator.selection.filter.FilterOperator import FilterOperator
 
 
 class WorkflowVisualizer:

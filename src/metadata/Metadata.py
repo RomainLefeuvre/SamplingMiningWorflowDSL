@@ -22,12 +22,12 @@ class Metadata[T]:
         return isinstance(obj, self.type)
 
     def bool_constraint(self, constraint: Callable[[T], bool]):
-        from sampling_workflow.constraint.BoolConstraint import BoolConstraint
+        from src.constraint.BoolConstraint import BoolConstraint
 
         return BoolConstraint(constraint, self)
 
     def bool_comparator(self, comparator: Callable[[T, T], T]):
-        from sampling_workflow.constraint.BoolComparator import BoolComparator
+        from src.constraint.BoolComparator import BoolComparator
 
         return BoolComparator(self, comparator)
 
@@ -38,7 +38,7 @@ class Metadata[T]:
                 typed_value=self.type(value) #instantiate the type to convert it
             except Exception as e:
                 raise TypeError(f"Value {value} is not of type {self.type} and cannot be converted to it.",e) from e
-        from sampling_workflow.metadata.MetadataValue import MetadataValue
+        from src.metadata.MetadataValue import MetadataValue
 
         return MetadataValue(self, typed_value)
 
@@ -48,55 +48,55 @@ class Metadata[T]:
 
     @staticmethod
     def of_date(name: str):
-        from sampling_workflow.metadata.MetadataDate import MetadataDate
+        from src.metadata.MetadataDate import MetadataDate
 
         return MetadataDate(name)
 
     @staticmethod
     def of_string(name: str):
-        from sampling_workflow.metadata.MetadataString import MetadataString
+        from src.metadata.MetadataString import MetadataString
 
         return MetadataString(name)
 
     @staticmethod
     def of_integer(name: str):
-        from sampling_workflow.metadata.MetadataNumber import MetadataNumber
+        from src.metadata.MetadataNumber import MetadataNumber
 
         return MetadataNumber(name, int)
 
     @staticmethod
     def of_double(name: str):
-        from sampling_workflow.metadata.MetadataNumber import MetadataNumber
+        from src.metadata.MetadataNumber import MetadataNumber
 
         return MetadataNumber(name, float)
 
     @staticmethod
     def of_float(name: str):
-        from sampling_workflow.metadata.MetadataNumber import MetadataNumber
+        from src.metadata.MetadataNumber import MetadataNumber
 
         return MetadataNumber(name, float)
 
     @staticmethod
     def of_long(name: str):
-        from sampling_workflow.metadata.MetadataNumber import MetadataNumber
+        from src.metadata.MetadataNumber import MetadataNumber
 
         return MetadataNumber(name, int)
 
     @staticmethod
     def of_character(name: str):
-        from sampling_workflow.metadata.MetadataString import MetadataString
+        from src.metadata.MetadataString import MetadataString
 
         return MetadataString(name)
 
     @staticmethod
     def of_short(name: str):
-        from sampling_workflow.metadata.MetadataNumber import MetadataNumber
+        from src.metadata.MetadataNumber import MetadataNumber
 
         return MetadataNumber(name, int)
 
     @staticmethod
     def of_boolean(name: str):
-        from sampling_workflow.metadata.MetadataBoolean import MetadataBoolean
+        from src.metadata.MetadataBoolean import MetadataBoolean
 
         return MetadataBoolean(name)
 
@@ -106,12 +106,12 @@ class Metadata[T]:
 
     @staticmethod
     def of_list(name: str, type, transfo:Callable[[str],list[T]]=None):
-        from sampling_workflow.metadata.MetadataList import MetadataList
+        from src.metadata.MetadataList import MetadataList
 
         return MetadataList(name,type,transfo)
 
     @staticmethod
     def of_dict(name: str, key_type, value_type, transfo:Callable[[str],dict[T, V]]=None):
-        from sampling_workflow.metadata.MetadataDict import MetadataDict
+        from src.metadata.MetadataDict import MetadataDict
 
         return MetadataDict(name,key_type,value_type,transfo)

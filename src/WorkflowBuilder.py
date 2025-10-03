@@ -1,5 +1,5 @@
-from sampling_workflow.operator.OperatorBuilder import OperatorBuilder
-from sampling_workflow.Workflow import Workflow
+from src.operator.OperatorBuilder import OperatorBuilder
+from src.Workflow import Workflow
 
 
 class WorkflowBuilder:

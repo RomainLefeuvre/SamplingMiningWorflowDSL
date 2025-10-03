@@ -1,9 +1,9 @@
 
 from scipy.stats import ks_2samp
 
-from sampling_workflow.element.Repository import Repository
-from sampling_workflow.element.Set import Set
-from sampling_workflow.metadata.Metadata import Metadata
+from src.element.Repository import Repository
+from src.element.Set import Set
+from src.metadata.Metadata import Metadata
 
 
 class kolmogorov_smirnov:

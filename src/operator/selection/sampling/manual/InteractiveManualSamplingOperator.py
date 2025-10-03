@@ -1,12 +1,12 @@
 from typing import TypeVar
 
-from sampling_workflow.element.Repository import Repository
-from sampling_workflow.element.Set import Set
-from sampling_workflow.operator.Operator import Operator
-from sampling_workflow.operator.selection.sampling.manual.ManualSamplingOperator import (
+from src.element.Repository import Repository
+from src.element.Set import Set
+from src.operator.Operator import Operator
+from src.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
-from sampling_workflow.Workflow import Workflow
+from src.Workflow import Workflow
 
 T = TypeVar("T")
 

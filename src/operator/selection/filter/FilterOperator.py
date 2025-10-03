@@ -1,6 +1,6 @@
-from sampling_workflow.constraint.Constraint import Constraint
-from sampling_workflow.element.Set import Set
-from sampling_workflow.operator.Operator import Operator
+from src.constraint.Constraint import Constraint
+from src.element.Set import Set
+from src.operator.Operator import Operator
 
 
 class FilterOperator(Operator):

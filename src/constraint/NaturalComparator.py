@@ -1,7 +1,7 @@
 from typing import TypeVar
 
-from sampling_workflow.constraint.Comparator import Comparator
-from sampling_workflow.element.Element import Element
+from src.constraint.Comparator import Comparator
+from src.element.Element import Element
 
 T = TypeVar("T")
 
