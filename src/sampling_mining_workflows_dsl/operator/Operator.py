@@ -25,6 +25,16 @@ class Operator(ABC):
     def add_metadata_loader(self, loader) -> "Operator":
         self._loader = loader
         return self
+    
+    def set_output_set_id(self, set_id: str) -> "Operator":
+        if self._output is not None:
+            self._output.set_id(set_id)
+        return self
+    
+    def set_input_set_id(self, set_id: str) -> "Operator":
+        if self._input is not None:
+            self._input.set_id(set_id)
+        return self
 
     def add_metadata(self) -> "Operator":
         # Add the new metadata to the existing workflow metadata list

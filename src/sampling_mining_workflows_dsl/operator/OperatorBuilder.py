@@ -52,6 +52,18 @@ class OperatorBuilder:
         self.workflow.add_metadata(loader)
         return self
 
+    def set_output_set_id(self, set_id: str) -> "OperatorBuilder":
+        if self.workflow.operators:
+            last_operator = self.workflow.operators[-1]
+            last_operator.set_output_set_id(set_id)
+        return self
+    
+    def set_input_set_id(self, set_id: str) -> "OperatorBuilder":
+        if self.workflow.operators:
+            first_operator = self.workflow.operators[0]
+            first_operator.set_input_set_id(set_id)
+        return self
+    
     def random_selection_operator(
         self, cardinality: int, seed: int = 0
     ) -> "OperatorBuilder":

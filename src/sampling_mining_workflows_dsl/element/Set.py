@@ -11,6 +11,7 @@ class Set(Element):
         super().__init__()
         self.elements = OrderedDict()
         self.ids= set()
+        self.set_id = None
 
     def __hash__(self):
         return hash(tuple(self.elements.items)) + super().__hash__()
@@ -123,8 +124,14 @@ class Set(Element):
             raise RuntimeError(f"Element with id {id} not found in the set")
         return self.elements.get(id)
     
+    def set_id(self, set_id: str) -> "Set":
+        self.set_id = set_id
+        return self 
 
     def get_id(self):
+        if self.set_id is not None:
+            return self.set_id
+        
         set_id = ""
         for id in self.elements.keys():
             set_id = set_id + "_" + id
