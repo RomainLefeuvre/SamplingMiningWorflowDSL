@@ -73,6 +73,21 @@ class Workflow:
         manual_sampling_operator = ManualSamplingOperator(self, *ids)
         self.add_operator(cast("Operator", manual_sampling_operator))
         return self
+    
+        
+    def get_internal_set_by_id(self, set_id: str) -> Set | None:
+        current: Operator= self._root
+        while current is not None:
+            output:Set = current.get_output()
+            if not output is None and output.get_id() == set_id:
+                return output
+            if current.isinstance(GroupingOperator):
+                for w in current.get_workflows():
+                    internal_set = w.get_internal_set_by_id(set_id)
+                    if internal_set is not None:
+                        return internal_set
+            current = current._next_operator
+        return None
 
     def input(self, loader: Loader) -> "Workflow":
         self._metadata = list(loader.metadatas.values())

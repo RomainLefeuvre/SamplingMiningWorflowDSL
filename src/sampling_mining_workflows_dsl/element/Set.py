@@ -27,7 +27,10 @@ class Set(Element):
         if index < 0 or index >= len(self.elements):
             raise IndexError("Index out of range")
         return list(self.elements.values())[index]
-    
+    def remove_all_elements(self) -> "Set":
+        self.elements.clear()
+        self.ids.clear()
+        return self
     def add_element(self, element: Element) -> "Set":
         if not element.get_id() in self.ids:
             self.elements[element.get_id()]=element

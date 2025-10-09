@@ -110,6 +110,7 @@ class Operator(ABC):
     def output_set(self, output_set: Set) -> "Operator":
         self._output = output_set
         return self
+    
 
     def get_input(self) -> Set | None:
         return self._input

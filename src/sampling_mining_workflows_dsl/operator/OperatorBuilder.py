@@ -16,6 +16,7 @@ from sampling_mining_workflows_dsl.operator.selection.sampling.automatic.Systema
 from sampling_mining_workflows_dsl.operator.selection.sampling.manual.ManualSamplingOperator import (
     ManualSamplingOperator,
 )
+from sampling_mining_workflows_dsl.operator.set_algebra.set_operator import DifferenceOperator
 
 if TYPE_CHECKING:
     from sampling_mining_workflows_dsl.operator.Operator import Operator
@@ -72,6 +73,24 @@ class OperatorBuilder:
         )
         self.workflow.add_operator(cast("Operator", random_selection_operator))
         return self
+    
+    def union_with_operator(self, set_name: str) -> "OperatorBuilder":
+        from sampling_mining_workflows_dsl.operator.set_algebra.set_operator import UnionOperator
+        union_operator = UnionOperator(self.workflow, set_name)
+        self.workflow.add_operator(union_operator)
+        return self
+    
+    def union_with_external_set_operator(self, loader:Loader) -> "OperatorBuilder":
+        from sampling_mining_workflows_dsl.operator.set_algebra.external_set_operator import UnionOperator
+
+        union_operator = UnionOperator(self.workflow, loader)
+        self.workflow.add_operator(union_operator)
+        return self
+
+    def difference_with_operator(self, set_name: str) -> "OperatorBuilder":
+        difference_operator = DifferenceOperator(self.workflow, set_name)
+        self.workflow.add_operator(difference_operator)
+        return self         
 
     def filter_operator(self, constraint: str | Constraint) -> "OperatorBuilder":
         if isinstance(constraint, str):
